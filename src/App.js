@@ -1,17 +1,17 @@
-import React from 'react';
-import MainRoute from '../src/routes/mainRoute';
+import React from "react";
+import MainRoute from "../src/routes/mainRoute";
 import { Provider } from "unistore/react";
 import { store } from "./store";
-import './styles/bootstrap.min.css';
+import "./style/bootstrap.min.css";
 
 function App() {
-  return (
-    <div className="App">
-      <Provider store={store}>
-        <MainRoute />
-      </Provider>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Provider store={store}>
+                <MainRoute />
+            </Provider>
+        </div>
+    );
 }
 
 export default App;

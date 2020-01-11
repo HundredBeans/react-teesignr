@@ -1,43 +1,146 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
 
-class Header extends React.Component{
-    render(){
+class Header extends React.Component {
+    render() {
         return (
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-        )
+            <nav
+                class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top border border-bottom"
+                style={{ fontFamily: "Courier", backgroundColor: "#1D2124" }}
+            >
+                <div className="container-fluid">
+                    <Link to="/">
+                        <a class="navbar-brand mr-5">TEESIGNR</a>
+                    </Link>
+                    <form class="form-inline my-2 my-lg-0 w-100 d-inline mr-5">
+                        <div className="input-group">
+                            <input
+                                class="form-control my-2 my-sm-0"
+                                type="search"
+                                placeholder="Cari T-Shirt atau nama Toko"
+                                aria-label="Search"
+                            />
+                            <button
+                                class="btn btn-dark my-2 my-sm-0"
+                                type="submit"
+                            >
+                                <i class="fa fa-fw fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav navbar-right ml-auto">
+                            {/* KELUAR JIKA SUDAH LOGIN */}
+                            {this.props.isLogin ? (
+                                <React.Fragment>
+                                    <li class="nav-item dropdown mx-1">
+                                        <a
+                                            class="nav-link dropdown-toggle"
+                                            href="#"
+                                            id="navbarDropdown"
+                                            role="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                            {this.props.namaUserLogin}
+                                        </a>
+                                        <div
+                                            class="dropdown-menu"
+                                            aria-labelledby="navbarDropdown"
+                                        >
+                                            <a class="dropdown-item" href="#">
+                                                Keranjang
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                Toko
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                Sejarah Transaksi
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">
+                                                Keluar
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item mx-1">
+                                        <a
+                                            class="nav-link"
+                                            href="#"
+                                            data-toggle="modal"
+                                            data-target="#ModalRegisterToko"
+                                        >
+                                            JUAL{" "}
+                                            <span class="sr-only">
+                                                (current)
+                                            </span>
+                                        </a>
+                                    </li>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <li class="nav-item mx-1">
+                                        <a class="nav-link" href="#">
+                                            JUAL{" "}
+                                            <span class="sr-only">
+                                                (current)
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mx-1">
+                                        <a
+                                            class="nav-link"
+                                            href="#"
+                                            data-toggle="modal"
+                                            data-target="#ModalSignup"
+                                        >
+                                            DAFTAR{" "}
+                                            <span class="sr-only">
+                                                (current)
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mx-1">
+                                        <a
+                                            class="nav-link"
+                                            href="#"
+                                            data-toggle="modal"
+                                            data-target="#ModalLogin"
+                                        >
+                                            MASUK{" "}
+                                            <span class="sr-only">
+                                                (current)
+                                            </span>
+                                        </a>
+                                    </li>
+                                </React.Fragment>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        );
     }
 }
+export default connect(
+    "isLogin, token, namaUserLogin",
+    actions
+)(withRouter(Header));

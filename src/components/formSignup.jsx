@@ -1,0 +1,164 @@
+import React from "react";
+import axios from "axios";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+
+class FormSignup extends React.Component {
+    // close modal
+    // closeModal = () => {
+    //     $("#ModalSignup").modal("hide");
+    // };
+
+    // validate email
+    validateEmail = email => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+    handleSignup = () => {
+        // validate email
+        if (!this.validateEmail(this.props.daftarEmail)) {
+            alert("Email tidak valid");
+            // return validasi jangan lewat alert
+        }
+        // validate password
+        else if (this.props.daftarPassword.length < 6) {
+            alert("Password minimal 6 karakter");
+            // return validasi jangan lewat alert
+        }
+        // validate login input
+        else if (
+            this.props.daftarFullName === "" ||
+            this.props.daftarUsername === ""
+        ) {
+            alert("Form tidak boleh kosong");
+            // return validasi jangan lewat alert
+        } else {
+            const data = {
+                full_name: this.props.daftarFullName,
+                email: this.props.daftarEmail,
+                username: this.props.daftarUsername,
+                password: this.props.daftarPassword
+            };
+            console.log("login");
+            const self = this;
+            // ditambahin error kalo udah solve
+            axios
+                .post(this.props.baseUrl + "/auth/register", data)
+                .then(function(response) {
+                    // this.closeModal();
+                    if (response.status === 200) {
+                        store.setState({ isLogin: true });
+                        self.props.history.push("/");
+                        alert("register berhasil");
+                    } else {
+                        alert("register gagal");
+                    }
+                    // console.log(this.props.isLogin);
+                    // console.log(response);
+                });
+            // .catch(function(error) {
+            //     console.log("ini status", error.status);
+            //     store.setState({ isLogin: true });
+            //     console.log(self.props.isLogin);
+            //     console.log("ini error");
+            // });
+        }
+    };
+    render() {
+        return (
+            <div className="container">
+                <form onSubmit={e => e.preventDefault(e)}>
+                    <div className="form-group row">
+                        <label
+                            for="daftarFullName"
+                            className="col-sm-4 col-form-label"
+                        >
+                            Nama Lengkap
+                        </label>
+                        <div className="col-sm-8">
+                            <input
+                                type="text"
+                                name="daftarFullName"
+                                className="form-control"
+                                id="daftarFullName"
+                                placeholder="Dobleh Kabur"
+                                onChange={e => this.props.handleInput(e)}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label
+                            for="daftarEmail"
+                            className="col-sm-4 col-form-label"
+                            placeholder="dobleh@email.com"
+                        >
+                            E-Mail
+                        </label>
+                        <div className="col-sm-8">
+                            <input
+                                type="text"
+                                name="daftarEmail"
+                                className="form-control"
+                                id="daftarEmail"
+                                placeholder="dobleh@email.com"
+                                onChange={e => this.props.handleInput(e)}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label
+                            for="daftarUsername"
+                            className="col-sm-4 col-form-label"
+                        >
+                            Username
+                        </label>
+                        <div className="col-sm-8">
+                            <input
+                                type="text"
+                                name="daftarUsername"
+                                className="form-control"
+                                id="daftarUsername"
+                                placeholder="dobleh_theDestroyer"
+                                onChange={e => this.props.handleInput(e)}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label
+                            for="daftarPassword"
+                            className="col-sm-4 col-form-label"
+                        >
+                            Password
+                        </label>
+                        <div className="col-sm-8">
+                            <input
+                                type="password"
+                                name="daftarPassword"
+                                className="form-control"
+                                id="daftarPassword"
+                                onChange={e => this.props.handleInput(e)}
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <div className="col-sm-12 py-1">
+                            <button
+                                type="submit"
+                                onClick={this.handleSignup}
+                                className="btn btn-dark btn-block"
+                                data-dismiss="modal"
+                            >
+                                Daftar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+}
+export default connect(
+    "baseUrl, daftarFullName, daftarEmail, daftarUsername, daftarPassword, isLogin",
+    actions
+)(withRouter(FormSignup));

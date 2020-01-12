@@ -51,22 +51,14 @@ class FormSignup extends React.Component {
                 .post(this.props.baseUrl + "/auth/register", data)
                 .then(function(response) {
                     // this.closeModal();
-                    if (response.status === 200) {
-                        store.setState({ isLogin: true });
-                        self.props.history.push("/");
-                        alert("register berhasil");
-                    } else {
-                        alert("register gagal");
-                    }
+                    console.log(response.data);
+                    alert("register sukses");
                     // console.log(this.props.isLogin);
                     // console.log(response);
+                })
+                .catch(function(error) {
+                    alert(error.response.data.message);
                 });
-            // .catch(function(error) {
-            //     console.log("ini status", error.status);
-            //     store.setState({ isLogin: true });
-            //     console.log(self.props.isLogin);
-            //     console.log("ini error");
-            // });
         }
     };
     render() {

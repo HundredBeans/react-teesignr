@@ -4,6 +4,7 @@ import Home from "../pages/home";
 import Result from "../pages/result";
 import SyaratKetentuan from "../pages/syaratKetentuan";
 import TentangKami from "../pages/tentangKami";
+import JualProduk from "../pages/jual";
 
 const MainRoute = () => {
     return (
@@ -13,6 +14,7 @@ const MainRoute = () => {
                 <Route path="/hasil" component={Result} />
                 <Route exact path="/snk-belanja" component={SyaratKetentuan} />
                 <Route exact path="/tentang-kami" component={TentangKami} />
+                <Route exact path="/jual" component={JualProduk} />
             </Switch>
         </BrowserRouter>
     );

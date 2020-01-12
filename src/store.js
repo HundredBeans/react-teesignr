@@ -3,8 +3,8 @@ import axios from "axios";
 import createStore from "unistore";
 
 const initialState = {
-    isLogin: false,
-    token: "",
+    isLogin: false, //bisa dipindah ke localstorage
+    token: "", //bisa dipindah ke localstorage
     baseUrl: "http://0.0.0.0:5000",
     emailInput: "",
     passwordInput: "",
@@ -15,11 +15,15 @@ const initialState = {
     quote: "",
     quoteAuthor: "",
     isLoadingQuote: true,
-    namaUserLogin: "",
-    namaUsernameLogin: "",
+    namaUserLogin: "", //bisa dipindah ke localstorage
     inputNamaToko: "",
     inputDeskripsiToko: "",
-    punyaToko: false
+    punyaToko: "", //bisa dipindah ke localstorage
+    jualNamaProduk: "",
+    jualKeuntungan: "",
+    jualJenisBahan: "",
+    jualDesignUrl: "",
+    jualDeskripsi: ""
 };
 
 export const store = createStore(initialState);
@@ -45,7 +49,7 @@ export const actions = store => ({
                 Authorization: "Bearer " + token
             }
         };
-        console.log(initialState.token);
+        console.log(token);
         axios(req).then(function(response) {
             console.log(response.data);
             store.setState({

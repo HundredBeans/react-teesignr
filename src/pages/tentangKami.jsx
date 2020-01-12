@@ -2,6 +2,9 @@ import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import HeaderQuote from "../components/headerQuote";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
@@ -14,6 +17,9 @@ class TentangKami extends React.Component {
         return (
             <body className="bgHome">
                 <Header />
+                <ModalLogin />
+                <ModalSignup />
+                <ModalRegisterToko />
                 <HeaderQuote />
                 <div className="container py-3">
                     <div

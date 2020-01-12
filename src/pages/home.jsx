@@ -2,10 +2,10 @@ import React from "react";
 import Header from "../components/header";
 import ModalLogin from "../components/modalLogin";
 import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
 import HomeHead from "../components/homeHead";
 import ListHome from "../components/listHome";
 import Footer from "../components/footer";
-import ModalRegisterToko from "../components/modalRegisterToko";
 
 class Home extends React.Component {
     render() {

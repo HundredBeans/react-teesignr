@@ -8,6 +8,7 @@ import ModalRegisterToko from "../components/modalRegisterToko";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
+import Axios from "axios";
 
 class JualProduk extends React.Component {
     validateNumber = number => {
@@ -42,6 +43,13 @@ class JualProduk extends React.Component {
             };
             console.log(this.props.jualJenisBahan);
             console.log(req.data);
+            Axios(req)
+                .then(function(response) {
+                    alert(response.data.status);
+                })
+                .catch(function(error) {
+                    alert(error.response.data.message);
+                });
         }
     };
     componentDidMount() {
@@ -300,6 +308,6 @@ class JualProduk extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, punyaToko",
+    "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, punyaToko",
     actions
 )(withRouter(JualProduk));

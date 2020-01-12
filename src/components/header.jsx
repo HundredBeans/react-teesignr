@@ -5,6 +5,10 @@ import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 
 class Header extends React.Component {
+    handleLogout = () => {
+        store.setState({ isLogin: false });
+        alert("kamu telah keluar");
+    };
     render() {
         return (
             <nav
@@ -76,7 +80,11 @@ class Header extends React.Component {
                                                 Sejarah Transaksi
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">
+                                            <a
+                                                class="dropdown-item"
+                                                href="#"
+                                                onClick={this.handleLogout}
+                                            >
                                                 Keluar
                                             </a>
                                         </div>

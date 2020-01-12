@@ -3,8 +3,26 @@ import { Link } from "react-router-dom";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
+import axios from "axios";
 
 class Header extends React.Component {
+    handleSearch = () => {
+        store.setState({ isLoadingSearch: true });
+        const req = {
+            method: "get",
+            url: this.props.baseUrl + "/baju?search=" + this.props.searchKeyword
+        };
+        console.log("search", this.props.searchKeyword);
+        const self = this;
+        axios(req).then(function(response) {
+            store.setState({
+                listBarangSearch: response.data,
+                isLoadingSearch: false
+            });
+            console.log(response.data);
+            console.log(self.props.listBarangSearch);
+        });
+    };
     handleLogout = () => {
         store.setState({ isLogin: false });
         alert("kamu telah keluar");
@@ -26,13 +44,18 @@ class Header extends React.Component {
                                 type="search"
                                 placeholder="Cari T-Shirt atau nama Toko"
                                 aria-label="Search"
+                                name="searchKeyword"
+                                onChange={e => this.props.handleInput(e)}
                             />
-                            <button
-                                class="btn btn-dark my-2 my-sm-0"
-                                type="submit"
-                            >
-                                <i class="fa fa-fw fa-search"></i>
-                            </button>
+                            <Link to="/hasil">
+                                <button
+                                    class="btn btn-dark my-2 my-sm-0"
+                                    type="submit"
+                                    onClick={this.handleSearch}
+                                >
+                                    <i class="fa fa-fw fa-search"></i>
+                                </button>
+                            </Link>
                         </div>
                     </form>
                     <button
@@ -147,6 +170,6 @@ class Header extends React.Component {
     }
 }
 export default connect(
-    "isLogin, token, namaUserLogin, punyaToko",
+    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl",
     actions
 )(withRouter(Header));

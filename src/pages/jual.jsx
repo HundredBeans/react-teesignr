@@ -54,6 +54,7 @@ class JualProduk extends React.Component {
     };
     componentDidMount() {
         if (this.props.punyaToko) {
+            store.setState({ isLoadingQuote: true });
             this.props.getRandomQuote();
         } else {
             alert("kamu belum mempunyai toko");
@@ -63,7 +64,7 @@ class JualProduk extends React.Component {
     render() {
         return (
             <body>
-                <Header />
+                <Header handleSearch={this.props.handleSearch} />
                 <ModalLogin />
                 <ModalRegisterToko />
                 <ModalSignup />
@@ -308,6 +309,6 @@ class JualProduk extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, punyaToko",
+    "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, punyaToko, token, listBarangSearch, searchKeyword",
     actions
 )(withRouter(JualProduk));

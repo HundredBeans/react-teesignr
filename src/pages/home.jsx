@@ -6,12 +6,15 @@ import ModalRegisterToko from "../components/modalRegisterToko";
 import HomeHead from "../components/homeHead";
 import ListHome from "../components/listHome";
 import Footer from "../components/footer";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
 
 class Home extends React.Component {
     render() {
         return (
             <body className="bgHome">
-                <Header />
+                <Header handleSearch={this.props.handleSearch} />
                 <ModalLogin />
                 <ModalSignup />
                 <ModalRegisterToko />
@@ -27,4 +30,7 @@ class Home extends React.Component {
         );
     }
 }
-export default Home;
+export default connect(
+    "searchKeyword, listBarangSearch",
+    actions
+)(withRouter(Home));

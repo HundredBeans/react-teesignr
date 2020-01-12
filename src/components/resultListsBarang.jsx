@@ -1,7 +1,32 @@
 import React from "react";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import TextTruncate from "react-text-truncate";
 
 class ResultListsBarang extends React.Component {
+    componentDidMount() {
+        store.setState({ isLoadingSearch: false });
+    }
     render() {
+        const loopBaju = this.props.listBarangSearch.map((value, index) => (
+            <div className="col-md-3 px-auto pb-4">
+                <div class="card">
+                    <img src={value.gambar} class="card-img-top" alt="..." />
+                    <a
+                        href={"/baju/" + value.id}
+                        class="btn btn-light border-bottom"
+                    >
+                        <TextTruncate
+                            line={2}
+                            truncateText="…"
+                            text={value.nama}
+                        />
+                    </a>
+                    <span className="text-center py-1">{value.harga}</span>
+                </div>
+            </div>
+        ));
         return (
             <div class="card" style={{ backgroundColor: "#1D2124" }}>
                 <div class="card-header border-bottom">
@@ -9,7 +34,7 @@ class ResultListsBarang extends React.Component {
                         className="border-bottom border-dark"
                         style={{ color: "white" }}
                     >
-                        HASIL PENCARIAN : T-SHIRT MAHAL{" "}
+                        HASIL PENCARIAN : {this.props.searchKeyword}
                         <i class="fa fa-fw fa-angle-right"></i>
                     </span>
                     <a
@@ -22,160 +47,24 @@ class ResultListsBarang extends React.Component {
                 </div>
                 <div class="card-body">
                     <div className="row">
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
+                        {this.props.isLoadingSearch ? (
+                            <div
+                                className="col-md-12 text-center"
+                                style={{ color: "white" }}
+                            >
+                                Loading....
                             </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
-                        <div className="col-md-3 px-auto pb-4">
-                            <div class="card">
-                                <img
-                                    src="https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/11/26/20491113/20491113_2b0f0081-d27f-4a29-ba77-2100e2d97db4_1080_1080"
-                                    class="card-img-top"
-                                    alt="..."
-                                />
-                                <a href="#" class="btn btn-light border-bottom">
-                                    T-Shirt Mahal
-                                </a>
-                                <span className="text-center py-1">
-                                    Rp. 250000
-                                </span>
-                            </div>
-                        </div>
+                        ) : (
+                            loopBaju
+                        )}
                     </div>
                 </div>
+                )
             </div>
         );
     }
 }
-export default ResultListsBarang;
+export default connect(
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, isLoadingSearch",
+    actions
+)(withRouter(ResultListsBarang));

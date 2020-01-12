@@ -43,7 +43,9 @@ class HeaderQuote extends React.Component {
                                         </p>
                                     </blockquote>
                                     <footer class="blockquote-footer">
-                                        {this.props.quoteAuthor}
+                                        {this.props.isLoadingQuote
+                                            ? "unknown"
+                                            : this.props.quoteAuthor}
                                     </footer>
                                 </div>
                             </div>

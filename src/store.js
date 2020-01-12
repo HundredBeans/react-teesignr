@@ -23,7 +23,10 @@ const initialState = {
     jualKeuntungan: "",
     jualJenisBahan: "",
     jualDesignUrl: "",
-    jualDeskripsi: ""
+    jualDeskripsi: "",
+    searchKeyword: "",
+    listBarangSearch: [],
+    isLoadingSearch: true
 };
 
 export const store = createStore(initialState);
@@ -31,6 +34,10 @@ export const store = createStore(initialState);
 export const actions = store => ({
     handleInput: (state, event) => {
         store.setState({ [event.target.name]: event.target.value });
+        console.log(event.target.value);
+        console.log(event.target.name);
+        console.log(initialState.searchKeyword);
+        console.log(initialState.emailInput);
     },
     getRandomQuote: state => {
         axios.get("https://api.quotable.io/random").then(function(response) {

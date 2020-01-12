@@ -12,6 +12,7 @@ import HeaderQuote from "../components/headerQuote";
 
 class Result extends React.Component {
     componentDidMount() {
+        store.setState({ isLoadingQuote: true });
         this.props.getRandomQuote();
     }
     render() {
@@ -32,6 +33,6 @@ class Result extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch",
     actions
 )(withRouter(Result));

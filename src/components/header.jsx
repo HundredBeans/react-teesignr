@@ -82,29 +82,27 @@ class Header extends React.Component {
                                         </div>
                                     </li>
                                     <li class="nav-item mx-1">
-                                        <a
-                                            class="nav-link"
-                                            href="#"
-                                            data-toggle="modal"
-                                            data-target="#ModalRegisterToko"
-                                        >
-                                            JUAL{" "}
-                                            <span class="sr-only">
-                                                (current)
-                                            </span>
-                                        </a>
+                                        {this.props.punyaToko ? (
+                                            <Link to="/jual" class="nav-link">
+                                                JUAL
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                class="nav-link"
+                                                href="#"
+                                                data-toggle="modal"
+                                                data-target="#ModalRegisterToko"
+                                            >
+                                                JUAL{" "}
+                                                <span class="sr-only">
+                                                    (current)
+                                                </span>
+                                            </a>
+                                        )}
                                     </li>
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
-                                    <li class="nav-item mx-1">
-                                        <a class="nav-link" href="#">
-                                            JUAL{" "}
-                                            <span class="sr-only">
-                                                (current)
-                                            </span>
-                                        </a>
-                                    </li>
                                     <li class="nav-item mx-1">
                                         <a
                                             class="nav-link"
@@ -141,6 +139,6 @@ class Header extends React.Component {
     }
 }
 export default connect(
-    "isLogin, token, namaUserLogin",
+    "isLogin, token, namaUserLogin, punyaToko",
     actions
 )(withRouter(Header));

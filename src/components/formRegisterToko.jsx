@@ -1,7 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
 
 class RegisterToko extends React.Component {
+    handleRegisterToko = () => {
+        if (
+            this.props.inputNamaToko === "" ||
+            this.props.inputDeskripsiToko === ""
+        ) {
+            alert("Form tidak boleh kosong, mohon diisi kembali");
+        } else {
+            const req = {
+                method: "post",
+                url: this.props.baseUrl + "/toko/register",
+                headers: {
+                    Authorization: "Bearer " + this.props.token
+                },
+                data: {
+                    nama_toko: this.props.inputNamaToko,
+                    deskripsi: this.props.inputDeskripsiToko
+                }
+            };
+            Axios(req).then(function(response) {
+                alert("register toko berhasil");
+                store.setState({ punyaToko: true });
+            });
+        }
+    };
     render() {
         return (
             <div className="container">
@@ -63,4 +91,7 @@ class RegisterToko extends React.Component {
         );
     }
 }
-export default RegisterToko;
+export default connect(
+    "baseUrl, inputNamaToko, inputDeskripsiToko, punyaToko, token",
+    actions
+)(withRouter(RegisterToko));

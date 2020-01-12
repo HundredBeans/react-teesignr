@@ -9,15 +9,19 @@ class FormSignup extends React.Component {
     // closeModal = () => {
     //     $("#ModalSignup").modal("hide");
     // };
-
     // validate email
     validateEmail = email => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log("store, " + email);
+        console.log(re.test(email));
         return re.test(email);
     };
+
     handleSignup = () => {
+        let email = this.props.daftarEmail;
+        console.log(this.validateEmail(email));
         // validate email
-        if (!this.validateEmail(this.props.daftarEmail)) {
+        if (this.validateEmail(this.props.daftarEmail) === false) {
             alert("Email tidak valid");
             // return validasi jangan lewat alert
         }

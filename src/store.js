@@ -13,9 +13,13 @@ const initialState = {
     daftarUsername: "",
     daftarPassword: "",
     quote: "",
+    quoteAuthor: "",
     isLoadingQuote: true,
     namaUserLogin: "",
-    namaUsernameLogin: ""
+    namaUsernameLogin: "",
+    inputNamaToko: "",
+    inputDeskripsiToko: "",
+    punyaToko: false
 };
 
 export const store = createStore(initialState);
@@ -28,6 +32,7 @@ export const actions = store => ({
         axios.get("https://api.quotable.io/random").then(function(response) {
             store.setState({
                 quote: response.data.content,
+                quoteAuthor: response.data.author,
                 isLoadingQuote: false
             });
         });
@@ -44,8 +49,16 @@ export const actions = store => ({
         axios(req).then(function(response) {
             console.log(response.data);
             store.setState({
-                namaUserLogin: response.data.info_user.full_name
+                namaUserLogin: response.data.info_user.username,
+                punyaToko: response.data.info_user.designer_status
             });
         });
+    },
+    // validate email
+    validateEmail: (state, email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log("store, " + email);
+        console.log(re.test(email));
+        return re.test(email);
     }
 });

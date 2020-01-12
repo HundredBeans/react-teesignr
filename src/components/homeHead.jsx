@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/main.css";
+import { Link } from "react-router-dom";
 
 class HomeHead extends React.Component {
     render() {
@@ -44,10 +45,12 @@ class HomeHead extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-3">
-                            <button type="button" class="btn btn-dark">
-                                Learn More{" "}
-                                <i class="fa fa-fw fa-angle-right"></i>
-                            </button>
+                            <Link to="/tentang-kami">
+                                <button type="button" class="btn btn-dark">
+                                    Learn More{" "}
+                                    <i class="fa fa-fw fa-angle-right"></i>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

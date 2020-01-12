@@ -114,6 +114,13 @@ class ResultList extends React.Component {
                                                 </label>
                                             </div>
                                         </div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-dark"
+                                        >
+                                            FILTER{" "}
+                                            <i class="fa fa-fw fa-angle-right"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </div>

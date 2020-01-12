@@ -5,33 +5,49 @@ import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 
 class FormLogin extends React.Component {
+    // validate email
+    validateEmail = email => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log("store, " + email);
+        console.log(re.test(email));
+        return re.test(email);
+    };
     handleLogin = () => {
-        // response masih belom bisa
-        const data = {
-            email: this.props.emailInput,
-            password: this.props.passwordInput
-        };
-        const self = this;
-        console.log(this.props.emailInput);
-        console.log(this.props.passwordInput);
-        axios
-            .post(this.props.baseUrl + "/auth/login", data)
-            .then(function(response) {
-                if (response.status === 200) {
-                    store.setState({
-                        token: response.data.token,
-                        isLogin: true
-                    });
-                    alert("login berhasil");
-                    console.log(self.props.token);
-                    console.log(self.props.isLogin);
-                    console.log(response.data);
-                    self.props.getUserInfo(self.props.token);
-                } else {
-                    alert("login gagal");
-                    console.log(response.status);
-                }
-            });
+        if (this.validateEmail(this.props.emailInput) === false) {
+            alert("Email tidak valid");
+        } else if (
+            this.props.emailInput === "" ||
+            this.props.passwordInput === ""
+        ) {
+            alert("Form tidak boleh kosong, tolong isi kembali");
+        } else {
+            // response masih belom bisa
+            const data = {
+                email: this.props.emailInput,
+                password: this.props.passwordInput
+            };
+            const self = this;
+            console.log(this.props.emailInput);
+            console.log(this.props.passwordInput);
+            axios
+                .post(this.props.baseUrl + "/auth/login", data)
+                .then(function(response) {
+                    if (response.status === 200) {
+                        store.setState({
+                            token: response.data.token,
+                            isLogin: true
+                        });
+                        alert("login berhasil");
+                        console.log(self.props.token);
+                        console.log(self.props.isLogin);
+                        console.log(response.data);
+                        self.props.getUserInfo(self.props.token);
+                    } else {
+                        alert("login gagal");
+                        console.log(response.status);
+                    }
+                });
+        }
     };
     render() {
         return (

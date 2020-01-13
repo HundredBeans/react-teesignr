@@ -53,7 +53,7 @@ const initialState = {
     checkoutTelepon: "",
     checkoutAlamat: "",
     checkoutPembayaran: "",
-    detailPembayaran: ""
+    detailPembayaran: {}
 };
 
 export const store = createStore(initialState);

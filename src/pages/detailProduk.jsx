@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import HeaderQuote from "../components/headerQuote";

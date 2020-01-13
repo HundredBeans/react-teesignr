@@ -9,6 +9,7 @@ import DetailProduk from "../pages/detailProduk";
 import NotFoundProduct from "../components/notFoundProduk";
 import NotFoundPage from "../pages/notFoundPage";
 import checkoutPage from "../pages/checkoutPage";
+import buktiPembelian from "../pages/buktiPembelian";
 
 const MainRoute = () => {
     return (
@@ -21,6 +22,7 @@ const MainRoute = () => {
                 <Route exact path="/tentang-kami" component={TentangKami} />
                 <Route exact path="/jual" component={JualProduk} />
                 <Route exact path="/checkout" component={checkoutPage} />
+                <Route exact path="/post-checkout" component={buktiPembelian} />
                 <Route component={NotFoundPage} />
             </Switch>
         </BrowserRouter>

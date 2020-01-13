@@ -33,7 +33,7 @@ class CheckoutPage extends React.Component {
                 isLoadingCheckout: true
             });
             alert(response.data.status);
-            self.props.history.push("/");
+            self.props.history.push("/post-checkout");
         });
     };
     handleCancleCheckout = () => {

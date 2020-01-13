@@ -12,6 +12,26 @@ class FormLogin extends React.Component {
         console.log(re.test(email));
         return re.test(email);
     };
+    handleLupaPassword = () => {
+        if (this.validateEmail(this.props.emailInput) === false) {
+            alert("Email tidak valid");
+        } else {
+            const req = {
+                method: "post",
+                url: this.props.baseUrl + "/auth/reset",
+                data: {
+                    email: this.props.emailInput
+                }
+            };
+            const self = this;
+            axios(req).then(function(response) {
+                alert(
+                    "password baru telah dikirim ke " + self.props.emailInput
+                );
+                self.props.history.push("/");
+            });
+        }
+    };
     handleLogin = () => {
         if (this.validateEmail(this.props.emailInput) === false) {
             alert("Email tidak valid");
@@ -46,6 +66,9 @@ class FormLogin extends React.Component {
                         alert("login gagal");
                         console.log(response.status);
                     }
+                })
+                .catch(function(error) {
+                    alert(error.response.data.message);
                 });
         }
     };

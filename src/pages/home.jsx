@@ -14,7 +14,7 @@ class Home extends React.Component {
     render() {
         return (
             <body className="bgHome">
-                <Header handleSearch={this.props.handleSearch} />
+                <Header />
                 <ModalLogin />
                 <ModalSignup />
                 <ModalRegisterToko />

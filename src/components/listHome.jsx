@@ -12,7 +12,7 @@ class ListHome extends React.Component {
                                 className="border-bottom border-dark"
                                 style={{ color: "white" }}
                             >
-                                FEATURED DESIGNER{" "}
+                                FEATURED T-SHIRT{" "}
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </a>
                         </div>
@@ -78,7 +78,7 @@ class ListHome extends React.Component {
                                 className="border-bottom border-dark"
                                 style={{ color: "white" }}
                             >
-                                FEATURED T-SHIRT{" "}
+                                FEATURED DESIGNER{" "}
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </a>
                         </div>

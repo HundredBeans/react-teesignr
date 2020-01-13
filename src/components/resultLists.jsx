@@ -1,7 +1,34 @@
 import React from "react";
 import ResultListsBarang from "../components/resultListsBarang";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 class ResultList extends React.Component {
+    handleFilter = () => {
+        console.log("klik");
+        store.setState({ isLoadingSearch: true });
+        const harga_minimal = this.props.hargaMin;
+        const harga_maksimal = this.props.hargaMax;
+        const orderby = this.props.urutanBerdasarkan;
+        const sort = this.props.urutan;
+        console.log(this.props.hargaMin);
+        const req = {
+            method: "get",
+            url:
+                this.props.baseUrl +
+                `/baju?harga_minimal=${harga_minimal}&harga_maksimal=${harga_maksimal}&orderby=${orderby}&sort=${sort}`
+        };
+        axios(req).then(function(response) {
+            store.setState({
+                listBarangSearch: response.data,
+                isLoadingSearch: false
+            });
+            console.log(response.data);
+        });
+    };
     render() {
         return (
             <React.Fragment>
@@ -37,6 +64,11 @@ class ResultList extends React.Component {
                                                     className="form-control"
                                                     id="hargaMin"
                                                     name="hargaMin"
+                                                    onChange={e =>
+                                                        this.props.handleInput(
+                                                            e
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -53,6 +85,11 @@ class ResultList extends React.Component {
                                                     className="form-control"
                                                     id="hargaMax"
                                                     name="hargaMax"
+                                                    onChange={e =>
+                                                        this.props.handleInput(
+                                                            e
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                         </div>
@@ -67,14 +104,18 @@ class ResultList extends React.Component {
                                                 className="form-control"
                                                 id="urutanBerdasarkan"
                                                 name="urutanBerdasarkan"
+                                                onChange={e =>
+                                                    this.props.handleInput(e)
+                                                }
                                             >
+                                                <option value=""></option>
                                                 <option value="harga">
                                                     Harga
                                                 </option>
-                                                <option value="popularitas">
+                                                <option value="terjual">
                                                     Popularitas
                                                 </option>
-                                                <option value="">
+                                                <option value="id">
                                                     Terbaru
                                                 </option>
                                             </select>
@@ -87,7 +128,11 @@ class ResultList extends React.Component {
                                                     name="urutan"
                                                     id="urutanNaik"
                                                     value="asc"
-                                                    checked
+                                                    onChange={e =>
+                                                        this.props.handleInput(
+                                                            e
+                                                        )
+                                                    }
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -104,6 +149,11 @@ class ResultList extends React.Component {
                                                     name="urutan"
                                                     id="urutanTurun"
                                                     value="desc"
+                                                    onChange={e =>
+                                                        this.props.handleInput(
+                                                            e
+                                                        )
+                                                    }
                                                 />
                                                 <label
                                                     className="form-check-label"
@@ -114,13 +164,18 @@ class ResultList extends React.Component {
                                                 </label>
                                             </div>
                                         </div>
-                                        <button
-                                            type="button"
-                                            class="btn btn-dark"
-                                        >
-                                            FILTER{" "}
-                                            <i class="fa fa-fw fa-angle-right"></i>
-                                        </button>
+                                        <Link to="/hasil">
+                                            <button
+                                                type="button"
+                                                class="btn btn-dark"
+                                                onClick={() =>
+                                                    this.handleFilter()
+                                                }
+                                            >
+                                                FILTER{" "}
+                                                <i class="fa fa-fw fa-angle-right"></i>
+                                            </button>
+                                        </Link>
                                     </form>
                                 </div>
                             </div>
@@ -134,4 +189,7 @@ class ResultList extends React.Component {
         );
     }
 }
-export default ResultList;
+export default connect(
+    "hargaMin, hargaMax, urutanBerdasarkan, urutan, listBarangSearch, isLoadingSearch, baseUrl",
+    actions
+)(withRouter(ResultList));

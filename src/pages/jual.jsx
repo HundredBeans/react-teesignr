@@ -151,74 +151,25 @@ class JualProduk extends React.Component {
                                                 }
                                             >
                                                 <option value=""></option>
-                                                <option
-                                                    value="Combed 20s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Combed 20s">
                                                     Combed 20s
                                                 </option>
-                                                <option
-                                                    value="Combed 24s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Combed 24s">
                                                     Combed 24s
                                                 </option>
-                                                <option
-                                                    value="Combed 30s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Combed 30s">
                                                     Combed 30s
                                                 </option>
-                                                <option
-                                                    value="Combed 40s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Combed 40s">
                                                     Combed 40s
                                                 </option>
-                                                <option
-                                                    value="Bamboo 30s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Bamboo 30s">
                                                     Bamboo 30s
                                                 </option>
-                                                <option
-                                                    value="Modal 30s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Modal 30s">
                                                     Modal 30s
                                                 </option>
-                                                <option
-                                                    value="Supima 30s"
-                                                    onClick={e =>
-                                                        this.props.handleInput(
-                                                            e
-                                                        )
-                                                    }
-                                                >
+                                                <option value="Supima 30s">
                                                     Supima 30s
                                                 </option>
                                             </select>

@@ -19,14 +19,41 @@ const initialState = {
     inputNamaToko: "",
     inputDeskripsiToko: "",
     punyaToko: "", //bisa dipindah ke localstorage
+    // State dari page jual
     jualNamaProduk: "",
     jualKeuntungan: "",
     jualJenisBahan: "",
     jualDesignUrl: "",
     jualDeskripsi: "",
+    // State search
     searchKeyword: "",
     listBarangSearch: [],
-    isLoadingSearch: true
+    isLoadingSearch: true,
+    // State detail
+    detailNamaProduk: "",
+    detailNamaToko: "",
+    detailUrlGambar: "",
+    detailHargaProduk: "",
+    detailProdukTerjual: "",
+    detailDeskripsiProduk: "",
+    detailFound: "",
+    // State filter
+    hargaMin: "0",
+    hargaMax: "999999999999999999",
+    urutanBerdasarkan: "id",
+    urutan: "asc",
+    // State beli
+    beliUkuran: "",
+    beliJumlah: "",
+    // State checkout
+    listCheckout: [],
+    totalHargaCheckout: "",
+    isLoadingCheckout: true,
+    checkoutNama: "",
+    checkoutTelepon: "",
+    checkoutAlamat: "",
+    checkoutPembayaran: "",
+    detailPembayaran: ""
 };
 
 export const store = createStore(initialState);
@@ -71,5 +98,37 @@ export const actions = store => ({
         console.log("store, " + email);
         console.log(re.test(email));
         return re.test(email);
+    },
+    handleFilter: () => {
+        console.log("klik");
+        store.setState({ isLoadingSearch: true });
+        const data = {
+            harga_minimal: initialState.hargaMin,
+            harga_maksimal: initialState.hargaMax,
+            orderby: initialState.urutanBerdasarkan,
+            sort: initialState.urutan
+        };
+        const req = {
+            method: "get",
+            url:
+                initialState.baseUrl +
+                `/baju?harga_minimal=${data.harga_minimal}&harga_maksimal=${data.harga_maksimal}&orderby=${data.orderby}&sort=${data.sort}`
+        };
+        axios(req).then(function(response) {
+            store.setState({
+                listBarangSearch: response.data,
+                isLoadingSearch: false
+            });
+            console.log(response.data);
+        });
     }
+    // handleDetail: (state, id) => {
+    //     const req = {
+    //         method: "get",
+    //         url: initialState.baseUrl + "/baju/" + id,
+    //     };
+    //     axios(req).then(function(response){
+
+    //     })
+    // }
 });

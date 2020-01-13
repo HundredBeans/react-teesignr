@@ -3,6 +3,7 @@ import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import TextTruncate from "react-text-truncate";
+import { Link } from "react-router-dom";
 
 class ResultListsBarang extends React.Component {
     componentDidMount() {
@@ -13,16 +14,18 @@ class ResultListsBarang extends React.Component {
             <div className="col-md-3 px-auto pb-4">
                 <div class="card">
                     <img src={value.gambar} class="card-img-top" alt="..." />
-                    <a
-                        href={"/baju/" + value.id}
-                        class="btn btn-light border-bottom"
-                    >
-                        <TextTruncate
-                            line={2}
-                            truncateText="…"
-                            text={value.nama}
-                        />
-                    </a>
+                    <Link to={"/detail-produk/" + value.id}>
+                        <a
+                            class="btn btn-light border-bottom"
+                            style={{ color: "black" }}
+                        >
+                            <TextTruncate
+                                line={2}
+                                truncateText="…"
+                                text={value.nama}
+                            />
+                        </a>
+                    </Link>
                     <span className="text-center py-1">{value.harga}</span>
                 </div>
             </div>
@@ -53,6 +56,13 @@ class ResultListsBarang extends React.Component {
                                 style={{ color: "white" }}
                             >
                                 Loading....
+                            </div>
+                        ) : loopBaju.length === 0 ? (
+                            <div
+                                className="col-md-12 text-center"
+                                style={{ color: "white" }}
+                            >
+                                Hasil pencarian tidak ditemukan
                             </div>
                         ) : (
                             loopBaju

@@ -97,6 +97,9 @@ class Header extends React.Component {
                                                 Keranjang
                                             </a>
                                             <a class="dropdown-item" href="#">
+                                                Checkout
+                                            </a>
+                                            <a class="dropdown-item" href="#">
                                                 Toko
                                             </a>
                                             <a class="dropdown-item" href="#">

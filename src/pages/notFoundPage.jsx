@@ -1,17 +1,16 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import ResultLists from "../components/resultLists";
+import HeaderQuote from "../components/headerQuote";
 import ModalLogin from "../components/modalLogin";
 import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import NotFoundProduct from "../components/notFoundProduk";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
-import ModalRegisterToko from "../components/modalRegisterToko";
-import HeaderQuote from "../components/headerQuote";
-import axios from "axios";
 
-class Result extends React.Component {
+class NotFoundPage extends React.Component {
     componentDidMount() {
         store.setState({ isLoadingQuote: true });
         this.props.getRandomQuote();
@@ -19,21 +18,20 @@ class Result extends React.Component {
     render() {
         return (
             <body className="bgHome">
-                <Header />
+                <Header handleSearch={this.props.handleSearch} />
                 <ModalLogin />
-                <ModalSignup />
                 <ModalRegisterToko />
-                <HeaderQuote />
-                <ResultLists />
-                <div className="pb-5"></div>
-                <div className="pb-5"></div>
-                <div className="pb-5"></div>
+                <ModalSignup />
+                <div className="bgHome">
+                    <HeaderQuote />
+                </div>
+                <NotFoundProduct />
                 <Footer />
             </body>
         );
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl",
     actions
-)(withRouter(Result));
+)(withRouter(NotFoundPage));

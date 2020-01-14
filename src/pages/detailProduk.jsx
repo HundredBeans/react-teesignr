@@ -37,44 +37,114 @@ class DetailProduk extends React.Component {
                 store.setState({ detailFound: false });
             });
     };
+    getTokoInfo = () => {
+        const req = {
+            method: "get",
+            url: this.props.baseUrl + `/toko/${this.props.detailTokoId}`
+        };
+        console.log("get toko");
+        console.log(this.props.detailTokoId);
+        const self = this;
+        axios(req)
+            .then(function(response) {
+                store.setState({
+                    tokoNama: response.data.nama,
+                    tokoDeskripsi: response.data.deskripsi,
+                    tokoPopularitas: response.data.popularitas,
+                    isLoadingToko: false
+                });
+            })
+            .catch(function(error) {});
+    };
     componentDidMount() {
+        this.axiosBarangId();
         store.setState({ isLoadingQuote: true });
+        store.setState({ isLoadingToko: true });
         this.props.getRandomQuote();
+        this.getTokoInfo();
+        console.log(this.props.detailTokoId);
     }
     render() {
-        const productComponent = this.axiosBarangId();
+        // const productComponent = this.axiosBarangId();
+        this.getTokoInfo();
         console.log("jalan");
         console.log(this.props.match.params);
-        console.log(productComponent);
+        // console.log(productComponent);
         return (
             <body className="bgHome">
                 <Header handleSearch={this.props.handleSearch} />
                 <ModalLogin />
                 <ModalRegisterToko />
                 <ModalSignup />
-                <div className="bgHome">
-                    <HeaderQuote />
+                <HeaderQuote />
+                <div className="container py-3">
+                    <div className="row">
+                        <div className="col-md-3 pr-0 py-1">
+                            <div
+                                class="card w-100"
+                                style={{
+                                    backgroundColor: "#1D2124"
+                                }}
+                            >
+                                <img
+                                    src={require("../img/storepic.jpg")}
+                                    class="card-img-top"
+                                    alt="..."
+                                />
+                                <div
+                                    class="card-body"
+                                    style={{ color: "white" }}
+                                >
+                                    {this.props.isLoadingToko ? (
+                                        <span>Loading ...</span>
+                                    ) : (
+                                        <React.Fragment>
+                                            <h4
+                                                className="card-text text-center border-bottom pb-2"
+                                                style={{ fontWeight: "bold" }}
+                                            >
+                                                {this.props.tokoNama}
+                                            </h4>
+                                            <span>
+                                                Pop :{" "}
+                                                {this.props.tokoPopularitas}
+                                            </span>
+                                            <p className="card-text text-justify py-2">
+                                                {this.props.tokoDeskripsi}
+                                            </p>
+                                        </React.Fragment>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-9">
+                            {this.props.detailFound ? (
+                                <ProductComponent
+                                    namaProduk={this.props.detailNamaProduk}
+                                    tokoId={this.props.detailTokoId}
+                                    namaToko={this.props.detailNamaToko}
+                                    urlFoto={this.props.detailUrlGambar}
+                                    hargaProduk={this.props.detailHargaProduk}
+                                    produkTerjual={
+                                        this.props.detailProdukTerjual
+                                    }
+                                    deskripsiProduk={
+                                        this.props.detailDeskripsiProduk
+                                    }
+                                    handleInput={e => this.props.handleInput(e)}
+                                />
+                            ) : (
+                                <NotFoundProduct />
+                            )}
+                        </div>
+                    </div>
                 </div>
-                {this.props.detailFound ? (
-                    <ProductComponent
-                        namaProduk={this.props.detailNamaProduk}
-                        tokoId={this.props.detailTokoId}
-                        namaToko={this.props.detailNamaToko}
-                        urlFoto={this.props.detailUrlGambar}
-                        hargaProduk={this.props.detailHargaProduk}
-                        produkTerjual={this.props.detailProdukTerjual}
-                        deskripsiProduk={this.props.detailDeskripsiProduk}
-                        handleInput={e => this.props.handleInput(e)}
-                    />
-                ) : (
-                    <NotFoundProduct />
-                )}
                 <Footer />
             </body>
         );
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound, detailTokoId",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound, detailTokoId, tokoNama, tokoDeskripsi, tokoPopularitas, isLoadingToko",
     actions
 )(withRouter(DetailProduk));

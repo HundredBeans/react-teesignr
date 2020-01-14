@@ -106,13 +106,17 @@ class Header extends React.Component {
                                                 Checkout
                                             </Link>
                                             <Link
-                                                to="cek-toko"
+                                                to={
+                                                    this.props.punyaToko
+                                                        ? `/toko/${this.props.infoToko.id}`
+                                                        : "/"
+                                                }
                                                 className="dropdown-item"
                                             >
                                                 Toko
                                             </Link>
                                             <Link
-                                                to="sejarah-transaksi"
+                                                to="/profil/transaksi"
                                                 className="dropdown-item"
                                             >
                                                 Sejarah Transaksi
@@ -185,6 +189,6 @@ class Header extends React.Component {
     }
 }
 export default connect(
-    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl",
+    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl, infoToko",
     actions
 )(withRouter(Header));

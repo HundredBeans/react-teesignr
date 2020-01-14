@@ -6,19 +6,27 @@ const initialState = {
     isLogin: false, //bisa dipindah ke localstorage
     token: "", //bisa dipindah ke localstorage
     baseUrl: "http://0.0.0.0:5000",
+    // State login dan signup
     emailInput: "",
     passwordInput: "",
     daftarFullName: "",
     daftarEmail: "",
     daftarUsername: "",
     daftarPassword: "",
+    // State quote
     quote: "",
     quoteAuthor: "",
     isLoadingQuote: true,
+    // State user info
     namaUserLogin: "", //bisa dipindah ke localstorage
     inputNamaToko: "",
     inputDeskripsiToko: "",
     punyaToko: "", //bisa dipindah ke localstorage
+    infoToko: "",
+    listTransaksi: [],
+    userFullName: "",
+    userEmail: "",
+    transaksiId: "",
     // State dari page jual
     jualNamaProduk: "",
     jualKeuntungan: "",
@@ -55,7 +63,16 @@ const initialState = {
     checkoutTelepon: "",
     checkoutAlamat: "",
     checkoutPembayaran: "",
-    detailPembayaran: {}
+    detailPembayaran: {},
+    // State keranjang
+    listKeranjang: [],
+    listIdKerangjang: [],
+    // State Toko
+    tokoNama: "",
+    tokoDeskripsi: "",
+    tokoPopularitas: "",
+    tokoListBarang: [],
+    isLoadingToko: true
 };
 
 export const store = createStore(initialState);
@@ -90,7 +107,11 @@ export const actions = store => ({
             console.log(response.data);
             store.setState({
                 namaUserLogin: response.data.info_user.username,
-                punyaToko: response.data.info_user.designer_status
+                punyaToko: response.data.info_user.designer_status,
+                infoToko: response.data.info_toko,
+                listTransaksi: response.data.riwayat_transaksi.reverse(), // Diurutkan dari yang terbaru
+                userFullName: response.data.info_user.full_name,
+                userEmail: response.data.info_user.email
             });
         });
     },

@@ -43,9 +43,13 @@ class JualProduk extends React.Component {
             };
             console.log(this.props.jualJenisBahan);
             console.log(req.data);
+            const self = this;
             Axios(req)
                 .then(function(response) {
                     alert(response.data.status);
+                    self.props.history.push(
+                        "/detail-produk/" + response.data.barang.id
+                    );
                 })
                 .catch(function(error) {
                     alert(error.response.data.message);
@@ -63,153 +67,52 @@ class JualProduk extends React.Component {
     }
     render() {
         return (
-            <body>
+            <body className="bgHome">
                 <Header handleSearch={this.props.handleSearch} />
                 <ModalLogin />
                 <ModalRegisterToko />
                 <ModalSignup />
-                <div className="bgHome">
-                    <HeaderQuote />
-                </div>
+                <HeaderQuote />
                 <div className="container-fluid">
-                    <div className="container py-3">
-                        <div
-                            class="card"
-                            style={{
-                                backgroundColor: "#F7F7F7"
-                            }}
-                        >
-                            <div class="card-header text-center">
-                                Copyright &copy; 2020 TEESIGNR.
-                            </div>
-                            <div class="card-body border-bottom text-center">
-                                <div className="row border-bottom">
-                                    <h5 class="card-title mx-auto">
-                                        <b>JUAL PRODUK</b>
-                                    </h5>
-                                </div>
-                            </div>
-                            <div className="container px-lg-5">
-                                <form
-                                    onSubmit={e => e.preventDefault(e)}
-                                    className="border px-lg-5"
+                    <div className="row">
+                        <div className="col-md-2 col-sm-0"></div>
+                        <div className="col-md-8 col-sm-12">
+                            <div className="container py-3">
+                                <div
+                                    class="card"
+                                    style={{
+                                        backgroundColor: "#F7F7F7"
+                                    }}
                                 >
-                                    <div className="form-group pt-3 row">
-                                        <label
-                                            for="jualNamaProduk"
-                                            className="col-sm-4 col-form-label"
-                                        >
-                                            NAMA PRODUK
-                                        </label>
-                                        <div className="col-sm-8">
-                                            <input
-                                                type="text"
-                                                name="jualNamaProduk"
-                                                className="form-control"
-                                                id="jualNamaProduk"
-                                                placeholder="Nama Produk"
-                                                onChange={e =>
-                                                    this.props.handleInput(e)
-                                                }
-                                            />
+                                    <div class="card-header text-center">
+                                        Copyright &copy; 2020 TEESIGNR.
+                                    </div>
+                                    <div class="card-body border-bottom text-center">
+                                        <div className="row border-bottom">
+                                            <h5 class="card-title mx-auto">
+                                                <b>JUAL PRODUK</b>
+                                            </h5>
                                         </div>
                                     </div>
-                                    <div className="form-group row">
-                                        <label
-                                            for="jualKeuntungan"
-                                            className="col-sm-4 col-form-label"
+                                    <div className="container px-lg-5">
+                                        <form
+                                            onSubmit={e => e.preventDefault(e)}
+                                            className="border px-lg-5"
                                         >
-                                            KEUNTUNGAN (Rp. /pcs)
-                                        </label>
-                                        <div className="col-sm-8">
-                                            <input
-                                                type="text"
-                                                name="jualKeuntungan"
-                                                className="form-control"
-                                                id="jualKeuntungan"
-                                                placeholder="5000"
-                                                onChange={e =>
-                                                    this.props.handleInput(e)
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label
-                                            for="jualJenisBahan"
-                                            className="col-sm-4 col-form-label"
-                                        >
-                                            JENIS BAHAN
-                                        </label>
-                                        <div className="col-sm-8">
-                                            <select
-                                                className="form-control"
-                                                id="jualJenisBahan"
-                                                name="jualJenisBahan"
-                                                onChange={e =>
-                                                    this.props.handleInput(e)
-                                                }
-                                            >
-                                                <option value=""></option>
-                                                <option value="Combed 20s">
-                                                    Combed 20s
-                                                </option>
-                                                <option value="Combed 24s">
-                                                    Combed 24s
-                                                </option>
-                                                <option value="Combed 30s">
-                                                    Combed 30s
-                                                </option>
-                                                <option value="Combed 40s">
-                                                    Combed 40s
-                                                </option>
-                                                <option value="Bamboo 30s">
-                                                    Bamboo 30s
-                                                </option>
-                                                <option value="Modal 30s">
-                                                    Modal 30s
-                                                </option>
-                                                <option value="Supima 30s">
-                                                    Supima 30s
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label
-                                            for="jualDeskripsi"
-                                            className="col-sm-4 col-form-label"
-                                        >
-                                            DESKRIPSI
-                                        </label>
-                                        <div className="col-sm-8">
-                                            <textarea
-                                                type="password"
-                                                name="jualDeskripsi"
-                                                className="form-control"
-                                                id="jualDeskripsi"
-                                                onChange={e =>
-                                                    this.props.handleInput(e)
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-group row">
-                                        <label
-                                            for="jualDesignUrl"
-                                            className="col-sm-4 col-form-label"
-                                        >
-                                            DESIGN (URL)
-                                        </label>
-                                        <div className="col-sm-8">
-                                            <div className="row">
-                                                <div className="col-md-12">
+                                            <div className="form-group pt-3 row">
+                                                <label
+                                                    for="jualNamaProduk"
+                                                    className="col-sm-4 col-form-label"
+                                                >
+                                                    NAMA PRODUK
+                                                </label>
+                                                <div className="col-sm-8">
                                                     <input
                                                         type="text"
-                                                        name="jualDesignUrl"
+                                                        name="jualNamaProduk"
                                                         className="form-control"
-                                                        id="jualDesignUrl"
-                                                        placeholder="http://www.google.com/photo.jpg"
+                                                        id="jualNamaProduk"
+                                                        placeholder="Nama Produk"
                                                         onChange={e =>
                                                             this.props.handleInput(
                                                                 e
@@ -218,40 +121,160 @@ class JualProduk extends React.Component {
                                                     />
                                                 </div>
                                             </div>
-                                            {!(
-                                                this.props.jualDesignUrl === ""
-                                            ) ? (
-                                                <div className="row">
-                                                    <div className="col-md-12">
-                                                        <img
-                                                            src={
-                                                                this.props
-                                                                    .jualDesignUrl
-                                                            }
-                                                            width={"100%"}
-                                                        />
-                                                    </div>
+                                            <div className="form-group row">
+                                                <label
+                                                    for="jualKeuntungan"
+                                                    className="col-sm-4 col-form-label"
+                                                >
+                                                    KEUNTUNGAN (Rp. /pcs)
+                                                </label>
+                                                <div className="col-sm-8">
+                                                    <input
+                                                        type="text"
+                                                        name="jualKeuntungan"
+                                                        className="form-control"
+                                                        id="jualKeuntungan"
+                                                        placeholder="5000"
+                                                        onChange={e =>
+                                                            this.props.handleInput(
+                                                                e
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
-                                            ) : (
-                                                <React.Fragment></React.Fragment>
-                                            )}
-                                        </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label
+                                                    for="jualJenisBahan"
+                                                    className="col-sm-4 col-form-label"
+                                                >
+                                                    JENIS BAHAN
+                                                </label>
+                                                <div className="col-sm-8">
+                                                    <select
+                                                        className="form-control"
+                                                        id="jualJenisBahan"
+                                                        name="jualJenisBahan"
+                                                        onChange={e =>
+                                                            this.props.handleInput(
+                                                                e
+                                                            )
+                                                        }
+                                                    >
+                                                        <option value=""></option>
+                                                        <option value="Combed 20s">
+                                                            Combed 20s
+                                                        </option>
+                                                        <option value="Combed 24s">
+                                                            Combed 24s
+                                                        </option>
+                                                        <option value="Combed 30s">
+                                                            Combed 30s
+                                                        </option>
+                                                        <option value="Combed 40s">
+                                                            Combed 40s
+                                                        </option>
+                                                        <option value="Bamboo 30s">
+                                                            Bamboo 30s
+                                                        </option>
+                                                        <option value="Modal 30s">
+                                                            Modal 30s
+                                                        </option>
+                                                        <option value="Supima 30s">
+                                                            Supima 30s
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label
+                                                    for="jualDeskripsi"
+                                                    className="col-sm-4 col-form-label"
+                                                >
+                                                    DESKRIPSI
+                                                </label>
+                                                <div className="col-sm-8">
+                                                    <textarea
+                                                        type="password"
+                                                        name="jualDeskripsi"
+                                                        className="form-control"
+                                                        id="jualDeskripsi"
+                                                        onChange={e =>
+                                                            this.props.handleInput(
+                                                                e
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label
+                                                    for="jualDesignUrl"
+                                                    className="col-sm-4 col-form-label"
+                                                >
+                                                    DESIGN (URL)
+                                                </label>
+                                                <div className="col-sm-8">
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <input
+                                                                type="text"
+                                                                name="jualDesignUrl"
+                                                                className="form-control"
+                                                                id="jualDesignUrl"
+                                                                placeholder="http://www.google.com/photo.jpg"
+                                                                onChange={e =>
+                                                                    this.props.handleInput(
+                                                                        e
+                                                                    )
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    {!(
+                                                        this.props
+                                                            .jualDesignUrl ===
+                                                        ""
+                                                    ) ? (
+                                                        <div className="row">
+                                                            <div className="col-md-12">
+                                                                <img
+                                                                    src={
+                                                                        this
+                                                                            .props
+                                                                            .jualDesignUrl
+                                                                    }
+                                                                    width={
+                                                                        "100%"
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <React.Fragment></React.Fragment>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <div className="col-sm-12 py-1">
+                                                    <button
+                                                        type="submit"
+                                                        onClick={
+                                                            this.handleJual
+                                                        }
+                                                        className="btn btn-dark btn-block"
+                                                        data-dismiss="modal"
+                                                    >
+                                                        JUAL
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div className="form-group row">
-                                        <div className="col-sm-12 py-1">
-                                            <button
-                                                type="submit"
-                                                onClick={this.handleJual}
-                                                className="btn btn-dark btn-block"
-                                                data-dismiss="modal"
-                                            >
-                                                JUAL
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
+                        <div className="col-md-2 col-sm-0"></div>
                     </div>
                 </div>
                 <Footer />

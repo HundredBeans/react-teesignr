@@ -31,137 +31,135 @@ class BuktiPembelian extends React.Component {
                 <ModalSignup />
                 <HeaderQuote />
                 <div className="container-fluid pb-lg-5">
-                    <div className="container py-3">
-                        <div
-                            class="card"
-                            style={{
-                                backgroundColor: "#F7F7F7"
-                            }}
-                        >
-                            <div class="card-header text-center">
-                                Copyright &copy; 2020 TEESIGNR.
-                            </div>
-                            <div class="card-body text-center border-bottom py-auto">
-                                <div className="row">
-                                    <h4 class="card-title mx-auto">
-                                        <b>BUKTI PEMBELIAN</b>
-                                    </h4>
+                    <div className="col-md-2 col-sm-0"></div>
+                    <div className="col-md-8 col-sm-12 mx-auto">
+                        <div className="container py-3">
+                            <div
+                                class="card"
+                                style={{
+                                    backgroundColor: "#F7F7F7"
+                                }}
+                            >
+                                <div class="card-header text-center">
+                                    Copyright &copy; 2020 TEESIGNR.
                                 </div>
-                            </div>
-                            <div className="container">
-                                <div className="row py-3 border-bottom">
-                                    <div className="col-md-12 text-left">
-                                        <h5>DETAIL PEMESANAN</h5>
+                                <div class="card-body text-center border-bottom py-auto">
+                                    <div className="row">
+                                        <h4 class="card-title mx-auto">
+                                            <b>BUKTI PEMBELIAN</b>
+                                        </h4>
                                     </div>
                                 </div>
-                                <div className="container px-lg-5">
-                                    <div className="row py-3">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Nomor Pemesanan</span>
+                                <div className="container">
+                                    <div className="row py-3 border-bottom">
+                                        <div className="col-md-12 text-center">
+                                            <h5>DETAIL PEMESANAN</h5>
                                         </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {this.props.detailPembayaran.id}
-                                            </span>
-                                        </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
                                     </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Total Harga</span>
+                                    <div className="container px-lg-5">
+                                        <div className="row py-3">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Nomor Pemesanan</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran.id
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {
-                                                    this.props.detailPembayaran
-                                                        .total_belanja
-                                                }
-                                            </span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Total Harga</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran
+                                                            .total_belanja
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                    </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Metoda Pembayaran</span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Metoda Pembayaran</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran
+                                                            .metode_pembayaran
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {
-                                                    this.props.detailPembayaran
-                                                        .metode_pembayaran
-                                                }
-                                            </span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Nama Penerima</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran
+                                                            .nama_penerima
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                    </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Nama Penerima</span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>No. Telepon</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran
+                                                            .no_telepon
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {
-                                                    this.props.detailPembayaran
-                                                        .nama_penerima
-                                                }
-                                            </span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Alamat Penerima</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>
+                                                    :{" "}
+                                                    {
+                                                        this.props
+                                                            .detailPembayaran
+                                                            .alamat_penerima
+                                                    }
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                    </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>No. Telepon</span>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-lg-6 col-sm-6">
+                                                <span>Data Pesanan</span>
+                                            </div>
+                                            <div className="col-lg-6 col-sm-6">
+                                                <ul>{listBelanja}</ul>
+                                            </div>
                                         </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {
-                                                    this.props.detailPembayaran
-                                                        .no_telepon
-                                                }
-                                            </span>
-                                        </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                    </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Alamat Penerima</span>
-                                        </div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>
-                                                :{" "}
-                                                {
-                                                    this.props.detailPembayaran
-                                                        .alamat_penerima
-                                                }
-                                            </span>
-                                        </div>
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                    </div>
-                                    <div className="row py-3 border-top">
-                                        <div className="col-lg-3 col-sm-0"></div>
-                                        <div className="col-lg-3 col-sm-6">
-                                            <span>Data Pesanan</span>
-                                        </div>
-                                        <div className="col-lg-6 col-sm-6">
-                                            <ul>{listBelanja}</ul>
-                                        </div>
-                                        <div className="col-lg-0 col-sm-0"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div className="col-lg-2 col-sm-0"></div>
                 </div>
                 <Footer />
             </body>

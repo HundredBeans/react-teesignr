@@ -47,7 +47,7 @@ class HomeHead extends React.Component {
                         <div className="col-md-3">
                             <Link to="/tentang-kami">
                                 <button type="button" class="btn btn-dark">
-                                    Learn More{" "}
+                                    Tentang Kami{" "}
                                     <i class="fa fa-fw fa-angle-right"></i>
                                 </button>
                             </Link>

@@ -55,8 +55,8 @@ class ProductComponent extends React.Component {
     render() {
         return (
             <div
-                className="container border my-3 rounded-lg"
-                style={{ backgroundColor: "#F7F7F7" }}
+                className="container rounded-lg"
+                style={{ backgroundColor: "#1D2124", color: "white" }}
             >
                 <div className="row text-center">
                     <div className="col-md-12 border-bottom py-3">
@@ -77,7 +77,7 @@ class ProductComponent extends React.Component {
                 <div className="row">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6 pl-lg-5 py-3">
+                            <div className="col-md-6 py-3">
                                 <img
                                     src={this.props.urlFoto}
                                     className="w-100 border rounded-lg"
@@ -102,16 +102,16 @@ class ProductComponent extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-12 pb-4 border-bottom">
+                                    <div className="col-md-12 border-bottom">
                                         <p>{this.props.deskripsiProduk}</p>
                                     </div>
                                 </div>
                                 <form>
-                                    <div className="row py-3 border-bottom">
+                                    <div className="row pb-3 border-bottom">
                                         <div className="col-md-6">
                                             <label
                                                 for="beliUkuran"
-                                                className="col-md-12 px-0 m-0 border"
+                                                className="col-md-12 px-0 m-0"
                                             >
                                                 Ukuran
                                             </label>
@@ -142,7 +142,7 @@ class ProductComponent extends React.Component {
                                         <div className="col-md-6">
                                             <label
                                                 for="beliJumlah"
-                                                className="col-md-12 px-0 m-0 border"
+                                                className="col-md-12 px-0 m-0"
                                             >
                                                 Jumlah
                                             </label>

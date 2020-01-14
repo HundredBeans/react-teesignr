@@ -62,7 +62,7 @@ class ListHome extends React.Component {
                         class="card-img-top"
                         alt="..."
                     />
-                    <Link to={"/detail-produk/" + value.id}>
+                    <Link to={"/toko/" + value.id}>
                         <a
                             class="btn btn-light border-bottom w-100"
                             style={{ color: "black" }}
@@ -91,7 +91,7 @@ class ListHome extends React.Component {
                                     className="border-bottom border-dark"
                                     style={{ color: "white" }}
                                 >
-                                    FEATURED T-SHIRT{" "}
+                                    T-SHIRT POPULER{" "}
                                     <i class="fa fa-fw fa-angle-right"></i>
                                 </a>
                             </Link>
@@ -109,7 +109,7 @@ class ListHome extends React.Component {
                                 className="border-bottom border-dark"
                                 style={{ color: "white" }}
                             >
-                                FEATURED DESIGNER{" "}
+                                TOKO POPULER{" "}
                                 <i class="fa fa-fw fa-angle-right"></i>
                             </a>
                         </div>

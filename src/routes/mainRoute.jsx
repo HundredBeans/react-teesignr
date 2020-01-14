@@ -10,7 +10,10 @@ import NotFoundProduct from "../components/notFoundProduk";
 import NotFoundPage from "../pages/notFoundPage";
 import CheckoutPage from "../pages/checkoutPage";
 import BuktiPembelian from "../pages/buktiPembelian";
-import keranjangPage from "../pages/keranjangPage";
+import KeranjangPage from "../pages/keranjangPage";
+import TokoPage from "../pages/tokoPage";
+import ProfilePage from "../pages/riwayatTransaksi";
+import RiwayatTransaksi from "../pages/riwayatTransaksi";
 
 const MainRoute = () => {
     return (
@@ -19,12 +22,23 @@ const MainRoute = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/hasil" component={Result} />
                 <Route path="/detail-produk/:id" component={DetailProduk} />
+                <Route path="/toko/:id" component={TokoPage} />
                 <Route exact path="/snk-belanja" component={SyaratKetentuan} />
                 <Route exact path="/tentang-kami" component={TentangKami} />
                 <Route exact path="/jual" component={JualProduk} />
                 <Route exact path="/checkout" component={CheckoutPage} />
                 <Route exact path="/post-checkout" component={BuktiPembelian} />
-                <Route exact path="/keranjang" component={keranjangPage} />
+                <Route exact path="/keranjang" component={KeranjangPage} />
+                <Route exact path="/profil/" component={ProfilePage} />
+                <Route
+                    exact
+                    path="/profil/transaksi"
+                    component={RiwayatTransaksi}
+                />
+                <Route
+                    path="/profil/transaksi/:id"
+                    component={RiwayatTransaksi}
+                />
                 <Route component={NotFoundPage} />
             </Switch>
         </BrowserRouter>

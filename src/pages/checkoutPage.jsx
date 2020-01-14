@@ -27,14 +27,18 @@ class CheckoutPage extends React.Component {
             }
         };
         const self = this;
-        Axios(req).then(function(response) {
-            store.setState({
-                detailPembayaran: response.data.detail,
-                isLoadingCheckout: true
+        Axios(req)
+            .then(function(response) {
+                store.setState({
+                    detailPembayaran: response.data.detail,
+                    isLoadingCheckout: true
+                });
+                alert(response.data.status);
+                self.props.history.push("/post-checkout");
+            })
+            .catch(function(error) {
+                alert("terjadi kesalahan server");
             });
-            alert(response.data.status);
-            self.props.history.push("/post-checkout");
-        });
     };
     handleCancleCheckout = () => {
         const req = {
@@ -47,7 +51,7 @@ class CheckoutPage extends React.Component {
         const self = this;
         Axios(req).then(function(response) {
             alert(response.data.status + " " + response.data.message);
-            self.props.history.push("/");
+            self.props.history.push("/keranjang");
         });
     };
     componentDidMount() {

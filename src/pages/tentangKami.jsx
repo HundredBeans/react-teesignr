@@ -51,11 +51,11 @@ class TentangKami extends React.Component {
                             <h5 class="card-title">
                                 <b>KEUNTUNGAN DALAM MENGGUNAKAN TEESIGNR</b>
                             </h5>
-                            <div className="row border-bottom py-3">
+                            <div className="row border-bottom border-top py-3">
                                 <div className="col-md-2 my-auto">
                                     <h3>I.</h3>
                                 </div>
-                                <div className="col-md-10">
+                                <div className="col-md-10 border-left">
                                     <p class="card-text text-justify">
                                         <b>Kualitas T-SHIRT yang terjamin. </b>
                                         TEESIGNR menjadi tempat yang tepat untuk
@@ -70,7 +70,7 @@ class TentangKami extends React.Component {
                                 </div>
                             </div>
                             <div className="row py-3 border-bottom">
-                                <div className="col-md-10">
+                                <div className="col-md-10 border-right">
                                     <p class="card-text text-justify">
                                         <b>
                                             Buka toko dengan desain sendiri

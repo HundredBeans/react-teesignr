@@ -7,23 +7,50 @@ import Axios from "axios";
 
 class ProductComponent extends React.Component {
     handleBuy = () => {
-        const req = {
-            method: "post",
-            url: this.props.baseUrl + "/baju/" + this.props.match.params.id,
-            data: {
-                jumlah: this.props.beliJumlah,
-                ukuran: this.props.beliUkuran
-            },
-            headers: {
-                Authorization: "Bearer " + this.props.token
-            }
-        };
-        console.log("buy");
-        const self = this;
-        Axios(req).then(function(response) {
-            alert(response.data.status);
-            self.props.history.push("/checkout");
-        });
+        if (this.props.isLogin) {
+            const req = {
+                method: "post",
+                url: this.props.baseUrl + "/baju/" + this.props.match.params.id,
+                data: {
+                    jumlah: this.props.beliJumlah,
+                    ukuran: this.props.beliUkuran
+                },
+                headers: {
+                    Authorization: "Bearer " + this.props.token
+                }
+            };
+            console.log("buy");
+            const self = this;
+            Axios(req).then(function(response) {
+                alert(response.data.status);
+                self.props.history.push("/checkout");
+            });
+        } else {
+            alert("kamu belum login");
+        }
+    };
+    handleAddToCart = () => {
+        if (this.props.isLogin) {
+            const req = {
+                method: "put",
+                url: this.props.baseUrl + "/baju/" + this.props.match.params.id,
+                data: {
+                    jumlah: this.props.beliJumlah,
+                    ukuran: this.props.beliUkuran
+                },
+                headers: {
+                    Authorization: "Bearer " + this.props.token
+                }
+            };
+            console.log("add to cart");
+            const self = this;
+            Axios(req).then(function(response) {
+                alert(response.data.status);
+                self.props.history.push("/keranjang");
+            });
+        } else {
+            alert("kamu belum login");
+        }
     };
     render() {
         return (
@@ -40,9 +67,11 @@ class ProductComponent extends React.Component {
                 </div>
                 <div className="row text-center">
                     <div className="col-md-12 border-bottom py-1">
-                        <h4 style={{ fontWeight: "bold" }}>
-                            {this.props.namaToko}
-                        </h4>
+                        <Link to={`/toko/${this.props.tokoId}`}>
+                            <h4 style={{ fontWeight: "bold" }}>
+                                {this.props.namaToko}
+                            </h4>
+                        </Link>
                     </div>
                 </div>
                 <div className="row">
@@ -51,7 +80,7 @@ class ProductComponent extends React.Component {
                             <div className="col-md-6 pl-lg-5 py-3">
                                 <img
                                     src={this.props.urlFoto}
-                                    className="w-100"
+                                    className="w-100 border rounded-lg"
                                 />
                             </div>
                             <div className="col-md-6 pr-lg-5">
@@ -174,6 +203,6 @@ class ProductComponent extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, beliUkuran, beliJumlah, token",
+    "baseUrl, beliUkuran, beliJumlah, token, isLogin",
     actions
 )(withRouter(ProductComponent));

@@ -93,18 +93,30 @@ class Header extends React.Component {
                                             class="dropdown-menu"
                                             aria-labelledby="navbarDropdown"
                                         >
-                                            <a class="dropdown-item" href="#">
+                                            <Link
+                                                to="/keranjang"
+                                                className="dropdown-item"
+                                            >
                                                 Keranjang
-                                            </a>
-                                            <a class="dropdown-item" href="#">
+                                            </Link>
+                                            <Link
+                                                to="/checkout"
+                                                className="dropdown-item"
+                                            >
                                                 Checkout
-                                            </a>
-                                            <a class="dropdown-item" href="#">
+                                            </Link>
+                                            <Link
+                                                to="cek-toko"
+                                                className="dropdown-item"
+                                            >
                                                 Toko
-                                            </a>
-                                            <a class="dropdown-item" href="#">
+                                            </Link>
+                                            <Link
+                                                to="sejarah-transaksi"
+                                                className="dropdown-item"
+                                            >
                                                 Sejarah Transaksi
-                                            </a>
+                                            </Link>
                                             <div class="dropdown-divider"></div>
                                             <a
                                                 class="dropdown-item"

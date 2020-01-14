@@ -12,8 +12,12 @@ class ResultListsBarang extends React.Component {
     render() {
         const loopBaju = this.props.listBarangSearch.map((value, index) => (
             <div className="col-md-3 px-auto pb-4">
-                <div class="card">
-                    <img src={value.gambar} class="card-img-top" alt="..." />
+                <div class="card cardItem text-center">
+                    <img
+                        src={value.gambar}
+                        class="card-img-top img-fluid"
+                        alt="..."
+                    />
                     <Link to={"/detail-produk/" + value.id}>
                         <a
                             class="btn btn-light border-bottom"

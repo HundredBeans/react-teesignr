@@ -28,6 +28,7 @@ const initialState = {
     // State search
     searchKeyword: "",
     listBarangSearch: [],
+    listTokoSearch: [],
     isLoadingSearch: true,
     // State detail
     detailNamaProduk: "",
@@ -36,6 +37,7 @@ const initialState = {
     detailHargaProduk: "",
     detailProdukTerjual: "",
     detailDeskripsiProduk: "",
+    detailTokoId: "",
     detailFound: "",
     // State filter
     hargaMin: "0",

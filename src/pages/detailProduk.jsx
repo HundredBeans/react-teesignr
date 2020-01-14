@@ -29,6 +29,7 @@ class DetailProduk extends React.Component {
                     detailHargaProduk: response.data.harga,
                     detailProdukTerjual: response.data.terjual,
                     detailDeskripsiProduk: response.data.deskripsi,
+                    detailTokoId: response.data.toko_id,
                     detailFound: true
                 });
             })
@@ -57,6 +58,7 @@ class DetailProduk extends React.Component {
                 {this.props.detailFound ? (
                     <ProductComponent
                         namaProduk={this.props.detailNamaProduk}
+                        tokoId={this.props.detailTokoId}
                         namaToko={this.props.detailNamaToko}
                         urlFoto={this.props.detailUrlGambar}
                         hargaProduk={this.props.detailHargaProduk}
@@ -73,6 +75,6 @@ class DetailProduk extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound, detailTokoId",
     actions
 )(withRouter(DetailProduk));

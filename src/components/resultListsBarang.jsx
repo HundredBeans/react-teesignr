@@ -33,6 +33,7 @@ class ResultListsBarang extends React.Component {
             console.log(self.props.listBarangSearch);
         });
     };
+    // Tambahin component will unmount
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
     }

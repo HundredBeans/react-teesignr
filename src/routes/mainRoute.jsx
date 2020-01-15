@@ -12,8 +12,7 @@ import CheckoutPage from "../pages/checkoutPage";
 import BuktiPembelian from "../pages/buktiPembelian";
 import KeranjangPage from "../pages/keranjangPage";
 import TokoPage from "../pages/tokoPage";
-import ProfilePage from "../pages/riwayatTransaksi";
-import RiwayatTransaksi from "../pages/riwayatTransaksi";
+import ProfilePage from "../pages/profilePage";
 
 const MainRoute = () => {
     return (
@@ -30,15 +29,7 @@ const MainRoute = () => {
                 <Route exact path="/post-checkout" component={BuktiPembelian} />
                 <Route exact path="/keranjang" component={KeranjangPage} />
                 <Route exact path="/profil/" component={ProfilePage} />
-                <Route
-                    exact
-                    path="/profil/transaksi"
-                    component={RiwayatTransaksi}
-                />
-                <Route
-                    path="/profil/transaksi/:id"
-                    component={RiwayatTransaksi}
-                />
+                <Route path="/profil/transaksi/:id" component={ProfilePage} />
                 <Route component={NotFoundPage} />
             </Switch>
         </BrowserRouter>

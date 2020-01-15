@@ -33,10 +33,16 @@ class TokoPage extends React.Component {
             });
         });
     };
+    balikHome = () => {
+        this.props.history.push("/");
+    };
     componentDidMount() {
         store.setState({ isLoadingQuote: true });
         this.props.getRandomQuote();
         this.getTokoInfo();
+    }
+    componentWillUnmount() {
+        store.setState({ pageToko: 1 });
     }
     render() {
         const loopBarangToko = this.props.tokoListBarang.map(value => (
@@ -121,13 +127,25 @@ class TokoPage extends React.Component {
                                 <div class="card-body">
                                     <div className="row">{loopBarangToko}</div>
                                     <div className="row">
-                                        <div className="col-md-12 text-right">
+                                        <div className="col-md-6">
+                                            <button
+                                                type="button"
+                                                class="btn btn-dark"
+                                                onClick={() => this.balikHome()}
+                                            >
+                                                Balik Ke Home{" "}
+                                                <i class="fa fa-fw fa-angle-right"></i>
+                                            </button>
+                                        </div>
+                                        <div className="col-md-6 text-right">
                                             {this.props.tokoListBarang
                                                 .length === 20 ? (
                                                 <button
                                                     type="button"
                                                     class="btn btn-dark"
-                                                    onClick={this.getTokoInfo}
+                                                    onClick={() =>
+                                                        this.getTokoInfo()
+                                                    }
                                                 >
                                                     Page Selanjutnya{" "}
                                                     <i class="fa fa-fw fa-angle-right"></i>

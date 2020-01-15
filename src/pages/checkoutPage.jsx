@@ -38,6 +38,7 @@ class CheckoutPage extends React.Component {
             })
             .catch(function(error) {
                 alert("terjadi kesalahan server");
+                store.setState({ isLoadingCheckout: true });
             });
     };
     handleCancleCheckout = () => {

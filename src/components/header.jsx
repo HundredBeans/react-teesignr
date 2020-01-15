@@ -121,10 +121,10 @@ class Header extends React.Component {
                                                 Toko
                                             </Link>
                                             <Link
-                                                to="/profil/transaksi"
+                                                to="/profil"
                                                 className="dropdown-item"
                                             >
-                                                Sejarah Transaksi
+                                                Profil
                                             </Link>
                                             <div class="dropdown-divider"></div>
                                             <a

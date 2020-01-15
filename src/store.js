@@ -27,6 +27,7 @@ const initialState = {
     userFullName: "",
     userEmail: "",
     transaksiId: "",
+    editStatus: false,
     // State dari page jual
     jualNamaProduk: "",
     jualKeuntungan: "",
@@ -74,7 +75,10 @@ const initialState = {
     tokoPopularitas: "",
     tokoListBarang: [],
     isLoadingToko: true,
-    pageToko: 1
+    pageToko: 1,
+    // State edit password
+    inputPassLama: "",
+    inputPassBaru: ""
 };
 
 export const store = createStore(initialState);

@@ -38,6 +38,7 @@ const initialState = {
     listBarangSearch: [],
     listTokoSearch: [],
     isLoadingSearch: true,
+    pageBarang: 1,
     // State detail
     detailNamaProduk: "",
     detailNamaToko: "",
@@ -72,7 +73,8 @@ const initialState = {
     tokoDeskripsi: "",
     tokoPopularitas: "",
     tokoListBarang: [],
-    isLoadingToko: true
+    isLoadingToko: true,
+    pageToko: 1
 };
 
 export const store = createStore(initialState);
@@ -145,13 +147,4 @@ export const actions = store => ({
             console.log(response.data);
         });
     }
-    // handleDetail: (state, id) => {
-    //     const req = {
-    //         method: "get",
-    //         url: initialState.baseUrl + "/baju/" + id,
-    //     };
-    //     axios(req).then(function(response){
-
-    //     })
-    // }
 });

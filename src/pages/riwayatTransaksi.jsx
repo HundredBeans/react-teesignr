@@ -24,6 +24,7 @@ class RiwayatTransaksi extends React.Component {
     }
     render() {
         // Mengambil daftar transaksi sebanyak 10 terbaru
+        this.props.getUserInfo();
         const loopTransaksi = this.props.listTransaksi
             .slice(0, 11)
             .map(value => (

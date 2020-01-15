@@ -17,7 +17,9 @@ class Header extends React.Component {
         axios(req).then(function(response) {
             store.setState({
                 listBarangSearch: response.data,
-                isLoadingSearch: false
+                isLoadingSearch: false,
+                pageBarang: 1,
+                pageToko: 1
             });
             console.log(response.data);
             console.log(self.props.listBarangSearch);
@@ -107,9 +109,12 @@ class Header extends React.Component {
                                             </Link>
                                             <Link
                                                 to={
-                                                    this.props.punyaToko
-                                                        ? `/toko/${this.props.infoToko.id}`
-                                                        : "/"
+                                                    typeof this.props
+                                                        .infoToko ===
+                                                        undefined ||
+                                                    !this.props.punyaToko
+                                                        ? "/not-found"
+                                                        : `/toko/${this.props.infoToko.id}`
                                                 }
                                                 className="dropdown-item"
                                             >
@@ -161,9 +166,6 @@ class Header extends React.Component {
                                             data-target="#ModalSignup"
                                         >
                                             DAFTAR{" "}
-                                            <span class="sr-only">
-                                                (current)
-                                            </span>
                                         </a>
                                     </li>
                                     <li class="nav-item mx-1">
@@ -189,6 +191,6 @@ class Header extends React.Component {
     }
 }
 export default connect(
-    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl, infoToko",
+    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl, infoToko, pageBarang",
     actions
 )(withRouter(Header));

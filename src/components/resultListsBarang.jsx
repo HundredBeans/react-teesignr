@@ -4,8 +4,35 @@ import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class ResultListsBarang extends React.Component {
+    handlePage = async () => {
+        await store.setState({
+            isLoadingSearch: true,
+            pageBarang: this.props.pageBarang * 1 + 1
+        });
+        const req = {
+            method: "get",
+            url:
+                this.props.baseUrl +
+                "/baju?search=" +
+                this.props.searchKeyword +
+                "&p=" +
+                this.props.pageBarang
+        };
+        console.log("page", this.props.pageBarang);
+        const self = this;
+        axios(req).then(function(response) {
+            store.setState({
+                listBarangSearch: response.data,
+                isLoadingSearch: false
+            });
+            self.props.history.push("/hasil");
+            console.log(response.data);
+            console.log(self.props.listBarangSearch);
+        });
+    };
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
     }
@@ -72,6 +99,22 @@ class ResultListsBarang extends React.Component {
                             loopBaju
                         )}
                     </div>
+                    <div className="row">
+                        <div className="col-md-12 text-right">
+                            {this.props.listBarangSearch.length === 20 ? (
+                                <button
+                                    type="button"
+                                    class="btn btn-dark"
+                                    onClick={this.handlePage}
+                                >
+                                    Page Selanjutnya{" "}
+                                    <i class="fa fa-fw fa-angle-right"></i>
+                                </button>
+                            ) : (
+                                <div></div>
+                            )}
+                        </div>
+                    </div>
                 </div>
                 )
             </div>
@@ -79,6 +122,6 @@ class ResultListsBarang extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, isLoadingSearch",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang",
     actions
 )(withRouter(ResultListsBarang));

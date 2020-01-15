@@ -24,8 +24,10 @@ class RegisterToko extends React.Component {
                     deskripsi: this.props.inputDeskripsiToko
                 }
             };
+            const self = this;
             Axios(req).then(function(response) {
                 alert("register toko berhasil");
+                self.props.getUserInfo();
                 store.setState({ punyaToko: true });
             });
         }

@@ -13,13 +13,18 @@ import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
 
 class TokoPage extends React.Component {
-    getTokoInfo = () => {
+    getTokoInfo = async () => {
+        store.setState({ pageToko: this.props.pageToko * 1 + 1 });
         const req = {
             method: "get",
-            url: this.props.baseUrl + `/toko/${this.props.match.params.id}`
+            url:
+                this.props.baseUrl +
+                `/toko/${this.props.match.params.id}` +
+                "?p=" +
+                this.props.pageToko
         };
         console.log("get toko");
-        axios(req).then(function(response) {
+        await axios(req).then(function(response) {
             store.setState({
                 tokoNama: response.data.nama,
                 tokoDeskripsi: response.data.deskripsi,
@@ -115,6 +120,23 @@ class TokoPage extends React.Component {
                                 </div>
                                 <div class="card-body">
                                     <div className="row">{loopBarangToko}</div>
+                                    <div className="row">
+                                        <div className="col-md-12 text-right">
+                                            {this.props.tokoListBarang
+                                                .length === 20 ? (
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-dark"
+                                                    onClick={this.getTokoInfo}
+                                                >
+                                                    Page Selanjutnya{" "}
+                                                    <i class="fa fa-fw fa-angle-right"></i>
+                                                </button>
+                                            ) : (
+                                                <div></div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +148,6 @@ class TokoPage extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, isLoadingQuote, quoteAuthor, tokoNama, tokoDeskripsi, tokoPopularitas, tokoListBarang",
+    "baseUrl, isLoadingQuote, quoteAuthor, tokoNama, tokoDeskripsi, tokoPopularitas, tokoListBarang, pageToko",
     actions
 )(withRouter(TokoPage));

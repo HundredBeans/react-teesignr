@@ -78,7 +78,12 @@ const initialState = {
     pageToko: 1,
     // State edit password
     inputPassLama: "",
-    inputPassBaru: ""
+    inputPassBaru: "",
+    // State search toko
+    searchTokoKeyword: "",
+    urutanTokoBerdasarkan: "popularitas",
+    urutanToko: "desc",
+    pageListToko: ""
 };
 
 export const store = createStore(initialState);

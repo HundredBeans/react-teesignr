@@ -44,7 +44,7 @@ class Header extends React.Component {
                             <input
                                 class="form-control my-2 my-sm-0"
                                 type="search"
-                                placeholder="Cari T-Shirt atau nama Toko"
+                                placeholder="Cari T-Shirt"
                                 aria-label="Search"
                                 name="searchKeyword"
                                 onChange={e => this.props.handleInput(e)}
@@ -161,7 +161,6 @@ class Header extends React.Component {
                                     <li class="nav-item mx-1">
                                         <a
                                             class="nav-link"
-                                            href="#"
                                             data-toggle="modal"
                                             data-target="#ModalSignup"
                                         >
@@ -171,14 +170,10 @@ class Header extends React.Component {
                                     <li class="nav-item mx-1">
                                         <a
                                             class="nav-link"
-                                            href="#"
                                             data-toggle="modal"
                                             data-target="#ModalLogin"
                                         >
                                             MASUK{" "}
-                                            <span class="sr-only">
-                                                (current)
-                                            </span>
                                         </a>
                                     </li>
                                 </React.Fragment>

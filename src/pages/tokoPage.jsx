@@ -13,8 +13,16 @@ import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
 
 class TokoPage extends React.Component {
+    handleNext = async () => {
+        await store.setState({ pageToko: this.props.pageToko * 1 + 1 });
+        this.getTokoInfo();
+    };
+    handleBack = async () => {
+        await store.setState({ pageToko: this.props.pageToko * 1 - 1 });
+        this.getTokoInfo();
+    };
     getTokoInfo = async () => {
-        store.setState({ pageToko: this.props.pageToko * 1 + 1 });
+        store.setState({ pageToko: this.props.pageToko });
         const req = {
             method: "get",
             url:
@@ -32,9 +40,6 @@ class TokoPage extends React.Component {
                 tokoListBarang: response.data["daftar jualan"]
             });
         });
-    };
-    balikHome = () => {
-        this.props.history.push("/");
     };
     componentDidMount() {
         store.setState({ isLoadingQuote: true });
@@ -128,23 +133,27 @@ class TokoPage extends React.Component {
                                     <div className="row">{loopBarangToko}</div>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <button
-                                                type="button"
-                                                class="btn btn-dark"
-                                                onClick={() => this.balikHome()}
-                                            >
-                                                Balik Ke Home{" "}
-                                                <i class="fa fa-fw fa-angle-right"></i>
-                                            </button>
+                                            {this.props.pageToko > 1 ? (
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-dark"
+                                                    onClick={this.handleBack}
+                                                >
+                                                    <i class="fa fa-fw fa-angle-left"></i>
+                                                    Page Sebelumnya{" "}
+                                                </button>
+                                            ) : (
+                                                <div></div>
+                                            )}
                                         </div>
                                         <div className="col-md-6 text-right">
                                             {this.props.tokoListBarang
-                                                .length === 20 ? (
+                                                .length === 12 ? (
                                                 <button
                                                     type="button"
                                                     class="btn btn-dark"
                                                     onClick={() =>
-                                                        this.getTokoInfo()
+                                                        this.handleNext()
                                                     }
                                                 >
                                                     Page Selanjutnya{" "}

@@ -6,76 +6,92 @@ import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-class ResultListsBarang extends React.Component {
+class FilterListToko extends React.Component {
     handlePage = async () => {
         await store.setState({
             isLoadingSearch: true,
-            pageBarang: this.props.pageBarang * 1 + 1
+            pageListToko: this.props.pageListToko * 1 + 1
         });
         const req = {
             method: "get",
             url:
                 this.props.baseUrl +
-                "/baju?search=" +
+                "/toko?search=" +
                 this.props.searchKeyword +
                 "&p=" +
-                this.props.pageBarang
+                this.props.pageListToko
         };
-        console.log("page", this.props.pageBarang);
+        console.log("page", this.props.pageListToko);
         const self = this;
         axios(req).then(function(response) {
             store.setState({
-                listBarangSearch: response.data,
+                listTokoSearch: response.data,
                 isLoadingSearch: false
             });
-            self.props.history.push("/hasil");
+            self.props.history.push("/hasil-toko");
             console.log(response.data);
-            console.log(self.props.listBarangSearch);
+            console.log(self.props.listTokoSearch);
         });
     };
     handleBack = async () => {
         await store.setState({
             isLoadingSearch: true,
-            pageBarang: this.props.pageBarang * 1 - 1
+            pageListToko: this.props.pageListToko * 1 - 1
         });
         const req = {
             method: "get",
             url:
                 this.props.baseUrl +
-                "/baju?search=" +
+                "/toko?search=" +
                 this.props.searchKeyword +
                 "&p=" +
-                this.props.pageBarang
+                this.props.pageListToko
         };
-        console.log("page", this.props.pageBarang);
+        console.log("page", this.props.pageListToko);
         const self = this;
         axios(req).then(function(response) {
             store.setState({
-                listBarangSearch: response.data,
+                listTokoSearch: response.data,
                 isLoadingSearch: false
             });
-            self.props.history.push("/hasil");
+            self.props.history.push("/hasil-toko");
             console.log(response.data);
-            console.log(self.props.listBarangSearch);
+            console.log(self.props.listTokoSearch);
         });
     };
     // Tambahin component will unmount
     componentWillUnmount() {
-        store.setState({ pageBarang: 1 });
+        store.setState({ pageListToko: 1 });
     }
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
     }
     render() {
-        const loopBaju = this.props.listBarangSearch.map((value, index) => (
-            <div className="col-md-3 px-auto pb-4">
+        const loopToko = this.props.listTokoSearch.map((value, index) => (
+            <div className="col-md-4 px-auto pb-4">
                 <div class="card cardItem text-center">
+                    <Link to={`toko/${value.id}`}>
+                        <div
+                            className="card-header"
+                            style={{
+                                backgroundColor: "#1D2124",
+                                color: "white",
+                                textDecoration: "none"
+                            }}
+                        >
+                            <TextTruncate
+                                line={2}
+                                truncateText="…"
+                                text={value.nama}
+                            />
+                        </div>
+                    </Link>
                     <img
-                        src={value.gambar}
+                        src={value.barang_populer.gambar}
                         class="card-img-top img-fluid"
                         alt="..."
                     />
-                    <Link to={"/detail-produk/" + value.id}>
+                    <Link to={"/detail-produk/" + value.barang_populer.id}>
                         <a
                             class="btn btn-light border-bottom"
                             style={{ color: "black" }}
@@ -83,11 +99,20 @@ class ResultListsBarang extends React.Component {
                             <TextTruncate
                                 line={2}
                                 truncateText="…"
-                                text={value.nama}
+                                text={value.barang_populer.nama}
                             />
                         </a>
                     </Link>
-                    <span className="text-center py-1">{value.harga}</span>
+                    <span
+                        className="text-center py-1"
+                        style={{
+                            backgroundColor: "#1D2124",
+                            color: "white",
+                            textDecoration: "none"
+                        }}
+                    >
+                        {value.barang_populer.harga}
+                    </span>
                 </div>
             </div>
         ));
@@ -101,13 +126,13 @@ class ResultListsBarang extends React.Component {
                         HASIL PENCARIAN : {this.props.searchKeyword}
                         <i class="fa fa-fw fa-angle-right"></i>
                     </span>
-                    <Link to="hasil-toko">
+                    <Link to="/hasil">
                         <a
                             href=""
                             className="text-right"
                             style={{ color: "white" }}
                         >
-                            Cari Toko
+                            Cari T-Shirt
                         </a>
                     </Link>
                 </div>
@@ -120,7 +145,7 @@ class ResultListsBarang extends React.Component {
                             >
                                 Loading....
                             </div>
-                        ) : loopBaju.length === 0 ? (
+                        ) : loopToko.length === 0 ? (
                             <div
                                 className="col-md-12 text-center"
                                 style={{ color: "white" }}
@@ -128,12 +153,12 @@ class ResultListsBarang extends React.Component {
                                 Hasil pencarian tidak ditemukan
                             </div>
                         ) : (
-                            loopBaju
+                            loopToko
                         )}
                     </div>
                     <div className="row">
                         <div className="col-md-6 text-left">
-                            {this.props.pageBarang > 1 ? (
+                            {this.props.pageListToko > 1 ? (
                                 <button
                                     type="button"
                                     class="btn btn-dark"
@@ -147,7 +172,7 @@ class ResultListsBarang extends React.Component {
                             )}
                         </div>
                         <div className="col-md-6 text-right">
-                            {this.props.listBarangSearch.length === 12 ? (
+                            {this.props.listTokoSearch.length === 3 ? (
                                 <button
                                     type="button"
                                     class="btn btn-dark"
@@ -168,6 +193,6 @@ class ResultListsBarang extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang",
+    "quote, quoteAuthor, isLoadingQuote, searchTokoKeyword, listTokoSearch, baseUrl, isLoadingSearch, pageListToko",
     actions
-)(withRouter(ResultListsBarang));
+)(withRouter(FilterListToko));

@@ -104,14 +104,16 @@ class ListHome extends React.Component {
                 <div className="container py-3">
                     <div class="card" style={{ backgroundColor: "#1D2124" }}>
                         <div class="card-header">
-                            <a
-                                href=""
-                                className="border-bottom border-dark"
-                                style={{ color: "white" }}
-                            >
-                                TOKO POPULER{" "}
-                                <i class="fa fa-fw fa-angle-right"></i>
-                            </a>
+                            <Link to="hasil-toko">
+                                <a
+                                    href=""
+                                    className="border-bottom border-dark"
+                                    style={{ color: "white" }}
+                                >
+                                    TOKO POPULER{" "}
+                                    <i class="fa fa-fw fa-angle-right"></i>
+                                </a>
+                            </Link>
                         </div>
                         <div class="card-body">
                             <div className="row">{loopToko}</div>

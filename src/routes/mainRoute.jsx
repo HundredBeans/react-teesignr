@@ -13,6 +13,7 @@ import BuktiPembelian from "../pages/buktiPembelian";
 import KeranjangPage from "../pages/keranjangPage";
 import TokoPage from "../pages/tokoPage";
 import ProfilePage from "../pages/profilePage";
+import ListToko from "../pages/listToko";
 
 const MainRoute = () => {
     return (
@@ -20,6 +21,7 @@ const MainRoute = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/hasil" component={Result} />
+                <Route path="/hasil-toko" component={ListToko} />
                 <Route path="/detail-produk/:id" component={DetailProduk} />
                 <Route path="/toko/:id" component={TokoPage} />
                 <Route exact path="/snk-belanja" component={SyaratKetentuan} />

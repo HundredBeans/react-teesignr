@@ -31,7 +31,7 @@ class JualProduk extends React.Component {
                 method: "post",
                 url: this.props.baseUrl + "/toko/jual",
                 headers: {
-                    Authorization: "Bearer " + this.props.token
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 },
                 data: {
                     nama_barang: this.props.jualNamaProduk,
@@ -57,7 +57,7 @@ class JualProduk extends React.Component {
         }
     };
     componentDidMount() {
-        if (this.props.punyaToko) {
+        if (localStorage.getItem("punyaToko") !== null) {
             store.setState({ isLoadingQuote: true });
             this.props.getRandomQuote();
         } else {
@@ -283,6 +283,6 @@ class JualProduk extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, punyaToko, token, listBarangSearch, searchKeyword",
+    "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, listBarangSearch, searchKeyword",
     actions
 )(withRouter(JualProduk));

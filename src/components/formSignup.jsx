@@ -53,7 +53,6 @@ class FormSignup extends React.Component {
                     // this.closeModal();
                     console.log(response.data);
                     alert("register sukses");
-                    // console.log(this.props.isLogin);
                     // console.log(response);
                 })
                 .catch(function(error) {
@@ -155,6 +154,6 @@ class FormSignup extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, daftarFullName, daftarEmail, daftarUsername, daftarPassword, isLogin",
+    "baseUrl, daftarFullName, daftarEmail, daftarUsername, daftarPassword",
     actions
 )(withRouter(FormSignup));

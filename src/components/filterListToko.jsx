@@ -17,11 +17,10 @@ class FilterListToko extends React.Component {
             url:
                 this.props.baseUrl +
                 "/toko?search=" +
-                this.props.searchKeyword +
+                this.props.searchTokoKeyword +
                 "&p=" +
                 this.props.pageListToko
         };
-        console.log("page", this.props.pageListToko);
         const self = this;
         axios(req).then(function(response) {
             store.setState({
@@ -31,6 +30,7 @@ class FilterListToko extends React.Component {
             self.props.history.push("/hasil-toko");
             console.log(response.data);
             console.log(self.props.listTokoSearch);
+            console.log("page", self.props.pageListToko);
         });
     };
     handleBack = async () => {
@@ -43,7 +43,7 @@ class FilterListToko extends React.Component {
             url:
                 this.props.baseUrl +
                 "/toko?search=" +
-                this.props.searchKeyword +
+                this.props.searchTokoKeyword +
                 "&p=" +
                 this.props.pageListToko
         };
@@ -55,13 +55,16 @@ class FilterListToko extends React.Component {
                 isLoadingSearch: false
             });
             self.props.history.push("/hasil-toko");
-            console.log(response.data);
-            console.log(self.props.listTokoSearch);
         });
     };
     // Tambahin component will unmount
     componentWillUnmount() {
-        store.setState({ pageListToko: 1 });
+        store.setState({
+            pageListToko: 1,
+            searchTokoKeyword: "",
+            urutanTokoBerdasarkan: "popularitas",
+            urutanToko: "desc"
+        });
     }
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
@@ -75,8 +78,7 @@ class FilterListToko extends React.Component {
                             className="card-header"
                             style={{
                                 backgroundColor: "#1D2124",
-                                color: "white",
-                                textDecoration: "none"
+                                color: "white"
                             }}
                         >
                             <TextTruncate
@@ -86,6 +88,14 @@ class FilterListToko extends React.Component {
                             />
                         </div>
                     </Link>
+                    <span
+                        style={{
+                            backgroundColor: "#1D2124",
+                            color: "white"
+                        }}
+                    >
+                        Pop Score : {value.popularitas}
+                    </span>
                     <img
                         src={value.barang_populer.gambar}
                         class="card-img-top img-fluid"

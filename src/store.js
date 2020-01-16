@@ -3,8 +3,8 @@ import axios from "axios";
 import createStore from "unistore";
 
 const initialState = {
-    isLogin: false, //bisa dipindah ke localstorage
-    token: "", //bisa dipindah ke localstorage
+    // isLogin: false, //bisa dipindah ke localstorage
+    // token: "", //bisa dipindah ke localstorage
     baseUrl: "http://0.0.0.0:5000",
     // State login dan signup
     emailInput: "",
@@ -21,7 +21,7 @@ const initialState = {
     namaUserLogin: "", //bisa dipindah ke localstorage
     inputNamaToko: "",
     inputDeskripsiToko: "",
-    punyaToko: "", //bisa dipindah ke localstorage
+    // punyaToko: "", //bisa dipindah ke localstorage
     infoToko: "",
     listTransaksi: [],
     userFullName: "",
@@ -83,7 +83,7 @@ const initialState = {
     searchTokoKeyword: "",
     urutanTokoBerdasarkan: "popularitas",
     urutanToko: "desc",
-    pageListToko: ""
+    pageListToko: 1
 };
 
 export const store = createStore(initialState);
@@ -105,7 +105,7 @@ export const actions = store => ({
             });
         });
     },
-    getUserInfo: (state, token) => {
+    getUserInfo: async (state, token) => {
         const req = {
             method: "get",
             url: initialState.baseUrl + "/user",
@@ -114,16 +114,24 @@ export const actions = store => ({
             }
         };
         console.log(token);
-        axios(req).then(function(response) {
+        console.log("berhasil get user info");
+        await axios(req).then(function(response) {
             console.log(response.data);
             store.setState({
                 namaUserLogin: response.data.info_user.username,
-                punyaToko: response.data.info_user.designer_status,
                 infoToko: response.data.info_toko,
                 listTransaksi: response.data.riwayat_transaksi.reverse(), // Diurutkan dari yang terbaru
                 userFullName: response.data.info_user.full_name,
                 userEmail: response.data.info_user.email
             });
+            localStorage.setItem(
+                "namaUserLogin",
+                response.data.info_user.username
+            );
+            localStorage.setItem(
+                "punyaToko",
+                response.data.info_user.designer_status
+            );
         });
     },
     // validate email

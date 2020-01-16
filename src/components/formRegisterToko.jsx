@@ -17,7 +17,7 @@ class RegisterToko extends React.Component {
                 method: "post",
                 url: this.props.baseUrl + "/toko/register",
                 headers: {
-                    Authorization: "Bearer " + this.props.token
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 },
                 data: {
                     nama_toko: this.props.inputNamaToko,
@@ -28,7 +28,7 @@ class RegisterToko extends React.Component {
             Axios(req).then(function(response) {
                 alert("register toko berhasil");
                 self.props.getUserInfo();
-                store.setState({ punyaToko: true });
+                localStorage.setItem("punyaToko", true);
             });
         }
     };
@@ -94,6 +94,6 @@ class RegisterToko extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, inputNamaToko, inputDeskripsiToko, punyaToko, token",
+    "baseUrl, inputNamaToko, inputDeskripsiToko",
     actions
 )(withRouter(RegisterToko));

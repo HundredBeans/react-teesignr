@@ -16,12 +16,11 @@ import axios from "axios";
 
 class ProfilePage extends React.Component {
     handleEditPassword = () => {
-        if (this.props.isLogin) {
+        if (localStorage.getItem("isLogin") !== null) {
             store.setState({ editStatus: true });
             console.log("klik");
         } else {
             alert("please login terlebih dahulu");
-            console.log(this.props.isLogin);
         }
     };
     handleFixPassword = () => {
@@ -33,16 +32,15 @@ class ProfilePage extends React.Component {
                 new_password: this.props.inputPassBaru
             },
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
-        console.log(this.props.token);
         console.log(req);
         const self = this;
         axios(req)
             .then(function(response) {
                 alert("password berhasil diganti");
-                store.setState({ isLogin: false });
+                localStorage.removeItem("isLogin");
                 self.props.history.push("/");
             })
             .catch(function(error) {
@@ -56,7 +54,7 @@ class ProfilePage extends React.Component {
     componentDidMount() {
         store.setState({ isLoadingQuote: true, editStatus: false });
         this.props.getRandomQuote();
-        this.props.getUserInfo(this.props.token);
+        this.props.getUserInfo(localStorage.getItem("token"));
     }
     render() {
         // Mengambil daftar transaksi sebanyak 10 terbaru
@@ -127,7 +125,8 @@ class ProfilePage extends React.Component {
                                     </h4>
                                     <span>{this.props.userEmail}</span>
                                     <p className="card-text border-top py-2">
-                                        {this.props.punyaToko
+                                        {localStorage.getItem("punyaToko") !==
+                                        null
                                             ? this.props.infoToko.nama
                                             : "Belum punya toko"}
                                     </p>
@@ -187,6 +186,6 @@ class ProfilePage extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, isLoadingQuote, quoteAuthor, listTransaksi, userFullName, userEmail, punyaToko, infoToko, transaksiId, token, editStatus, isLogin, inputPassLama, inputPassBaru",
+    "baseUrl, isLoadingQuote, quoteAuthor, listTransaksi, userFullName, userEmail, infoToko, transaksiId, token, editStatus, inputPassLama, inputPassBaru",
     actions
 )(withRouter(ProfilePage));

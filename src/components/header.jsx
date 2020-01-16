@@ -19,16 +19,21 @@ class Header extends React.Component {
                 listBarangSearch: response.data,
                 isLoadingSearch: false,
                 pageBarang: 1,
-                pageToko: 1
+                pageToko: 1,
+                searchKeyword: ""
             });
             console.log(response.data);
             console.log(self.props.listBarangSearch);
         });
     };
     handleLogout = () => {
-        store.setState({ isLogin: false });
+        localStorage.clear();
         alert("kamu telah keluar");
+        this.props.history.push("/");
     };
+    componentDidMount() {
+        this.props.getUserInfo(localStorage.getItem("token"));
+    }
     render() {
         return (
             <nav
@@ -77,7 +82,7 @@ class Header extends React.Component {
                     >
                         <ul class="navbar-nav navbar-right ml-auto">
                             {/* KELUAR JIKA SUDAH LOGIN */}
-                            {this.props.isLogin ? (
+                            {localStorage.getItem("isLogin") !== null ? (
                                 <React.Fragment>
                                     <li class="nav-item dropdown mx-1">
                                         <a
@@ -89,7 +94,13 @@ class Header extends React.Component {
                                             aria-haspopup="true"
                                             aria-expanded="false"
                                         >
-                                            {this.props.namaUserLogin}
+                                            {localStorage.getItem(
+                                                "namaUserLogin"
+                                            ) === null
+                                                ? this.props.namaUserLogin
+                                                : localStorage.getItem(
+                                                      "namaUserLogin"
+                                                  )}
                                         </a>
                                         <div
                                             class="dropdown-menu"
@@ -109,10 +120,9 @@ class Header extends React.Component {
                                             </Link>
                                             <Link
                                                 to={
-                                                    typeof this.props
-                                                        .infoToko ===
-                                                        undefined ||
-                                                    !this.props.punyaToko
+                                                    localStorage.getItem(
+                                                        "punyaToko"
+                                                    ) === "false"
                                                         ? "/not-found"
                                                         : `/toko/${this.props.infoToko.id}`
                                                 }
@@ -137,7 +147,8 @@ class Header extends React.Component {
                                         </div>
                                     </li>
                                     <li class="nav-item mx-1">
-                                        {this.props.punyaToko ? (
+                                        {localStorage.getItem("punyaToko") !==
+                                        null ? (
                                             <Link to="/jual" class="nav-link">
                                                 JUAL
                                             </Link>
@@ -186,6 +197,6 @@ class Header extends React.Component {
     }
 }
 export default connect(
-    "isLogin, token, namaUserLogin, punyaToko, searchKeyword, listBarangSearch, baseUrl, infoToko, pageBarang",
+    "searchKeyword, listBarangSearch, baseUrl, infoToko, pageBarang, namaUserLogin",
     actions
 )(withRouter(Header));

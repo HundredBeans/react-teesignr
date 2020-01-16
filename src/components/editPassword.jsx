@@ -64,6 +64,6 @@ class EditPassword extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, inputPassLama, inputPassBaru, isLogin, token, editStatus",
+    "baseUrl, inputPassLama, inputPassBaru, editStatus",
     actions
 )(withRouter(EditPassword));

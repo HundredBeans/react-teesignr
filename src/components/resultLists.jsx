@@ -10,8 +10,8 @@ class ResultList extends React.Component {
     handleFilter = () => {
         console.log("klik");
         store.setState({ isLoadingSearch: true });
-        const harga_minimal = this.props.hargaMin;
-        const harga_maksimal = this.props.hargaMax;
+        const harga_minimal = this.props.hargaMin * 1;
+        const harga_maksimal = this.props.hargaMax * 1;
         const orderby = this.props.urutanBerdasarkan;
         const sort = this.props.urutan;
         console.log(this.props.hargaMin);

@@ -53,15 +53,12 @@ class FormLogin extends React.Component {
                 .post(this.props.baseUrl + "/auth/login", data)
                 .then(function(response) {
                     if (response.status === 200) {
-                        store.setState({
-                            token: response.data.token,
-                            isLogin: true
-                        });
+                        self.props.getUserInfo(response.data.token);
+                        localStorage.setItem("token", response.data.token);
+                        localStorage.setItem("isLogin", true);
                         alert("login berhasil");
-                        console.log(self.props.token);
-                        console.log(self.props.isLogin);
                         console.log(response.data);
-                        self.props.getUserInfo(self.props.token);
+                        self.props.history.push("/");
                     } else {
                         alert("login gagal");
                         console.log(response.status);
@@ -142,6 +139,6 @@ class FormLogin extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, emailInput, passwordInput, isLogin, token",
+    "baseUrl, emailInput, passwordInput",
     actions
 )(withRouter(FormLogin));

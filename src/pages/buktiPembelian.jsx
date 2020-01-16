@@ -8,6 +8,7 @@ import ModalRegisterToko from "../components/modalRegisterToko";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
+import { Link } from "react-router-dom";
 
 class BuktiPembelian extends React.Component {
     componentDidMount() {
@@ -152,6 +153,28 @@ class BuktiPembelian extends React.Component {
                                             </div>
                                             <div className="col-lg-6 col-sm-6">
                                                 <ul>{listBelanja}</ul>
+                                            </div>
+                                        </div>
+                                        <div className="row py-3 border-top">
+                                            <div className="col-md-6">
+                                                <Link to="/hasil">
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-dark"
+                                                    >
+                                                        KEMBALI BELANJA
+                                                    </button>
+                                                </Link>
+                                            </div>
+                                            <div className="col-md-6 text-right">
+                                                <Link to="/profil">
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-dark"
+                                                    >
+                                                        CEK RIWAYAT TRANSAKSI
+                                                    </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

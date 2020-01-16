@@ -7,7 +7,11 @@ import Axios from "axios";
 
 class ProductComponent extends React.Component {
     handleBuy = () => {
-        if (this.props.isLogin) {
+        if (
+            localStorage.getItem("isLogin") !== null &&
+            this.props.beliUkuran !== "" &&
+            this.props.beliJumlah !== ""
+        ) {
             const req = {
                 method: "post",
                 url: this.props.baseUrl + "/baju/" + this.props.match.params.id,
@@ -16,21 +20,28 @@ class ProductComponent extends React.Component {
                     ukuran: this.props.beliUkuran
                 },
                 headers: {
-                    Authorization: "Bearer " + this.props.token
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 }
             };
             console.log("buy");
             const self = this;
             Axios(req).then(function(response) {
+                store.setState({ beliUkuran: "", beliJumlah: "" });
                 alert(response.data.status);
                 self.props.history.push("/checkout");
             });
-        } else {
+        } else if (localStorage.getItem("isLogin") === null) {
             alert("kamu belum login");
+        } else {
+            alert("tolong isi ukuran dan jumlah terlebih dahulu");
         }
     };
     handleAddToCart = () => {
-        if (this.props.isLogin) {
+        if (
+            localStorage.getItem("isLogin") !== null &&
+            this.props.beliUkuran !== "" &&
+            this.props.beliJumlah !== ""
+        ) {
             const req = {
                 method: "put",
                 url: this.props.baseUrl + "/baju/" + this.props.match.params.id,
@@ -39,17 +50,20 @@ class ProductComponent extends React.Component {
                     ukuran: this.props.beliUkuran
                 },
                 headers: {
-                    Authorization: "Bearer " + this.props.token
+                    Authorization: "Bearer " + localStorage.getItem("token")
                 }
             };
             console.log("add to cart");
             const self = this;
             Axios(req).then(function(response) {
+                store.setState({ beliUkuran: "", beliJumlah: "" });
                 alert(response.data.status);
                 self.props.history.push("/keranjang");
             });
-        } else {
+        } else if (localStorage.getItem("isLogin") === null) {
             alert("kamu belum login");
+        } else {
+            alert("tolong isi ukuran dan jumlah terlebih dahulu");
         }
     };
     render() {
@@ -203,6 +217,6 @@ class ProductComponent extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, beliUkuran, beliJumlah, token, isLogin",
+    "baseUrl, beliUkuran, beliJumlah",
     actions
 )(withRouter(ProductComponent));

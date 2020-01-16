@@ -12,41 +12,54 @@ import Axios from "axios";
 
 class CheckoutPage extends React.Component {
     handleCheckout = () => {
-        store.setState({ isLoadingCheckout: false });
-        const req = {
-            method: "post",
-            url: this.props.baseUrl + "/checkout",
-            data: {
-                nama_penerima: this.props.checkoutNama,
-                no_telepon: this.props.checkoutTelepon,
-                alamat_penerima: this.props.checkoutAlamat,
-                metode_pembayaran: this.props.checkoutPembayaran
-            },
-            headers: {
-                Authorization: "Bearer " + this.props.token
-            }
-        };
-        const self = this;
-        Axios(req)
-            .then(function(response) {
-                store.setState({
-                    detailPembayaran: response.data.detail,
-                    isLoadingCheckout: true
+        if (
+            this.props.checkoutNama !== "" &&
+            this.props.checkoutAlamat !== "" &&
+            this.props.checkoutPembayaran !== "" &&
+            this.props.checkoutTelepon !== ""
+        ) {
+            store.setState({ isLoadingCheckout: false });
+            const req = {
+                method: "post",
+                url: this.props.baseUrl + "/checkout",
+                data: {
+                    nama_penerima: this.props.checkoutNama,
+                    no_telepon: this.props.checkoutTelepon,
+                    alamat_penerima: this.props.checkoutAlamat,
+                    metode_pembayaran: this.props.checkoutPembayaran
+                },
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            };
+            const self = this;
+            Axios(req)
+                .then(function(response) {
+                    store.setState({
+                        detailPembayaran: response.data.detail,
+                        isLoadingCheckout: true,
+                        checkoutNama: "",
+                        checkoutTelepon: "",
+                        checkoutAlamat: "",
+                        checkoutPembayaran: ""
+                    });
+                    alert(response.data.status);
+                    self.props.history.push("/post-checkout");
+                })
+                .catch(function(error) {
+                    alert("terjadi kesalahan server");
+                    store.setState({ isLoadingCheckout: true });
                 });
-                alert(response.data.status);
-                self.props.history.push("/post-checkout");
-            })
-            .catch(function(error) {
-                alert("terjadi kesalahan server");
-                store.setState({ isLoadingCheckout: true });
-            });
+        } else {
+            alert("form tidak boleh kosong");
+        }
     };
     handleCancleCheckout = () => {
         const req = {
             method: "delete",
             url: this.props.baseUrl + "/checkout",
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         const self = this;
@@ -62,7 +75,7 @@ class CheckoutPage extends React.Component {
             method: "get",
             url: this.props.baseUrl + "/checkout",
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         Axios(req).then(function(response) {
@@ -71,13 +84,6 @@ class CheckoutPage extends React.Component {
                 totalHargaCheckout: response.data.total_belanja
             });
         });
-        // if (this.props.listCheckout.length === 0) {
-        //     store.setState({ isLoadingQuote: true });
-        //     this.props.getRandomQuote();
-        // } else {
-        //     alert("kamu tidak punya barang untuk dicheckout");
-        //     this.props.history.push("/");
-        // }
         console.log(this.props.listCheckout);
     }
     render() {
@@ -304,6 +310,6 @@ class CheckoutPage extends React.Component {
     }
 }
 export default connect(
-    "isLoadingQuote, listCheckout, baseUrl, token, totalHargaCheckout, isLoadingCheckout, checkoutNama, checkoutTelepon, checkoutAlamat, checkoutPembayaran, detailPembayaran",
+    "isLoadingQuote, listCheckout, baseUrl, totalHargaCheckout, isLoadingCheckout, checkoutNama, checkoutTelepon, checkoutAlamat, checkoutPembayaran, detailPembayaran",
     actions
 )(withRouter(CheckoutPage));

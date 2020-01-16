@@ -7,6 +7,29 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 class ResultListsBarang extends React.Component {
+    getListBarang = async () => {
+        await store.setState({
+            isLoadingSearch: true
+        });
+        const req = {
+            method: "get",
+            url:
+                this.props.baseUrl +
+                "/baju?search=" +
+                this.props.searchKeyword +
+                "&p=" +
+                this.props.pageBarang
+        };
+        console.log("page", this.props.pageBarang);
+        const self = this;
+        axios(req).then(function(response) {
+            store.setState({
+                listBarangSearch: response.data,
+                isLoadingSearch: false
+            });
+            self.props.history.push("/hasil");
+        });
+    };
     handlePage = async () => {
         await store.setState({
             isLoadingSearch: true,
@@ -29,8 +52,6 @@ class ResultListsBarang extends React.Component {
                 isLoadingSearch: false
             });
             self.props.history.push("/hasil");
-            console.log(response.data);
-            console.log(self.props.listBarangSearch);
         });
     };
     handleBack = async () => {
@@ -61,10 +82,17 @@ class ResultListsBarang extends React.Component {
     };
     // Tambahin component will unmount
     componentWillUnmount() {
-        store.setState({ pageBarang: 1 });
+        store.setState({
+            hargaMin: "0",
+            hargaMax: "999999999999999999",
+            urutanBerdasarkan: "id",
+            urutan: "asc",
+            pageBarang: 1
+        });
     }
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
+        this.getListBarang();
     }
     render() {
         const loopBaju = this.props.listBarangSearch.map((value, index) => (

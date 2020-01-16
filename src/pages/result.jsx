@@ -9,7 +9,6 @@ import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
 import ModalRegisterToko from "../components/modalRegisterToko";
 import HeaderQuote from "../components/headerQuote";
-import axios from "axios";
 
 class Result extends React.Component {
     componentDidMount() {

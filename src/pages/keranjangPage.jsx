@@ -18,7 +18,7 @@ class KeranjangPage extends React.Component {
             method: "get",
             url: this.props.baseUrl + "/keranjang",
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         const self = this;
@@ -41,7 +41,7 @@ class KeranjangPage extends React.Component {
                 id: id
             },
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         const self = this;
@@ -56,7 +56,7 @@ class KeranjangPage extends React.Component {
             method: "put",
             url: this.props.baseUrl + "/keranjang",
             headers: {
-                Authorization: "Bearer " + this.props.token
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         const self = this;
@@ -210,6 +210,6 @@ class KeranjangPage extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, isLoadingQuote, listCheckout, baseUrl, token, listKeranjang, listIdKeranjang",
+    "baseUrl, isLoadingQuote, listCheckout, baseUrl, listKeranjang, listIdKeranjang",
     actions
 )(withRouter(KeranjangPage));

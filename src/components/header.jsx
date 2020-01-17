@@ -19,8 +19,7 @@ class Header extends React.Component {
                 listBarangSearch: response.data,
                 isLoadingSearch: false,
                 pageBarang: 1,
-                pageToko: 1,
-                searchKeyword: ""
+                pageToko: 1
             });
             console.log(response.data);
             console.log(self.props.listBarangSearch);

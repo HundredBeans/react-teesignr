@@ -121,7 +121,10 @@ class FilterListToko extends React.Component {
                             textDecoration: "none"
                         }}
                     >
-                        {value.barang_populer.harga}
+                        {value.barang_populer.harga.replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            "."
+                        )}
                     </span>
                 </div>
             </div>

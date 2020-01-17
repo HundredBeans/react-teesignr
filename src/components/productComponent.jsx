@@ -101,7 +101,10 @@ class ProductComponent extends React.Component {
                                 <div className="row">
                                     <div className="col-md-12 text-center py-3 border-bottom">
                                         <h3 style={{ fontWeight: "bold" }}>
-                                            {this.props.hargaProduk}
+                                            {this.props.hargaProduk.replace(
+                                                /\B(?=(\d{3})+(?!\d))/g,
+                                                "."
+                                            )}
                                         </h3>
                                     </div>
                                 </div>

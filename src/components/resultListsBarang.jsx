@@ -15,10 +15,7 @@ class ResultListsBarang extends React.Component {
             method: "get",
             url:
                 this.props.baseUrl +
-                "/baju?search=" +
-                this.props.searchKeyword +
-                "&p=" +
-                this.props.pageBarang
+                `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
         };
         console.log("page", this.props.pageBarang);
         const self = this;
@@ -39,10 +36,7 @@ class ResultListsBarang extends React.Component {
             method: "get",
             url:
                 this.props.baseUrl +
-                "/baju?search=" +
-                this.props.searchKeyword +
-                "&p=" +
-                this.props.pageBarang
+                `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
         };
         console.log("page", this.props.pageBarang);
         const self = this;
@@ -63,10 +57,7 @@ class ResultListsBarang extends React.Component {
             method: "get",
             url:
                 this.props.baseUrl +
-                "/baju?search=" +
-                this.props.searchKeyword +
-                "&p=" +
-                this.props.pageBarang
+                `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
         };
         console.log("page", this.props.pageBarang);
         const self = this;
@@ -80,16 +71,16 @@ class ResultListsBarang extends React.Component {
             console.log(self.props.listBarangSearch);
         });
     };
-    // Tambahin component will unmount
-    componentWillUnmount() {
-        store.setState({
-            hargaMin: "0",
-            hargaMax: "999999999999999999",
-            urutanBerdasarkan: "id",
-            urutan: "asc",
-            pageBarang: 1
-        });
-    }
+    // // Tambahin component will unmount
+    // componentWillUnmount() {
+    //     store.setState({
+    //         hargaMin: "0",
+    //         hargaMax: "999999999999999999",
+    //         urutanBerdasarkan: "terjual",
+    //         urutan: "desc",
+    //         pageBarang: 1
+    //     });
+    // }
     componentDidMount() {
         store.setState({ isLoadingSearch: false });
         this.getListBarang();
@@ -115,7 +106,9 @@ class ResultListsBarang extends React.Component {
                             />
                         </a>
                     </Link>
-                    <span className="text-center py-1">{value.harga}</span>
+                    <span className="text-center py-1">
+                        {value.harga.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    </span>
                 </div>
             </div>
         ));
@@ -196,6 +189,6 @@ class ResultListsBarang extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang, urutanBerdasarkan, urutan",
     actions
 )(withRouter(ResultListsBarang));

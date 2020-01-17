@@ -49,13 +49,19 @@ class EditPassword extends React.Component {
                     </div>
                     <div className="form-group row">
                         <div className="col-sm-12 py-1">
-                            <button
-                                type="submit"
-                                onClick={this.props.handleFixPassword}
-                                className="btn btn-dark btn-block"
-                            >
-                                UBAH PASSWORD
-                            </button>
+                            {this.props.isLoadingEditPass ? (
+                                <span>
+                                    Proses Perubahan Password. Harap tunggu...
+                                </span>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    onClick={this.props.handleFixPassword}
+                                    className="btn btn-dark btn-block"
+                                >
+                                    UBAH PASSWORD
+                                </button>
+                            )}
                         </div>
                     </div>
                 </form>
@@ -64,6 +70,6 @@ class EditPassword extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, inputPassLama, inputPassBaru, editStatus",
+    "baseUrl, inputPassLama, inputPassBaru, editStatus, isLoadingEditPass",
     actions
 )(withRouter(EditPassword));

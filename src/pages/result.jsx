@@ -15,6 +15,17 @@ class Result extends React.Component {
         store.setState({ isLoadingQuote: true });
         this.props.getRandomQuote();
     }
+    // Tambahin component will unmount
+    componentWillUnmount() {
+        store.setState({
+            hargaMin: "0",
+            hargaMax: "999999999999999999",
+            urutanBerdasarkan: "terjual",
+            urutan: "desc",
+            pageBarang: 1,
+            searchKeyword: ""
+        });
+    }
     render() {
         return (
             <body className="bgHome">
@@ -33,6 +44,6 @@ class Result extends React.Component {
     }
 }
 export default connect(
-    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch",
+    "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, hargaMin,hargaMax,urutanBerdasarkan, urutan, pageBarang",
     actions
 )(withRouter(Result));

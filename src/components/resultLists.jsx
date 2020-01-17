@@ -19,7 +19,7 @@ class ResultList extends React.Component {
             method: "get",
             url:
                 this.props.baseUrl +
-                `/baju?harga_minimal=${harga_minimal}&harga_maksimal=${harga_maksimal}&orderby=${orderby}&sort=${sort}`
+                `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
         };
         axios(req).then(function(response) {
             store.setState({
@@ -190,6 +190,6 @@ class ResultList extends React.Component {
     }
 }
 export default connect(
-    "hargaMin, hargaMax, urutanBerdasarkan, urutan, listBarangSearch, isLoadingSearch, baseUrl",
+    "hargaMin, hargaMax, urutanBerdasarkan, urutan, listBarangSearch, isLoadingSearch, baseUrl, searchKeyword, pageBarang",
     actions
 )(withRouter(ResultList));

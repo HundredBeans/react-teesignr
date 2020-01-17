@@ -8,6 +8,7 @@ import ModalRegisterToko from "../components/modalRegisterToko";
 import { actions, store } from "../store";
 import { withRouter } from "react-router-dom";
 import { connect } from "unistore/react";
+import { Link } from "react-router-dom";
 
 class TentangKami extends React.Component {
     componentDidMount() {
@@ -93,6 +94,40 @@ class TentangKami extends React.Component {
                                 </div>
                                 <div className="col-md-2 my-auto">
                                     <h3>II.</h3>
+                                </div>
+                            </div>
+                            <div className="row py-3 border-bottom">
+                                <div className="col-md-12">
+                                    {localStorage.getItem("isLogin") ===
+                                    null ? (
+                                        <button
+                                            type="submit"
+                                            className="btn btn-dark"
+                                            data-toggle="modal"
+                                            data-target="#ModalSignup"
+                                        >
+                                            DAFTAR SEKARANG
+                                        </button>
+                                    ) : localStorage.getItem("punyaToko") ===
+                                      "false" ? (
+                                        <button
+                                            type="submit"
+                                            className="btn btn-dark"
+                                            data-toggle="modal"
+                                            data-target="#ModalRegisterToko"
+                                        >
+                                            MULAI BERJUALAN
+                                        </button>
+                                    ) : (
+                                        <Link to="/jual">
+                                            <button
+                                                type="submit"
+                                                className="btn btn-dark"
+                                            >
+                                                MULAI BERJUALAN
+                                            </button>
+                                        </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -52,8 +52,8 @@ const initialState = {
     // State filter
     hargaMin: "0",
     hargaMax: "999999999999999999",
-    urutanBerdasarkan: "id",
-    urutan: "asc",
+    urutanBerdasarkan: "terjual",
+    urutan: "desc",
     // State beli
     beliUkuran: "",
     beliJumlah: "",
@@ -79,6 +79,7 @@ const initialState = {
     // State edit password
     inputPassLama: "",
     inputPassBaru: "",
+    isLoadingEditPass: false,
     // State search toko
     searchTokoKeyword: "",
     urutanTokoBerdasarkan: "popularitas",

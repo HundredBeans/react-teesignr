@@ -50,7 +50,9 @@ class ListHome extends React.Component {
                             />
                         </a>
                     </Link>
-                    <span className="text-center py-1">{value.harga}</span>
+                    <span className="text-center py-1">
+                        {value.harga.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    </span>
                 </div>
             </div>
         ));

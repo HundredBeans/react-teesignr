@@ -24,28 +24,43 @@ class ProfilePage extends React.Component {
         }
     };
     handleFixPassword = () => {
-        const req = {
-            method: "put",
-            url: this.props.baseUrl + "/user/edit",
-            data: {
-                old_password: this.props.inputPassLama,
-                new_password: this.props.inputPassBaru
-            },
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
-            }
-        };
-        console.log(req);
-        const self = this;
-        axios(req)
-            .then(function(response) {
-                alert("password berhasil diganti");
-                localStorage.removeItem("isLogin");
-                self.props.history.push("/");
-            })
-            .catch(function(error) {
-                console.log(error.response.data.message);
-            });
+        if (
+            this.props.inputPassLama !== "" &&
+            this.props.inputPassBaru !== ""
+        ) {
+            store.setState({ isLoadingEditPass: true });
+            const req = {
+                method: "put",
+                url: this.props.baseUrl + "/user/edit",
+                data: {
+                    old_password: this.props.inputPassLama,
+                    new_password: this.props.inputPassBaru
+                },
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            };
+            console.log(req);
+            const self = this;
+            axios(req)
+                .then(function(response) {
+                    store.setState({
+                        isLoadingEditPass: false,
+                        inputPassBaru: "",
+                        inputPassLama: ""
+                    });
+                    alert("password berhasil diganti, silahkan login ulang");
+                    localStorage.removeItem("isLogin");
+                    self.props.history.push("/");
+                })
+                .catch(function(error) {
+                    store.setState({ isLoadingEditPass: false });
+                    console.log(error.response.data.message);
+                    alert(error.response.data.message);
+                });
+        } else {
+            alert("form tidak boleh kosong");
+        }
     };
     handleTransaksiId = value => {
         store.setState({ editStatus: false });
@@ -186,6 +201,6 @@ class ProfilePage extends React.Component {
     }
 }
 export default connect(
-    "baseUrl, isLoadingQuote, quoteAuthor, listTransaksi, userFullName, userEmail, infoToko, transaksiId, token, editStatus, inputPassLama, inputPassBaru",
+    "baseUrl, isLoadingQuote, quoteAuthor, listTransaksi, userFullName, userEmail, infoToko, transaksiId, token, editStatus, inputPassLama, inputPassBaru, isLoadingEditPass",
     actions
 )(withRouter(ProfilePage));

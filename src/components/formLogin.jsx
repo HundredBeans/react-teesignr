@@ -57,6 +57,7 @@ class FormLogin extends React.Component {
             alert('login berhasil');
             console.log(response.data);
             self.props.history.push('/');
+            self.props.history.push('/');
           } else {
             alert('login gagal');
             console.log(response.status);

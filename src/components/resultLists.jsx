@@ -12,14 +12,12 @@ class ResultList extends React.Component {
     store.setState({ isLoadingSearch: true });
     const harga_minimal = this.props.hargaMin * 1;
     const harga_maksimal = this.props.hargaMax * 1;
-    const orderby = this.props.urutanBerdasarkan;
-    const sort = this.props.urutan;
     console.log(this.props.hargaMin);
     const req = {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${harga_minimal}&harga_maksimal=${harga_maksimal}`
     };
     axios(req).then(function(response) {
       store.setState({

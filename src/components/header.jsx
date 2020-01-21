@@ -101,16 +101,24 @@ class Header extends React.Component {
                       <Link to="/checkout" className="dropdown-item">
                         Checkout
                       </Link>
-                      <Link
-                        to={
-                          localStorage.getItem('punyaToko') === 'false'
-                            ? '/not-found'
-                            : `/toko/${this.props.infoToko.id}`
-                        }
-                        className="dropdown-item"
-                      >
-                        Toko
-                      </Link>
+                      {localStorage.getItem('punyaToko') === 'true' ? (
+                        <Link
+                          to={`/toko/${this.props.infoToko.id}`}
+                          className="dropdown-item"
+                        >
+                          Toko
+                        </Link>
+                      ) : (
+                        <a
+                          class="nav-link"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#ModalRegisterToko"
+                          className="dropdown-item"
+                        >
+                          Toko <span class="sr-only">(current)</span>
+                        </a>
+                      )}
                       <Link to="/profil" className="dropdown-item">
                         Profil
                       </Link>

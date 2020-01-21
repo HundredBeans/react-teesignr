@@ -8,26 +8,6 @@ import axios from 'axios';
 import FilterListToko from './filterListToko';
 
 class FilterToko extends React.Component {
-  handleFilterToko = () => {
-    console.log('klik');
-    store.setState({ isLoadingSearch: true });
-    const keyword = this.props.searchTokoKeyword;
-    const orderby = this.props.urutanTokoBerdasarkan;
-    const sort = this.props.urutanToko;
-    const req = {
-      method: 'get',
-      url:
-        this.props.baseUrl +
-        `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}`
-    };
-    axios(req).then(function(response) {
-      store.setState({
-        listTokoSearch: response.data,
-        isLoadingSearch: false
-      });
-      console.log(response.data);
-    });
-  };
   render() {
     return (
       <React.Fragment>
@@ -121,7 +101,7 @@ class FilterToko extends React.Component {
                       <button
                         type="button"
                         class="btn btn-dark"
-                        onClick={() => this.handleFilterToko()}
+                        onClick={() => this.props.getListToko()}
                       >
                         FILTER <i class="fa fa-fw fa-angle-right"></i>
                       </button>
@@ -131,7 +111,13 @@ class FilterToko extends React.Component {
               </div>
             </div>
             <div className="col-md-9">
-              <FilterListToko />
+              {this.props.isLoadingSearch ? (
+                <div className="row text-center">
+                  <span>Loading Toko ...</span>
+                </div>
+              ) : (
+                <FilterListToko />
+              )}
             </div>
           </div>
         </div>

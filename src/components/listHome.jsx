@@ -37,7 +37,12 @@ class ListHome extends React.Component {
     const loopBaju = this.props.listBarangSearch.slice(0, 4).map(value => (
       <div className="col-md-3 px-auto pb-4">
         <div className="card text-center cardItem">
-          <img src={value.gambar} className="card-img-top" alt="..." />
+          <img
+            src={value.gambar}
+            className="card-img-top"
+            style={{ width: '100%', height: '40vh', objectFit: 'cover' }}
+            alt="..."
+          />
           <Link to={'/detail-produk/' + value.id}>
             <a
               className="btn btn-light border-bottom w-100"
@@ -53,7 +58,7 @@ class ListHome extends React.Component {
       </div>
     ));
     const loopToko = this.props.listTokoSearch.slice(0, 4).map(value => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-4 px-auto pb-4">
         <div className="card text-center">
           <img
             src={value.barang_populer.gambar}

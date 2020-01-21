@@ -25,18 +25,35 @@ class ListToko extends React.Component {
         this.props.baseUrl +
         `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}`
     };
-    axios(req).then(function(response) {
-      store.setState({
-        listTokoSearch: response.data,
-        isLoadingSearch: false
+    axios(req)
+      .then(function(response) {
+        store.setState({
+          listTokoSearch: response.data,
+          isLoadingSearch: false
+        });
+        console.log(response.data);
+        console.log(orderby);
+        console.log(sort);
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log(error.response);
       });
-      console.log(response.data);
-    });
   };
+  // Tambahin component will unmount
+  componentWillUnmount() {
+    store.setState({
+      pageListToko: 1,
+      searchTokoKeyword: '',
+      urutanTokoBerdasarkan: 'popularitas',
+      urutanToko: 'desc'
+    });
+  }
   componentDidMount() {
     store.setState({ isLoadingQuote: true });
     this.props.getRandomQuote();
     this.getListToko();
+    console.log(this.props.listTokoSearch);
   }
   render() {
     return (
@@ -46,7 +63,7 @@ class ListToko extends React.Component {
         <ModalSignup />
         <ModalRegisterToko />
         <HeaderQuote />
-        <FilterToko />
+        <FilterToko getListToko={this.getListToko} />
         <BackToTop />
         <Footer />
       </body>
@@ -54,6 +71,6 @@ class ListToko extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, searchTokoKeyword,urutanTokoBerdasarkan, urutanToko, pageListToko, baseUrl',
+  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, searchTokoKeyword,urutanTokoBerdasarkan, urutanToko, pageListToko, baseUrl, isLoadingSearch',
   actions
 )(withRouter(ListToko));

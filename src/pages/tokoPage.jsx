@@ -54,7 +54,12 @@ class TokoPage extends React.Component {
     const loopBarangToko = this.props.tokoListBarang.map(value => (
       <div className="col-md-3 px-auto pb-4">
         <div class="card cardItem text-center">
-          <img src={value.gambar} class="card-img-top img-fluid" alt="..." />
+          <img
+            src={value.gambar}
+            class="card-img-top img-fluid"
+            alt="..."
+            style={{ width: '100%', height: '30vh', objectFit: 'cover' }}
+          />
           <Link to={'/detail-produk/' + value.id}>
             <a class="btn btn-light border-bottom" style={{ color: 'black' }}>
               <TextTruncate line={2} truncateText="…" text={value.nama} />

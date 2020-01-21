@@ -83,6 +83,7 @@ class ResultListsBarang extends React.Component {
             src={value.gambar}
             className="card-img-top img-fluid"
             alt="..."
+            style={{ width: '100%', height: '30vh', objectFit: 'cover' }}
           />
           <Link to={'/detail-produk/' + value.id}>
             <a

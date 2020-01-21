@@ -57,18 +57,6 @@ class FilterListToko extends React.Component {
       self.props.history.push('/hasil-toko');
     });
   };
-  // Tambahin component will unmount
-  componentWillUnmount() {
-    store.setState({
-      pageListToko: 1,
-      searchTokoKeyword: '',
-      urutanTokoBerdasarkan: 'popularitas',
-      urutanToko: 'desc'
-    });
-  }
-  componentDidMount() {
-    store.setState({ isLoadingSearch: false });
-  }
   render() {
     const loopToko = this.props.listTokoSearch.map((value, index) => (
       <div className="col-md-4 px-auto pb-4">
@@ -92,30 +80,70 @@ class FilterListToko extends React.Component {
           >
             Pop Score : {value.popularitas}
           </span>
-          <img
-            src={value.barang_populer.gambar}
-            class="card-img-top img-fluid"
-            alt="..."
-          />
-          <Link to={'/detail-produk/' + value.barang_populer.id}>
-            <a class="btn btn-light border-bottom" style={{ color: 'black' }}>
-              <TextTruncate
-                line={2}
-                truncateText="…"
-                text={value.barang_populer.nama}
+          {value.barang_populer !== '' ? (
+            <React.Fragment>
+              <img
+                src={value.barang_populer.gambar}
+                class="card-img-top img-fluid"
+                alt="..."
               />
-            </a>
-          </Link>
-          <span
-            className="text-center py-1"
-            style={{
-              backgroundColor: '#1D2124',
-              color: 'white',
-              textDecoration: 'none'
-            }}
-          >
-            {value.barang_populer.harga.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-          </span>
+              <Link to={'/detail-produk/' + value.barang_populer.id}>
+                <a
+                  class="btn btn-light border-bottom"
+                  style={{ color: 'black' }}
+                >
+                  <TextTruncate
+                    line={2}
+                    truncateText="…"
+                    text={value.barang_populer.nama}
+                  />
+                </a>
+              </Link>
+              <span
+                className="text-center py-1"
+                style={{
+                  backgroundColor: '#1D2124',
+                  color: 'white',
+                  textDecoration: 'none'
+                }}
+              >
+                {value.barang_populer.harga.replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  '.'
+                )}
+              </span>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <img
+                src={require('../img/no-image.jpg')}
+                class="card-img-top img-fluid"
+                alt="..."
+              />
+              <Link to={'/detail-produk/' + value.barang_populer.id}>
+                <a
+                  class="btn btn-light border-bottom"
+                  style={{ color: 'black' }}
+                >
+                  <TextTruncate
+                    line={2}
+                    truncateText="…"
+                    text={`${value.nama} belum menjual T-SHIRT`}
+                  />
+                </a>
+              </Link>
+              <span
+                className="text-center py-1"
+                style={{
+                  backgroundColor: '#1D2124',
+                  color: 'white',
+                  textDecoration: 'none'
+                }}
+              >
+                Barang tidak ada
+              </span>
+            </React.Fragment>
+          )}
         </div>
       </div>
     ));

@@ -84,12 +84,12 @@ const initialState = {
   searchTokoKeyword: '',
   urutanTokoBerdasarkan: 'popularitas',
   urutanToko: 'desc',
-  pageListToko: 1,
+  pageListToko: 1
 };
 
 export const store = createStore(initialState);
 
-export const actions = (store) => ({
+export const actions = store => ({
   handleInput: (state, event) => {
     store.setState({ [event.target.name]: event.target.value });
     console.log(event.target.value);
@@ -97,12 +97,12 @@ export const actions = (store) => ({
     console.log(initialState.searchKeyword);
     console.log(initialState.emailInput);
   },
-  getRandomQuote: (state) => {
-    axios.get('https://api.quotable.io/random').then((response) => {
+  getRandomQuote: state => {
+    axios.get('https://api.quotable.io/random').then(response => {
       store.setState({
         quote: response.data.content,
         quoteAuthor: response.data.author,
-        isLoadingQuote: false,
+        isLoadingQuote: false
       });
     });
   },
@@ -111,27 +111,24 @@ export const actions = (store) => ({
       method: 'get',
       url: `${initialState.baseUrl}/user`,
       headers: {
-        Authorization: `Bearer ${token}`,
-      },
+        Authorization: `Bearer ${token}`
+      }
     };
     console.log(token);
     console.log('berhasil get user info');
-    await axios(req).then((response) => {
+    await axios(req).then(response => {
       console.log(response.data);
       store.setState({
         namaUserLogin: response.data.info_user.username,
         infoToko: response.data.info_toko,
         listTransaksi: response.data.riwayat_transaksi.reverse(), // Diurutkan dari yang terbaru
         userFullName: response.data.info_user.full_name,
-        userEmail: response.data.info_user.email,
+        userEmail: response.data.info_user.email
       });
-      localStorage.setItem(
-        'namaUserLogin',
-        response.data.info_user.username,
-      );
+      localStorage.setItem('namaUserLogin', response.data.info_user.username);
       localStorage.setItem(
         'punyaToko',
-        response.data.info_user.designer_status,
+        response.data.info_user.designer_status
       );
     });
   },
@@ -149,20 +146,18 @@ export const actions = (store) => ({
       harga_minimal: initialState.hargaMin,
       harga_maksimal: initialState.hargaMax,
       orderby: initialState.urutanBerdasarkan,
-      sort: initialState.urutan,
+      sort: initialState.urutan
     };
     const req = {
       method: 'get',
-      url:
-                `${initialState.baseUrl
-                }/baju?harga_minimal=${data.harga_minimal}&harga_maksimal=${data.harga_maksimal}&orderby=${data.orderby}&sort=${data.sort}`,
+      url: `${initialState.baseUrl}/baju?harga_minimal=${data.harga_minimal}&harga_maksimal=${data.harga_maksimal}&orderby=${data.orderby}&sort=${data.sort}`
     };
-    axios(req).then((response) => {
+    axios(req).then(response => {
       store.setState({
         listBarangSearch: response.data,
-        isLoadingSearch: false,
+        isLoadingSearch: false
       });
       console.log(response.data);
     });
-  },
+  }
 });

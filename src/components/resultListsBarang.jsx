@@ -77,7 +77,7 @@ class ResultListsBarang extends React.Component {
   }
   render() {
     const loopBaju = this.props.listBarangSearch.map((value, index) => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-4">
         <div className="card cardItem text-center">
           <img
             src={value.gambar}

@@ -29,6 +29,7 @@ class RegisterToko extends React.Component {
         alert('register toko berhasil');
         self.props.getUserInfo();
         localStorage.setItem('punyaToko', true);
+        self.props.history.push('/');
       });
     }
   };

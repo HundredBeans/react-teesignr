@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 class HomeHead extends React.Component {
   render() {
     return (
-      <div
-        className="container-fluid py-3 text-justify"
-        style={{ fontFamily: 'Courier' }}
-      >
+      <div className="container-fluid py-3 text-justify CousineFont">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

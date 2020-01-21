@@ -93,7 +93,7 @@ class ProfilePage extends React.Component {
       DetailTransaksi(
         value.id_pemesanan,
         value.nama_barang,
-        value.harga_barang,
+        value.total_harga,
         value.ukuran,
         value.jumlah,
         value.waktu_pemesanan
@@ -127,12 +127,15 @@ class ProfilePage extends React.Component {
                   >
                     {this.props.userFullName}
                   </h4>
-                  <span>{this.props.userEmail}</span>
-                  <p className="card-text border-top py-2">
-                    {localStorage.getItem('punyaToko') !== null
-                      ? this.props.infoToko.nama
-                      : 'Belum punya toko'}
-                  </p>
+                  <span>Email : {this.props.userEmail}</span>
+                  {localStorage.getItem('punyaToko') !== 'false' ? (
+                    <p className="card-text border-top py-2">
+                      Toko : {this.props.infoToko.nama} <br /> Keuntungan :{' '}
+                      {this.props.infoToko.keuntungan}
+                    </p>
+                  ) : (
+                    <p>Belum punya toko</p>
+                  )}
                   <button
                     type="button"
                     class="btn btn-dark"

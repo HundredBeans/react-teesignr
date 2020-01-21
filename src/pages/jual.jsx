@@ -47,6 +47,13 @@ class JualProduk extends React.Component {
       const self = this;
       Axios(req)
         .then(function(response) {
+          store.setState({
+            jualNamaProduk: '',
+            jualKeuntungan: '',
+            jualDesignUrl: '',
+            jualJenisBahan: '',
+            jualDeskripsi: ''
+          });
           alert(response.data.status);
           self.props.history.push('/detail-produk/' + response.data.barang.id);
         })

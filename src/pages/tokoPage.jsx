@@ -52,7 +52,7 @@ class TokoPage extends React.Component {
   }
   render() {
     const loopBarangToko = this.props.tokoListBarang.map(value => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-4">
         <div class="card cardItem text-center">
           <img
             src={value.gambar}

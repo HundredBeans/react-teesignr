@@ -35,10 +35,7 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top border border-bottom"
-        style={{ fontFamily: 'Courier', backgroundColor: '#1D2124' }}
-      >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top border border-bottom CousineFont">
         <div className="container-fluid">
           <Link to="/">
             <a class="navbar-brand mr-5">TEESIGNR</a>
@@ -133,7 +130,7 @@ class Header extends React.Component {
                     </div>
                   </li>
                   <li class="nav-item mx-1">
-                    {localStorage.getItem('punyaToko') !== null ? (
+                    {localStorage.getItem('punyaToko') !== 'false' ? (
                       <Link to="/jual" class="nav-link">
                         JUAL
                       </Link>

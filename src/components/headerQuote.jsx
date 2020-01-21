@@ -6,7 +6,7 @@ import { connect } from 'unistore/react';
 class HeaderQuote extends React.Component {
   render() {
     return (
-      <div className="container-fluid border-bottom">
+      <div className="container-fluid border-bottom CousineFont">
         <div className="container py-3">
           <div
             className="card mb-3 col-md-12"
@@ -15,14 +15,14 @@ class HeaderQuote extends React.Component {
             }}
           >
             <div className="row no-gutters">
-              <div className="col-md-2 py-2">
+              <div className="col-md-2 py-2 hide-img">
                 <img
                   src={require('../img/aestheticsmall.jpg')}
                   className="card-img"
                   alt="aesthetic"
                 />
               </div>
-              <div className="col-md-10">
+              <div className="col-md-10 col-sm-12">
                 <div className="card-header" style={{ color: 'white' }}>
                   Quote of the day :
                 </div>

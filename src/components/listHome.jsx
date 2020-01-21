@@ -35,7 +35,7 @@ class ListHome extends React.Component {
   }
   render() {
     const loopBaju = this.props.listBarangSearch.slice(0, 4).map(value => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-6">
         <div className="card text-center cardItem">
           <img
             src={value.gambar}

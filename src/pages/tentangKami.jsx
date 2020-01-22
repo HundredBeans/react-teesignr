@@ -27,8 +27,8 @@ class TentangKami extends React.Component {
           <div
             class="card text-center"
             style={{
-              backgroundColor: '#1D2124',
-              color: 'white'
+              backgroundColor: '#f8f8f8',
+              color: '#2b2b28'
             }}
           >
             <div class="card-header">Copyright &copy; 2020 TEESIGNR.</div>

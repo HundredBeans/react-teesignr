@@ -8,17 +8,17 @@ const HomeHead = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <p style={{ color: 'white' }}>Introducing,</p>
+            <p>Introducing,</p>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
-            <h1 style={{ color: 'white' }}>TEESIGNR.</h1>
+            <h1>TEESIGNR.</h1>
           </div>
         </div>
         <div className="row">
           <div className="col-md-7">
-            <p style={{ color: 'white' }}>
+            <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Pellentesque blandit et velit ut elementum. Nulla facilisi. Nullam
               volutpat nulla massa, ut eleifend dui molestie eu. Suspendisse nec

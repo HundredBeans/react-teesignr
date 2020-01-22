@@ -168,7 +168,7 @@ class KeranjangPage extends React.Component {
                   <div className="container">
                     {loopKeranjang}
                     <div className="row">
-                      <div className="col-md-6 text-left py-2">
+                      <div className="col-md-6 text-left py-2 pl-5">
                         <button
                           type="submit"
                           className="btn btn-dark"

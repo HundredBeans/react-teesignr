@@ -63,23 +63,13 @@ class FilterListToko extends React.Component {
         <div class="card cardItem text-center">
           <Link to={`toko/${value.id}`}>
             <div
-              className="card-header"
-              style={{
-                backgroundColor: '#1D2124',
-                color: 'white'
-              }}
+              className="card-header btn btn-light border-bottom w-100"
+              style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
             </div>
           </Link>
-          <span
-            style={{
-              backgroundColor: '#1D2124',
-              color: 'white'
-            }}
-          >
-            Pop Score : {value.popularitas}
-          </span>
+          <span>Pop Score : {value.popularitas}</span>
           {value.barang_populer !== '' ? (
             <React.Fragment>
               <img
@@ -89,7 +79,7 @@ class FilterListToko extends React.Component {
               />
               <Link to={'/detail-produk/' + value.barang_populer.id}>
                 <a
-                  class="btn btn-light border-bottom"
+                  class="btn btn-light border-bottom w-100"
                   style={{ color: 'black' }}
                 >
                   <TextTruncate
@@ -102,8 +92,6 @@ class FilterListToko extends React.Component {
               <span
                 className="text-center py-1"
                 style={{
-                  backgroundColor: '#1D2124',
-                  color: 'white',
                   textDecoration: 'none'
                 }}
               >
@@ -135,8 +123,6 @@ class FilterListToko extends React.Component {
               <span
                 className="text-center py-1"
                 style={{
-                  backgroundColor: '#1D2124',
-                  color: 'white',
                   textDecoration: 'none'
                 }}
               >
@@ -148,17 +134,17 @@ class FilterListToko extends React.Component {
       </div>
     ));
     return (
-      <div class="card" style={{ backgroundColor: '#1D2124' }}>
+      <div class="card" style={{ backgroundColor: '#f2f6f5' }}>
         <div class="card-header border-bottom">
           <span
             className="border-bottom border-dark"
-            style={{ color: 'white' }}
+            style={{ color: 'black' }}
           >
             HASIL PENCARIAN : {this.props.searchKeyword}
             <i class="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="/hasil">
-            <a href="" className="text-right" style={{ color: 'white' }}>
+            <a href="" className="text-right" style={{ color: 'black' }}>
               Cari T-Shirt
             </a>
           </Link>
@@ -166,11 +152,11 @@ class FilterListToko extends React.Component {
         <div class="card-body">
           <div className="row">
             {this.props.isLoadingSearch ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Loading....
               </div>
             ) : loopToko.length === 0 ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Hasil pencarian tidak ditemukan
               </div>
             ) : (

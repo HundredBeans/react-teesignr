@@ -10,7 +10,7 @@ const HeaderQuote = props => {
         <div
           className="card mb-3 col-md-12"
           style={{
-            backgroundColor: '#1D2124'
+            backgroundColor: '#f2f6f5'
           }}
         >
           <div className="row no-gutters">
@@ -22,12 +22,12 @@ const HeaderQuote = props => {
               />
             </div>
             <div className="col-md-10 col-sm-12">
-              <div className="card-header" style={{ color: 'white' }}>
+              <div className="card-header" style={{ color: '#2b2b28' }}>
                 Quote of the day :
               </div>
               <div className="card-body">
                 <blockquote className="blockquote mb-0">
-                  <p className="card-text" style={{ color: 'white' }}>
+                  <p className="card-text" style={{ color: '#2b2b28' }}>
                     "
                     {props.isLoadingQuote ? 'Loading quotes' : `${props.quote}`}
                     "

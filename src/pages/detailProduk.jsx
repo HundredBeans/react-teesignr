@@ -79,7 +79,7 @@ class DetailProduk extends React.Component {
         <ModalRegisterToko />
         <ModalSignup />
         <HeaderQuote />
-        <div className="container py-3">
+        <div className="container py-3 pb-5">
           <div className="row">
             <div className="col-md-3 pr-0 py-1 hide-img">
               <div
@@ -131,6 +131,7 @@ class DetailProduk extends React.Component {
             </div>
           </div>
         </div>
+        <div className="pb-5"></div>
         <BackToTop />
         <Footer />
       </body>

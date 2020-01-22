@@ -87,7 +87,7 @@ class ResultListsBarang extends React.Component {
           />
           <Link to={'/detail-produk/' + value.id}>
             <a
-              className="btn btn-light border-bottom"
+              className="btn btn-light border-bottom w-100"
               style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
@@ -100,17 +100,17 @@ class ResultListsBarang extends React.Component {
       </div>
     ));
     return (
-      <div className="card" style={{ backgroundColor: '#1D2124' }}>
+      <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
         <div className="card-header border-bottom">
           <span
             className="border-bottom border-dark"
-            style={{ color: 'white' }}
+            style={{ color: 'black' }}
           >
             HASIL PENCARIAN : {this.props.searchKeyword}
             <i className="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="hasil-toko">
-            <a href="" className="text-right" style={{ color: 'white' }}>
+            <a href="" className="text-right" style={{ color: 'black' }}>
               Cari Toko
             </a>
           </Link>
@@ -118,11 +118,11 @@ class ResultListsBarang extends React.Component {
         <div className="card-body">
           <div className="row">
             {this.props.isLoadingSearch ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Loading....
               </div>
             ) : loopBaju.length === 0 ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Hasil pencarian tidak ditemukan
               </div>
             ) : (
@@ -159,7 +159,6 @@ class ResultListsBarang extends React.Component {
             </div>
           </div>
         </div>
-        )
       </div>
     );
   }

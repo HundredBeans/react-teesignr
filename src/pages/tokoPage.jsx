@@ -76,9 +76,9 @@ class TokoPage extends React.Component {
         <ModalRegisterToko />
         <ModalSignup />
         <HeaderQuote />
-        <div className="container py-3">
+        <div className="container">
           <div className="row">
-            <div className="col-md-3 pr-0">
+            <div className="col-md-3 pr-0 py-3">
               <div
                 class="card w-100"
                 style={{
@@ -104,12 +104,12 @@ class TokoPage extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-9">
-              <div class="card" style={{ backgroundColor: '#1D2124' }}>
+            <div className="col-md-9 py-3">
+              <div class="card" style={{ backgroundColor: '#f2f6f5' }}>
                 <div class="card-header border-bottom">
                   <span
                     className="border-bottom border-dark"
-                    style={{ color: 'white' }}
+                    style={{ color: 'black' }}
                   >
                     Menampilkan
                     <i class="fa fa-fw fa-angle-right"></i>

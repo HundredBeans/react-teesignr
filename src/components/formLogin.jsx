@@ -30,8 +30,9 @@ class FormLogin extends React.Component {
           'Akses Diterima',
           `Password baru telah dikirim ke ${self.props.emailInput}`,
           'success'
-        );
-        self.props.history.push('/');
+        ).then(function() {
+          self.props.history.push('/');
+        });
       });
     }
   };
@@ -65,7 +66,6 @@ class FormLogin extends React.Component {
             localStorage.setItem('isLogin', true);
             swal('Sukses', 'Login Berhasil', 'success');
             console.log(response.data);
-            self.props.history.push('/');
             self.props.history.push('/');
           }
         })

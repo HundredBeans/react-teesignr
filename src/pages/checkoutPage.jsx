@@ -247,17 +247,17 @@ class CheckoutPage extends React.Component {
                     </div>
                   </form>
                   <div className="row py-3">
-                    <div className="col-md-6 text-left">
+                    <div className="col-md-6 text-left col-6">
                       <button
                         type="submit"
                         onClick={this.handleCancleCheckout}
                         className="btn btn-dark"
                         data-dismiss="modal"
                       >
-                        CANCEL CHECKOUT
+                        BATAL
                       </button>
                     </div>
-                    <div className="col-md-6 text-right">
+                    <div className="col-md-6 text-right col-6">
                       {this.props.isLoadingCheckout ? (
                         <button
                           type="submit"

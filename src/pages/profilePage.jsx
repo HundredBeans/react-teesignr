@@ -111,9 +111,9 @@ class ProfilePage extends React.Component {
         <ModalSignup />
         <ModalRegisterToko />
         <HeaderQuote />
-        <div className="container py-3">
+        <div className="container">
           <div className="row">
-            <div className="col-md-3 pr-0">
+            <div className="col-md-3 pr-0 py-3">
               <div
                 class="card w-100"
                 style={{
@@ -153,7 +153,7 @@ class ProfilePage extends React.Component {
             </div>
             <div className="col-md-9">
               <div className="row">
-                <div className="col-md-8 col-sm-12 px-0">
+                <div className="col-md-8 col-sm-12 px-0 py-3">
                   <div className="container">
                     {this.props.editStatus ? (
                       <EditPassword
@@ -164,7 +164,7 @@ class ProfilePage extends React.Component {
                     )}
                   </div>
                 </div>
-                <div className="col-md-4 px-0">
+                <div className="col-md-4 px-0 py-3">
                   <div
                     class="card"
                     style={{

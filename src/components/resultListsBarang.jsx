@@ -11,6 +11,11 @@ class ResultListsBarang extends React.Component {
     await store.setState({
       isLoadingSearch: true
     });
+    if (this.props.hargaMin === '') {
+      store.setState({ hargaMin: 0 });
+    } else if (this.props.hargaMax === '') {
+      store.setState({ hargaMax: 99999999 });
+    }
     const req = {
       method: 'get',
       url:
@@ -32,6 +37,11 @@ class ResultListsBarang extends React.Component {
       isLoadingSearch: true,
       pageBarang: this.props.pageBarang * 1 + 1
     });
+    if (this.props.hargaMin === '') {
+      store.setState({ hargaMin: 0 });
+    } else if (this.props.hargaMax === '') {
+      store.setState({ hargaMax: 99999999 });
+    }
     const req = {
       method: 'get',
       url:
@@ -53,6 +63,11 @@ class ResultListsBarang extends React.Component {
       isLoadingSearch: true,
       pageBarang: this.props.pageBarang * 1 - 1
     });
+    if (this.props.hargaMin === '') {
+      store.setState({ hargaMin: 0 });
+    } else if (this.props.hargaMax === '') {
+      store.setState({ hargaMax: 99999999 });
+    }
     const req = {
       method: 'get',
       url:
@@ -77,7 +92,7 @@ class ResultListsBarang extends React.Component {
   }
   render() {
     const loopBaju = this.props.listBarangSearch.map((value, index) => (
-      <div className="col-md-3 px-auto pb-4 col-sm-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-4 col-6">
         <div className="card cardItem text-center">
           <img
             src={value.gambar}

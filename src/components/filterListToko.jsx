@@ -7,6 +7,37 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class FilterListToko extends React.Component {
+  getListToko = async () => {
+    console.log('klik');
+    await store.setState({ isLoadingSearch: true });
+    const keyword = this.props.searchTokoKeyword;
+    const orderby = this.props.urutanTokoBerdasarkan;
+    const sort = this.props.urutanToko;
+    const req = {
+      method: 'get',
+      url:
+        this.props.baseUrl +
+        `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}` +
+        '&p=' +
+        this.props.pageListToko
+    };
+    const self = this;
+    await axios(req)
+      .then(function(response) {
+        store.setState({
+          listTokoSearch: response.data,
+          isLoadingSearch: false
+        });
+        console.log(response.data);
+        console.log(orderby);
+        console.log(sort);
+        self.props.history.push('/hasil-toko');
+      })
+      .catch(function(error) {
+        console.log(error);
+        console.log(error.response);
+      });
+  };
   handlePage = async () => {
     await store.setState({
       isLoadingSearch: true,
@@ -19,10 +50,11 @@ class FilterListToko extends React.Component {
         '/toko?search=' +
         this.props.searchTokoKeyword +
         '&p=' +
-        this.props.pageListToko
+        this.props.pageListToko +
+        `&orderby=${this.props.urutanTokoBerdasarkan}&sort=${this.props.urutanToko}`
     };
     const self = this;
-    axios(req).then(function(response) {
+    await axios(req).then(function(response) {
       store.setState({
         listTokoSearch: response.data,
         isLoadingSearch: false
@@ -45,7 +77,8 @@ class FilterListToko extends React.Component {
         '/toko?search=' +
         this.props.searchTokoKeyword +
         '&p=' +
-        this.props.pageListToko
+        this.props.pageListToko +
+        `&orderby=${this.props.urutanTokoBerdasarkan}&sort=${this.props.urutanToko}`
     };
     console.log('page', this.props.pageListToko);
     const self = this;
@@ -57,6 +90,10 @@ class FilterListToko extends React.Component {
       self.props.history.push('/hasil-toko');
     });
   };
+  componentDidMount() {
+    this.getListToko();
+    store.setState({ isLoadingSearch: false });
+  }
   render() {
     const loopToko = this.props.listTokoSearch.map((value, index) => (
       <div className="col-md-4 px-auto pb-4">
@@ -76,6 +113,7 @@ class FilterListToko extends React.Component {
                 src={value.barang_populer.gambar}
                 class="card-img-top img-fluid"
                 alt="..."
+                style={{ width: '100%', height: '35vh', objectFit: 'cover' }}
               />
               <Link to={'/detail-produk/' + value.barang_populer.id}>
                 <a
@@ -107,6 +145,7 @@ class FilterListToko extends React.Component {
                 src={require('../img/no-image.jpg')}
                 class="card-img-top img-fluid"
                 alt="..."
+                style={{ width: '100%', height: '35vh', objectFit: 'cover' }}
               />
               <Link to={'/detail-produk/' + value.barang_populer.id}>
                 <a
@@ -197,6 +236,6 @@ class FilterListToko extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchTokoKeyword, listTokoSearch, baseUrl, isLoadingSearch, pageListToko',
+  'quote, quoteAuthor, isLoadingQuote, searchTokoKeyword, listTokoSearch, baseUrl, isLoadingSearch, pageListToko, urutanToko, urutanTokoBerdasarkan',
   actions
 )(withRouter(FilterListToko));

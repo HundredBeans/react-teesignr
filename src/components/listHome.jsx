@@ -58,7 +58,7 @@ class ListHome extends React.Component {
       </div>
     ));
     const loopToko = this.props.listTokoSearch.slice(0, 4).map(value => (
-      <div className="col-md-4 px-auto pb-4">
+      <div className="col-md-4 px-auto pb-4 col-sm-4">
         <div className="card text-center">
           <img
             src={value.barang_populer.gambar}

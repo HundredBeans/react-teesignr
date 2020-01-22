@@ -3,6 +3,7 @@ import axios from 'axios';
 import { actions, store } from '../store';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
+import swal from 'sweetalert';
 
 class FormLogin extends React.Component {
   // validate email
@@ -14,7 +15,7 @@ class FormLogin extends React.Component {
   };
   handleLupaPassword = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      alert('Email tidak valid');
+      swal('Gagal Ganti Password', 'Email tidak valid', 'warning');
     } else {
       const req = {
         method: 'post',
@@ -32,7 +33,7 @@ class FormLogin extends React.Component {
   };
   handleLogin = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      alert('Email tidak valid');
+      swal('Login Gagal', 'Email tidak valid', 'warning');
     } else if (
       this.props.emailInput === '' ||
       this.props.passwordInput === ''

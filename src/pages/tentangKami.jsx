@@ -37,12 +37,12 @@ class TentangKami extends React.Component {
                 <b>APA ITU TEESIGNR?</b>
               </h5>
               <p class="card-text">
-                "Secara singkat, TEESIGNR adalah sebuah <i>E-Commerce</i> A E S
-                T H E T I C yang menyediakan tempat untuk semua orang yang ingin
+                Secara singkat, TEESIGNR adalah sebuah <i>E-Commerce</i> A E S T
+                H E T I C yang menyediakan tempat untuk semua orang yang ingin
                 mendapatkan suatu desain atau karya original dari suatu desainer
                 atau komunitas dalam bentuk T-SHIRT. Selain itu, TEESIGNR juga
-                sebagai wadah untuk menghasilkan ca$$h dengan bermodalkan karya
-                atau desain"
+                sebagai wadah untuk menghasilkan uang dengan bermodalkan karya
+                atau desain
               </p>
             </div>
             <div class="card-body">

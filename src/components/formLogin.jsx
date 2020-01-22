@@ -15,7 +15,7 @@ class FormLogin extends React.Component {
   };
   handleLupaPassword = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      swal('Gagal Ganti Password', 'Email tidak valid', 'warning');
+      swal('Akses Ditolak', 'Email tidak valid', 'warning');
     } else {
       const req = {
         method: 'post',
@@ -26,7 +26,11 @@ class FormLogin extends React.Component {
       };
       const self = this;
       axios(req).then(function(response) {
-        alert('password baru telah dikirim ke ' + self.props.emailInput);
+        swal(
+          'Akses Diterima',
+          `Password baru telah dikirim ke ${self.props.emailInput}`,
+          'success'
+        );
         self.props.history.push('/');
       });
     }
@@ -38,7 +42,11 @@ class FormLogin extends React.Component {
       this.props.emailInput === '' ||
       this.props.passwordInput === ''
     ) {
-      alert('Form tidak boleh kosong, tolong isi kembali');
+      swal(
+        'Login Gagal',
+        'Form tidak boleh kosong, tolong isi kembali',
+        'warning'
+      );
     } else {
       // response masih belom bisa
       const data = {
@@ -55,17 +63,14 @@ class FormLogin extends React.Component {
             self.props.getUserInfo(response.data.token);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('isLogin', true);
-            alert('login berhasil');
+            swal('Sukses', 'Login Berhasil', 'success');
             console.log(response.data);
             self.props.history.push('/');
             self.props.history.push('/');
-          } else {
-            alert('login gagal');
-            console.log(response.status);
           }
         })
         .catch(function(error) {
-          alert(error.response.data.message);
+          swal('Login Gagal', 'error.response.data.message', 'warning');
         });
     }
   };

@@ -4,6 +4,7 @@ import { actions, store } from '../store';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 class Header extends React.Component {
   handleSearch = () => {
@@ -27,7 +28,7 @@ class Header extends React.Component {
   };
   handleLogout = () => {
     localStorage.clear();
-    alert('kamu telah keluar');
+    swal('Logout Berhasil', 'Kamu telah keluar', 'success');
     this.props.history.push('/');
   };
   componentDidMount() {

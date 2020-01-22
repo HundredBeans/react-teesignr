@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { actions, store } from '../store';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
+import swal from 'sweetalert';
 
 class RegisterToko extends React.Component {
   handleRegisterToko = () => {
@@ -11,7 +12,11 @@ class RegisterToko extends React.Component {
       this.props.inputNamaToko === '' ||
       this.props.inputDeskripsiToko === ''
     ) {
-      alert('Form tidak boleh kosong, mohon diisi kembali');
+      swal(
+        'Register Gagal',
+        'Form tidak boleh kosong, mohon diisi kembali',
+        'warning'
+      );
     } else {
       const req = {
         method: 'post',
@@ -26,7 +31,7 @@ class RegisterToko extends React.Component {
       };
       const self = this;
       Axios(req).then(function(response) {
-        alert('register toko berhasil');
+        swal('Register Berhasil', 'Toko Berhasil Didaftarkan', 'success');
         self.props.getUserInfo();
         localStorage.setItem('punyaToko', true);
         self.props.history.push('/');

@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 
 const HomeHead = () => {
   return (
-    <div className="container-fluid py-3 text-justify CousineFont">
+    <div
+      className="container-fluid py-3 text-justify CousineFont"
+      style={{ color: 'white' }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-md-12">

@@ -13,9 +13,9 @@ import axios from 'axios';
 import BackToTop from '../components/backToTop';
 
 class ListToko extends React.Component {
-  getListToko = () => {
+  getListToko = async () => {
     console.log('klik');
-    store.setState({ isLoadingSearch: true });
+    await store.setState({ isLoadingSearch: true });
     const keyword = this.props.searchTokoKeyword;
     const orderby = this.props.urutanTokoBerdasarkan;
     const sort = this.props.urutanToko;
@@ -23,9 +23,11 @@ class ListToko extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}`
+        `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}` +
+        '&p=' +
+        this.props.pageListToko
     };
-    axios(req)
+    await axios(req)
       .then(function(response) {
         store.setState({
           listTokoSearch: response.data,

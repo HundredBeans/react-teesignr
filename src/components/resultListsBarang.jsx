@@ -15,7 +15,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -36,7 +36,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -57,7 +57,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -164,6 +164,6 @@ class ResultListsBarang extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang, urutanBerdasarkan, urutan',
+  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang, urutanBerdasarkan, urutan, hargaMin, hargaMax',
   actions
 )(withRouter(ResultListsBarang));

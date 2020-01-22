@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import swal from 'sweetalert';
 
 class ProductComponent extends React.Component {
   handleBuy = () => {
@@ -27,13 +28,17 @@ class ProductComponent extends React.Component {
       const self = this;
       Axios(req).then(function(response) {
         store.setState({ beliUkuran: '', beliJumlah: '' });
-        alert(response.data.status);
+        swal(
+          'Barang Berhasil dibeli',
+          'Silahkan lanjutkan konfirmasi pemesanan',
+          'success'
+        );
         self.props.history.push('/checkout');
       });
     } else if (localStorage.getItem('isLogin') === null) {
-      alert('kamu belum login');
+      swal('Gagal', 'Kamu belum login', 'warning');
     } else {
-      alert('tolong isi ukuran dan jumlah terlebih dahulu');
+      swal('Gagal', 'Tolong isi ukuran dan jumlah terlebih dahulu', 'warning');
     }
   };
   handleAddToCart = () => {
@@ -57,13 +62,13 @@ class ProductComponent extends React.Component {
       const self = this;
       Axios(req).then(function(response) {
         store.setState({ beliUkuran: '', beliJumlah: '' });
-        alert(response.data.status);
+        swal('Sukses', 'Barang ditambah ke Keranjang', 'success');
         self.props.history.push('/keranjang');
       });
     } else if (localStorage.getItem('isLogin') === null) {
-      alert('kamu belum login');
+      swal('Gagal', 'Kamu belum login', 'warning');
     } else {
-      alert('tolong isi ukuran dan jumlah terlebih dahulu');
+      swal('Gagal', 'Tolong isi ukuran dan jumlah terlebih dahulu', 'warning');
     }
   };
   render() {

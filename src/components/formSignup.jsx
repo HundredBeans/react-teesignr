@@ -3,6 +3,7 @@ import axios from 'axios';
 import { actions, store } from '../store';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
+import swal from 'sweetalert';
 
 class FormSignup extends React.Component {
   // close modal
@@ -22,12 +23,12 @@ class FormSignup extends React.Component {
     console.log(this.validateEmail(email));
     // validate email
     if (this.validateEmail(this.props.daftarEmail) === false) {
-      alert('Email tidak valid');
+      swal('Signup Gagal', 'Email tidak valid', 'warning');
       // return validasi jangan lewat alert
     }
     // validate password
     else if (this.props.daftarPassword.length < 6) {
-      alert('Password minimal 6 karakter');
+      swal('Signup Gagal', 'Password minimal 6 karakter', 'warning');
       // return validasi jangan lewat alert
     }
     // validate login input
@@ -35,7 +36,7 @@ class FormSignup extends React.Component {
       this.props.daftarFullName === '' ||
       this.props.daftarUsername === ''
     ) {
-      alert('Form tidak boleh kosong');
+      swal('Signup Gagal', 'Form tidak boleh kosong', 'warning');
       // return validasi jangan lewat alert
     } else {
       const data = {
@@ -52,11 +53,11 @@ class FormSignup extends React.Component {
         .then(function(response) {
           // this.closeModal();
           console.log(response.data);
-          alert('register sukses');
+          swal('Register Sukses', 'Silahkan lakukan login', 'success');
           // console.log(response);
         })
         .catch(function(error) {
-          alert(error.response.data.message);
+          swal('Register Gagal', error.response.data.message, 'warning');
         });
     }
   };

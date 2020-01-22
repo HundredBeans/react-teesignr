@@ -82,13 +82,13 @@ class ListHome extends React.Component {
     return (
       <React.Fragment>
         <div className="container py-3">
-          <div className="card" style={{ backgroundColor: '#1D2124' }}>
+          <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="/hasil">
                 <a
                   href=""
-                  className="border-bottom border-dark"
-                  style={{ color: 'white' }}
+                  className="btn btn-light border-bottom w-100"
+                  style={{ color: 'black' }}
                 >
                   T-SHIRT POPULER <i className="fa fa-fw fa-angle-right"></i>
                 </a>
@@ -100,13 +100,13 @@ class ListHome extends React.Component {
           </div>
         </div>
         <div className="container py-3">
-          <div className="card" style={{ backgroundColor: '#1D2124' }}>
+          <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="hasil-toko">
                 <a
                   href=""
-                  className="border-bottom border-dark"
-                  style={{ color: 'white' }}
+                  className="btn btn-light border-bottom w-100"
+                  style={{ color: 'black' }}
                 >
                   TOKO POPULER <i className="fa fa-fw fa-angle-right"></i>
                 </a>

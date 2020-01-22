@@ -169,16 +169,16 @@ class KeranjangPage extends React.Component {
                   <div className="container">
                     {loopKeranjang}
                     <div className="row">
-                      <div className="col-md-6 text-left py-2 pl-5">
+                      <div className="col-6 text-left py-2 pl-5">
                         <button
                           type="submit"
                           className="btn btn-dark"
                           onClick={() => this.handleDeleteKeranjang(0)}
                         >
-                          DELETE KERANJANG
+                          HAPUS SEMUA
                         </button>
                       </div>
-                      <div className="col-md-6 text-right pr-5 py-2">
+                      <div className="col-6 text-right pr-5 py-2">
                         <button
                           type="submit"
                           className="btn btn-dark"

@@ -13,35 +13,10 @@ import axios from 'axios';
 import BackToTop from '../components/backToTop';
 
 class ListToko extends React.Component {
-  getListToko = async () => {
-    console.log('klik');
-    await store.setState({ isLoadingSearch: true });
-    const keyword = this.props.searchTokoKeyword;
-    const orderby = this.props.urutanTokoBerdasarkan;
-    const sort = this.props.urutanToko;
-    const req = {
-      method: 'get',
-      url:
-        this.props.baseUrl +
-        `/toko?search=${keyword}&orderby=${orderby}&sort=${sort}` +
-        '&p=' +
-        this.props.pageListToko
-    };
-    await axios(req)
-      .then(function(response) {
-        store.setState({
-          listTokoSearch: response.data,
-          isLoadingSearch: false
-        });
-        console.log(response.data);
-        console.log(orderby);
-        console.log(sort);
-      })
-      .catch(function(error) {
-        console.log(error);
-        console.log(error.response);
-      });
-  };
+  componentDidMount() {
+    store.setState({ isLoadingQuote: true });
+    this.props.getRandomQuote();
+  }
   // Tambahin component will unmount
   componentWillUnmount() {
     store.setState({
@@ -51,12 +26,6 @@ class ListToko extends React.Component {
       urutanToko: 'desc'
     });
   }
-  componentDidMount() {
-    store.setState({ isLoadingQuote: true });
-    this.props.getRandomQuote();
-    this.getListToko();
-    console.log(this.props.listTokoSearch);
-  }
   render() {
     return (
       <body className="bgHome">
@@ -65,7 +34,7 @@ class ListToko extends React.Component {
         <ModalSignup />
         <ModalRegisterToko />
         <HeaderQuote />
-        <FilterToko getListToko={this.getListToko} />
+        <FilterToko />
         <BackToTop />
         <Footer />
       </body>

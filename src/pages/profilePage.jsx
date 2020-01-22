@@ -14,6 +14,7 @@ import TextTruncate from 'react-text-truncate';
 import EditPassword from '../components/editPassword';
 import axios from 'axios';
 import BackToTop from '../components/backToTop';
+import swal from 'sweetalert';
 
 class ProfilePage extends React.Component {
   handleEditPassword = () => {
@@ -21,7 +22,7 @@ class ProfilePage extends React.Component {
       store.setState({ editStatus: true });
       console.log('klik');
     } else {
-      alert('please login terlebih dahulu');
+      swal('Tidak Diizinkan', 'Silahkan login terlebih dahulu', 'warning');
     }
   };
   handleFixPassword = () => {
@@ -47,17 +48,21 @@ class ProfilePage extends React.Component {
             inputPassBaru: '',
             inputPassLama: ''
           });
-          alert('password berhasil diganti, silahkan login ulang');
+          swal(
+            'Sukses',
+            'Password berhasil diganti, Silahkan login ulang',
+            'success'
+          );
           localStorage.removeItem('isLogin');
           self.props.history.push('/');
         })
         .catch(function(error) {
           store.setState({ isLoadingEditPass: false });
           console.log(error.response.data.message);
-          alert(error.response.data.message);
+          swal('Gagal', error.response.data.message, 'warning');
         });
     } else {
-      alert('form tidak boleh kosong');
+      swal('Gagal', 'Form tidak boleh kosong', 'warning');
     }
   };
   handleTransaksiId = value => {
@@ -93,7 +98,7 @@ class ProfilePage extends React.Component {
       DetailTransaksi(
         value.id_pemesanan,
         value.nama_barang,
-        value.harga_barang,
+        value.total_harga,
         value.ukuran,
         value.jumlah,
         value.waktu_pemesanan
@@ -127,12 +132,15 @@ class ProfilePage extends React.Component {
                   >
                     {this.props.userFullName}
                   </h4>
-                  <span>{this.props.userEmail}</span>
-                  <p className="card-text border-top py-2">
-                    {localStorage.getItem('punyaToko') !== null
-                      ? this.props.infoToko.nama
-                      : 'Belum punya toko'}
-                  </p>
+                  <span>Email : {this.props.userEmail}</span>
+                  {localStorage.getItem('punyaToko') !== 'false' ? (
+                    <p className="card-text border-top py-2">
+                      Toko : {this.props.infoToko.nama} <br /> Keuntungan :{' '}
+                      {this.props.infoToko.keuntungan}
+                    </p>
+                  ) : (
+                    <p>Belum punya toko</p>
+                  )}
                   <button
                     type="button"
                     class="btn btn-dark"

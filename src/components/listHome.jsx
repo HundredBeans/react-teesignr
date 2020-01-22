@@ -35,9 +35,14 @@ class ListHome extends React.Component {
   }
   render() {
     const loopBaju = this.props.listBarangSearch.slice(0, 4).map(value => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-6">
         <div className="card text-center cardItem">
-          <img src={value.gambar} className="card-img-top" alt="..." />
+          <img
+            src={value.gambar}
+            className="card-img-top"
+            style={{ width: '100%', height: '40vh', objectFit: 'cover' }}
+            alt="..."
+          />
           <Link to={'/detail-produk/' + value.id}>
             <a
               className="btn btn-light border-bottom w-100"
@@ -53,11 +58,12 @@ class ListHome extends React.Component {
       </div>
     ));
     const loopToko = this.props.listTokoSearch.slice(0, 4).map(value => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-4 px-auto pb-4">
         <div className="card text-center">
           <img
             src={value.barang_populer.gambar}
             className="card-img-top"
+            style={{ width: '100%', height: '50vh', objectFit: 'cover' }}
             alt="..."
           />
           <Link to={'/toko/' + value.id}>
@@ -77,13 +83,13 @@ class ListHome extends React.Component {
     return (
       <React.Fragment>
         <div className="container py-3">
-          <div className="card" style={{ backgroundColor: '#1D2124' }}>
+          <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="/hasil">
                 <a
                   href=""
-                  className="border-bottom border-dark"
-                  style={{ color: 'white' }}
+                  className="btn btn-light border-bottom w-100"
+                  style={{ color: 'black' }}
                 >
                   T-SHIRT POPULER <i className="fa fa-fw fa-angle-right"></i>
                 </a>
@@ -95,13 +101,13 @@ class ListHome extends React.Component {
           </div>
         </div>
         <div className="container py-3">
-          <div className="card" style={{ backgroundColor: '#1D2124' }}>
+          <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="hasil-toko">
                 <a
                   href=""
-                  className="border-bottom border-dark"
-                  style={{ color: 'white' }}
+                  className="btn btn-light border-bottom w-100"
+                  style={{ color: 'black' }}
                 >
                   TOKO POPULER <i className="fa fa-fw fa-angle-right"></i>
                 </a>

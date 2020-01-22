@@ -57,80 +57,94 @@ class FilterListToko extends React.Component {
       self.props.history.push('/hasil-toko');
     });
   };
-  // Tambahin component will unmount
-  componentWillUnmount() {
-    store.setState({
-      pageListToko: 1,
-      searchTokoKeyword: '',
-      urutanTokoBerdasarkan: 'popularitas',
-      urutanToko: 'desc'
-    });
-  }
-  componentDidMount() {
-    store.setState({ isLoadingSearch: false });
-  }
   render() {
     const loopToko = this.props.listTokoSearch.map((value, index) => (
       <div className="col-md-4 px-auto pb-4">
         <div class="card cardItem text-center">
           <Link to={`toko/${value.id}`}>
             <div
-              className="card-header"
-              style={{
-                backgroundColor: '#1D2124',
-                color: 'white'
-              }}
+              className="card-header btn btn-light border-bottom w-100"
+              style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
             </div>
           </Link>
-          <span
-            style={{
-              backgroundColor: '#1D2124',
-              color: 'white'
-            }}
-          >
-            Pop Score : {value.popularitas}
-          </span>
-          <img
-            src={value.barang_populer.gambar}
-            class="card-img-top img-fluid"
-            alt="..."
-          />
-          <Link to={'/detail-produk/' + value.barang_populer.id}>
-            <a class="btn btn-light border-bottom" style={{ color: 'black' }}>
-              <TextTruncate
-                line={2}
-                truncateText="…"
-                text={value.barang_populer.nama}
+          <span>Pop Score : {value.popularitas}</span>
+          {value.barang_populer !== '' ? (
+            <React.Fragment>
+              <img
+                src={value.barang_populer.gambar}
+                class="card-img-top img-fluid"
+                alt="..."
               />
-            </a>
-          </Link>
-          <span
-            className="text-center py-1"
-            style={{
-              backgroundColor: '#1D2124',
-              color: 'white',
-              textDecoration: 'none'
-            }}
-          >
-            {value.barang_populer.harga.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-          </span>
+              <Link to={'/detail-produk/' + value.barang_populer.id}>
+                <a
+                  class="btn btn-light border-bottom w-100"
+                  style={{ color: 'black' }}
+                >
+                  <TextTruncate
+                    line={2}
+                    truncateText="…"
+                    text={value.barang_populer.nama}
+                  />
+                </a>
+              </Link>
+              <span
+                className="text-center py-1"
+                style={{
+                  textDecoration: 'none'
+                }}
+              >
+                {value.barang_populer.harga.replace(
+                  /\B(?=(\d{3})+(?!\d))/g,
+                  '.'
+                )}
+              </span>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <img
+                src={require('../img/no-image.jpg')}
+                class="card-img-top img-fluid"
+                alt="..."
+              />
+              <Link to={'/detail-produk/' + value.barang_populer.id}>
+                <a
+                  class="btn btn-light border-bottom"
+                  style={{ color: 'black' }}
+                >
+                  <TextTruncate
+                    line={2}
+                    truncateText="…"
+                    text={`${value.nama} belum menjual T-SHIRT`}
+                  />
+                </a>
+              </Link>
+              <span
+                className="text-center py-1"
+                style={{
+                  textDecoration: 'none'
+                }}
+              >
+                Barang tidak ada
+              </span>
+            </React.Fragment>
+          )}
         </div>
       </div>
     ));
     return (
-      <div class="card" style={{ backgroundColor: '#1D2124' }}>
+      <div class="card" style={{ backgroundColor: '#f2f6f5' }}>
         <div class="card-header border-bottom">
           <span
             className="border-bottom border-dark"
-            style={{ color: 'white' }}
+            style={{ color: 'black' }}
           >
             HASIL PENCARIAN : {this.props.searchKeyword}
             <i class="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="/hasil">
-            <a href="" className="text-right" style={{ color: 'white' }}>
+            <a href="" className="text-right" style={{ color: 'black' }}>
               Cari T-Shirt
             </a>
           </Link>
@@ -138,11 +152,11 @@ class FilterListToko extends React.Component {
         <div class="card-body">
           <div className="row">
             {this.props.isLoadingSearch ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Loading....
               </div>
             ) : loopToko.length === 0 ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Hasil pencarian tidak ditemukan
               </div>
             ) : (
@@ -158,7 +172,6 @@ class FilterListToko extends React.Component {
                   onClick={this.handleBack}
                 >
                   <i class="fa fa-fw fa-angle-left"></i>
-                  Page Sebelumnya{' '}
                 </button>
               ) : (
                 <div></div>
@@ -171,7 +184,7 @@ class FilterListToko extends React.Component {
                   class="btn btn-dark"
                   onClick={this.handlePage}
                 >
-                  Page Selanjutnya <i class="fa fa-fw fa-angle-right"></i>
+                  <i class="fa fa-fw fa-angle-right"></i>
                 </button>
               ) : (
                 <div></div>
@@ -179,7 +192,6 @@ class FilterListToko extends React.Component {
             </div>
           </div>
         </div>
-        )
       </div>
     );
   }

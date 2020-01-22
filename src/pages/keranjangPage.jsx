@@ -11,6 +11,7 @@ import { connect } from 'unistore/react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import BackToTop from '../components/backToTop';
+import swal from 'sweetalert';
 
 class KeranjangPage extends React.Component {
   // axios untuk get list keranjang
@@ -29,7 +30,7 @@ class KeranjangPage extends React.Component {
         console.log(response.data);
       })
       .catch(function(error) {
-        alert('Kamu tidak bisa akses halaman ini');
+        swal('Tidak Diizinkan', 'Kamu tidak bisa akses halaman ini', 'warning');
         self.props.history.push('/notfound');
       });
   };
@@ -62,7 +63,7 @@ class KeranjangPage extends React.Component {
     };
     const self = this;
     Axios(req).then(function(response) {
-      alert(response.data.status);
+      swal('Sukses', 'Silahkan lakukan checkout', 'success');
       self.props.history.push('/checkout');
     });
   };
@@ -168,7 +169,7 @@ class KeranjangPage extends React.Component {
                   <div className="container">
                     {loopKeranjang}
                     <div className="row">
-                      <div className="col-md-6 text-left py-2">
+                      <div className="col-md-6 text-left py-2 pl-5">
                         <button
                           type="submit"
                           className="btn btn-dark"

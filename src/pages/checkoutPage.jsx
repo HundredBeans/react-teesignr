@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
 import Axios from 'axios';
 import BackToTop from '../components/backToTop';
+import swal from 'sweetalert';
 
 class CheckoutPage extends React.Component {
   handleCheckout = () => {
@@ -44,15 +45,15 @@ class CheckoutPage extends React.Component {
             checkoutAlamat: '',
             checkoutPembayaran: ''
           });
-          alert(response.data.status);
+          swal('Sukses', 'Checkout Berhasil', 'success');
           self.props.history.push('/post-checkout');
         })
         .catch(function(error) {
-          alert('terjadi kesalahan server');
+          swal('Gagal', 'Terjadi Kesalahan Server', 'warning');
           store.setState({ isLoadingCheckout: true });
         });
     } else {
-      alert('form tidak boleh kosong');
+      swal('Gagal', 'Form tidak boleh kosong', 'warning');
     }
   };
   handleCancleCheckout = () => {
@@ -65,7 +66,11 @@ class CheckoutPage extends React.Component {
     };
     const self = this;
     Axios(req).then(function(response) {
-      alert(response.data.status + ' ' + response.data.message);
+      swal(
+        'Checkout Dibatalkan',
+        `${response.data.status} ${response.data.message}`,
+        'success'
+      );
       self.props.history.push('/keranjang');
     });
   };

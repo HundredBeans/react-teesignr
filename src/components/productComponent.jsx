@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import swal from 'sweetalert';
 
 class ProductComponent extends React.Component {
   handleBuy = () => {
@@ -27,13 +28,17 @@ class ProductComponent extends React.Component {
       const self = this;
       Axios(req).then(function(response) {
         store.setState({ beliUkuran: '', beliJumlah: '' });
-        alert(response.data.status);
+        swal(
+          'Barang Berhasil dibeli',
+          'Silahkan lanjutkan konfirmasi pemesanan',
+          'success'
+        );
         self.props.history.push('/checkout');
       });
     } else if (localStorage.getItem('isLogin') === null) {
-      alert('kamu belum login');
+      swal('Gagal', 'Kamu belum login', 'warning');
     } else {
-      alert('tolong isi ukuran dan jumlah terlebih dahulu');
+      swal('Gagal', 'Tolong isi ukuran dan jumlah terlebih dahulu', 'warning');
     }
   };
   handleAddToCart = () => {
@@ -57,20 +62,20 @@ class ProductComponent extends React.Component {
       const self = this;
       Axios(req).then(function(response) {
         store.setState({ beliUkuran: '', beliJumlah: '' });
-        alert(response.data.status);
+        swal('Sukses', 'Barang ditambah ke Keranjang', 'success');
         self.props.history.push('/keranjang');
       });
     } else if (localStorage.getItem('isLogin') === null) {
-      alert('kamu belum login');
+      swal('Gagal', 'Kamu belum login', 'warning');
     } else {
-      alert('tolong isi ukuran dan jumlah terlebih dahulu');
+      swal('Gagal', 'Tolong isi ukuran dan jumlah terlebih dahulu', 'warning');
     }
   };
   render() {
     return (
       <div
         className="container rounded-lg"
-        style={{ backgroundColor: '#1D2124', color: 'white' }}
+        style={{ backgroundColor: '#f2f6f5', color: 'black' }}
       >
         <div className="row text-center">
           <div className="col-md-12 border-bottom py-3">
@@ -79,8 +84,19 @@ class ProductComponent extends React.Component {
         </div>
         <div className="row text-center">
           <div className="col-md-12 border-bottom py-1">
-            <Link to={`/toko/${this.props.tokoId}`}>
-              <h4 style={{ fontWeight: 'bold' }}>{this.props.namaToko}</h4>
+            <Link
+              to={`/toko/${this.props.tokoId}`}
+              className="btn btn-light border-bottom w-100"
+            >
+              <h4
+                style={{
+                  fontWeight: 'bold',
+                  textDecoration: 'none',
+                  color: 'black'
+                }}
+              >
+                {this.props.namaToko}
+              </h4>
             </Link>
           </div>
         </div>

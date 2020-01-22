@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
 import Axios from 'axios';
 import BackToTop from '../components/backToTop';
+import swal from 'sweetalert';
 
 class JualProduk extends React.Component {
   validateNumber = number => {
@@ -24,9 +25,9 @@ class JualProduk extends React.Component {
       this.props.jualDesignUrl === '' ||
       this.props.jualJenisBahan === ''
     ) {
-      alert('form tidak boleh kosong');
+      swal('Gagal', 'Form tidak boleh kosong', 'warning');
     } else if (!this.validateNumber(this.props.jualKeuntungan)) {
-      alert('keuntungan harus berupa angka');
+      swal('Gagal', 'Keuntungan harus berupa angka', 'warning');
     } else {
       const req = {
         method: 'post',
@@ -47,11 +48,18 @@ class JualProduk extends React.Component {
       const self = this;
       Axios(req)
         .then(function(response) {
-          alert(response.data.status);
+          store.setState({
+            jualNamaProduk: '',
+            jualKeuntungan: '',
+            jualDesignUrl: '',
+            jualJenisBahan: '',
+            jualDeskripsi: ''
+          });
+          swal('Sukses', 'Barang berhasil dijual', 'success');
           self.props.history.push('/detail-produk/' + response.data.barang.id);
         })
         .catch(function(error) {
-          alert(error.response.data.message);
+          swal('Gagal', error.response.data.message, 'warning');
         });
     }
   };
@@ -60,7 +68,7 @@ class JualProduk extends React.Component {
       store.setState({ isLoadingQuote: true });
       this.props.getRandomQuote();
     } else {
-      alert('kamu belum mempunyai toko');
+      swal('Gagal', 'Kamu belum mempunyai toko', 'warning');
       this.props.history.push('/');
     }
   }
@@ -103,7 +111,7 @@ class JualProduk extends React.Component {
                           for="jualNamaProduk"
                           className="col-sm-4 col-form-label"
                         >
-                          NAMA PRODUK
+                          Nama Produk
                         </label>
                         <div className="col-sm-8">
                           <input
@@ -121,7 +129,7 @@ class JualProduk extends React.Component {
                           for="jualKeuntungan"
                           className="col-sm-4 col-form-label"
                         >
-                          KEUNTUNGAN (Rp. /pcs)
+                          Keuntungan / pcs
                         </label>
                         <div className="col-sm-8">
                           <input
@@ -139,7 +147,7 @@ class JualProduk extends React.Component {
                           for="jualJenisBahan"
                           className="col-sm-4 col-form-label"
                         >
-                          JENIS BAHAN
+                          Jenis Bahan
                         </label>
                         <div className="col-sm-8">
                           <select
@@ -164,7 +172,7 @@ class JualProduk extends React.Component {
                           for="jualDeskripsi"
                           className="col-sm-4 col-form-label"
                         >
-                          DESKRIPSI
+                          Deskripsi
                         </label>
                         <div className="col-sm-8">
                           <textarea
@@ -181,7 +189,7 @@ class JualProduk extends React.Component {
                           for="jualDesignUrl"
                           className="col-sm-4 col-form-label"
                         >
-                          DESIGN (URL)
+                          Desain Url
                         </label>
                         <div className="col-sm-8">
                           <div className="row">
@@ -230,6 +238,7 @@ class JualProduk extends React.Component {
             <div className="col-md-2 col-sm-0"></div>
           </div>
         </div>
+        <div className="py-5"></div>
         <BackToTop />
         <Footer />
       </body>

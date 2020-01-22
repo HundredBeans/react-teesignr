@@ -15,7 +15,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -36,7 +36,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -57,7 +57,7 @@ class ResultListsBarang extends React.Component {
       method: 'get',
       url:
         this.props.baseUrl +
-        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}`
+        `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=${this.props.pageBarang}&harga_minimal=${this.props.hargaMin}&harga_maksimal=${this.props.hargaMax}`
     };
     console.log('page', this.props.pageBarang);
     const self = this;
@@ -77,16 +77,17 @@ class ResultListsBarang extends React.Component {
   }
   render() {
     const loopBaju = this.props.listBarangSearch.map((value, index) => (
-      <div className="col-md-3 px-auto pb-4">
+      <div className="col-md-3 px-auto pb-4 col-sm-4">
         <div className="card cardItem text-center">
           <img
             src={value.gambar}
             className="card-img-top img-fluid"
             alt="..."
+            style={{ width: '100%', height: '30vh', objectFit: 'cover' }}
           />
           <Link to={'/detail-produk/' + value.id}>
             <a
-              className="btn btn-light border-bottom"
+              className="btn btn-light border-bottom w-100"
               style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
@@ -99,17 +100,17 @@ class ResultListsBarang extends React.Component {
       </div>
     ));
     return (
-      <div className="card" style={{ backgroundColor: '#1D2124' }}>
+      <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
         <div className="card-header border-bottom">
           <span
             className="border-bottom border-dark"
-            style={{ color: 'white' }}
+            style={{ color: 'black' }}
           >
             HASIL PENCARIAN : {this.props.searchKeyword}
             <i className="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="hasil-toko">
-            <a href="" className="text-right" style={{ color: 'white' }}>
+            <a href="" className="text-right" style={{ color: 'black' }}>
               Cari Toko
             </a>
           </Link>
@@ -117,11 +118,11 @@ class ResultListsBarang extends React.Component {
         <div className="card-body">
           <div className="row">
             {this.props.isLoadingSearch ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Loading....
               </div>
             ) : loopBaju.length === 0 ? (
-              <div className="col-md-12 text-center" style={{ color: 'white' }}>
+              <div className="col-md-12 text-center" style={{ color: 'black' }}>
                 Hasil pencarian tidak ditemukan
               </div>
             ) : (
@@ -137,7 +138,6 @@ class ResultListsBarang extends React.Component {
                   onClick={this.handleBack}
                 >
                   <i className="fa fa-fw fa-angle-left"></i>
-                  Page Sebelumnya{' '}
                 </button>
               ) : (
                 <div></div>
@@ -150,7 +150,7 @@ class ResultListsBarang extends React.Component {
                   className="btn btn-dark"
                   onClick={this.handlePage}
                 >
-                  Page Selanjutnya <i className="fa fa-fw fa-angle-right"></i>
+                  <i className="fa fa-fw fa-angle-right"></i>
                 </button>
               ) : (
                 <div></div>
@@ -158,12 +158,11 @@ class ResultListsBarang extends React.Component {
             </div>
           </div>
         </div>
-        )
       </div>
     );
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang, urutanBerdasarkan, urutan',
+  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, isLoadingSearch, pageBarang, urutanBerdasarkan, urutan, hargaMin, hargaMax',
   actions
 )(withRouter(ResultListsBarang));

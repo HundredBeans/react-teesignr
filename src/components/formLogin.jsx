@@ -3,6 +3,7 @@ import axios from 'axios';
 import { actions, store } from '../store';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'unistore/react';
+import swal from 'sweetalert';
 
 class FormLogin extends React.Component {
   // validate email
@@ -14,7 +15,7 @@ class FormLogin extends React.Component {
   };
   handleLupaPassword = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      alert('Email tidak valid');
+      swal('Akses Ditolak', 'Email tidak valid', 'warning');
     } else {
       const req = {
         method: 'post',
@@ -25,19 +26,27 @@ class FormLogin extends React.Component {
       };
       const self = this;
       axios(req).then(function(response) {
-        alert('password baru telah dikirim ke ' + self.props.emailInput);
+        swal(
+          'Akses Diterima',
+          `Password baru telah dikirim ke ${self.props.emailInput}`,
+          'success'
+        );
         self.props.history.push('/');
       });
     }
   };
   handleLogin = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      alert('Email tidak valid');
+      swal('Login Gagal', 'Email tidak valid', 'warning');
     } else if (
       this.props.emailInput === '' ||
       this.props.passwordInput === ''
     ) {
-      alert('Form tidak boleh kosong, tolong isi kembali');
+      swal(
+        'Login Gagal',
+        'Form tidak boleh kosong, tolong isi kembali',
+        'warning'
+      );
     } else {
       // response masih belom bisa
       const data = {
@@ -54,16 +63,14 @@ class FormLogin extends React.Component {
             self.props.getUserInfo(response.data.token);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('isLogin', true);
-            alert('login berhasil');
+            swal('Sukses', 'Login Berhasil', 'success');
             console.log(response.data);
             self.props.history.push('/');
-          } else {
-            alert('login gagal');
-            console.log(response.status);
+            self.props.history.push('/');
           }
         })
         .catch(function(error) {
-          alert(error.response.data.message);
+          swal('Login Gagal', 'error.response.data.message', 'warning');
         });
     }
   };

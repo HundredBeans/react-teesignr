@@ -41,27 +41,6 @@ class Header extends React.Component {
           <Link to="/">
             <a class="navbar-brand mr-5">TEESIGNR</a>
           </Link>
-          <form class="form-inline my-2 my-lg-0 w-100 d-lg-inline mr-5">
-            <div className="input-group">
-              <input
-                class="form-control my-2 my-sm-0"
-                type="search"
-                placeholder="Cari T-Shirt"
-                aria-label="Search"
-                name="searchKeyword"
-                onChange={e => this.props.handleInput(e)}
-              />
-              <Link to="/hasil">
-                <button
-                  class="btn btn-dark my-2 my-sm-0"
-                  type="submit"
-                  onClick={this.handleSearch}
-                >
-                  <i class="fa fa-fw fa-search"></i>
-                </button>
-              </Link>
-            </div>
-          </form>
           <button
             class="navbar-toggler"
             type="button"
@@ -74,6 +53,27 @@ class Header extends React.Component {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0 w-100 d-lg-inline mr-5">
+              <div className="input-group">
+                <input
+                  class="form-control my-2 my-sm-0"
+                  type="search"
+                  placeholder="Cari T-Shirt"
+                  aria-label="Search"
+                  name="searchKeyword"
+                  onChange={e => this.props.handleInput(e)}
+                />
+                <Link to="/hasil">
+                  <button
+                    class="btn btn-dark my-2 my-sm-0"
+                    type="submit"
+                    onClick={this.handleSearch}
+                  >
+                    <i class="fa fa-fw fa-search"></i>
+                  </button>
+                </Link>
+              </div>
+            </form>
             <ul class="navbar-nav navbar-right ml-auto">
               {/* KELUAR JIKA SUDAH LOGIN */}
               {localStorage.getItem('isLogin') !== null ? (

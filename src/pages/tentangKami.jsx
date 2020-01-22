@@ -51,9 +51,12 @@ class TentangKami extends React.Component {
               </h5>
               <div className="row border-bottom border-top py-3">
                 <div className="col-md-2 my-auto">
-                  <h3>I.</h3>
+                  <img
+                    src={require('../img/tentangkami1.png')}
+                    className="w-100"
+                  />
                 </div>
-                <div className="col-md-10 border-left">
+                <div className="col-md-10 border-left my-auto">
                   <p class="card-text text-justify">
                     <b>Kualitas T-SHIRT yang terjamin. </b>
                     TEESIGNR menjadi tempat yang tepat untuk kebutuhan produksi
@@ -65,7 +68,7 @@ class TentangKami extends React.Component {
                 </div>
               </div>
               <div className="row py-3 border-bottom">
-                <div className="col-md-10 border-right">
+                <div className="col-md-10 border-right my-auto">
                   <p class="card-text text-justify">
                     <b>Buka toko dengan desain sendiri tanpa MODAL!</b> Buat
                     kamu yang punya banyak karya, ide, gambar, dan desain dapat
@@ -80,10 +83,13 @@ class TentangKami extends React.Component {
                   </p>
                 </div>
                 <div className="col-md-2 my-auto">
-                  <h3>II.</h3>
+                  <img
+                    src={require('../img/tentangkami2.png')}
+                    className="w-100"
+                  />
                 </div>
               </div>
-              <div className="row py-3 border-bottom">
+              <div className="row py-3">
                 <div className="col-md-12">
                   {localStorage.getItem('isLogin') === null ? (
                     <button

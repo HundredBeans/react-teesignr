@@ -172,7 +172,6 @@ class FilterListToko extends React.Component {
                   onClick={this.handleBack}
                 >
                   <i class="fa fa-fw fa-angle-left"></i>
-                  Page Sebelumnya{' '}
                 </button>
               ) : (
                 <div></div>
@@ -185,7 +184,7 @@ class FilterListToko extends React.Component {
                   class="btn btn-dark"
                   onClick={this.handlePage}
                 >
-                  Page Selanjutnya <i class="fa fa-fw fa-angle-right"></i>
+                  <i class="fa fa-fw fa-angle-right"></i>
                 </button>
               ) : (
                 <div></div>

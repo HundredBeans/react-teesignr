@@ -63,6 +63,7 @@ class ListHome extends React.Component {
           <img
             src={value.barang_populer.gambar}
             className="card-img-top"
+            style={{ width: '100%', height: '50vh', objectFit: 'cover' }}
             alt="..."
           />
           <Link to={'/toko/' + value.id}>

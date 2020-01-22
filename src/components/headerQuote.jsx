@@ -8,7 +8,7 @@ const HeaderQuote = props => {
     <div className="container-fluid border-bottom CousineFont">
       <div className="container py-3">
         <div
-          className="card mb-3 col-md-12"
+          className="card mb-3 col-md-12 pr-0"
           style={{
             backgroundColor: '#f2f6f5'
           }}

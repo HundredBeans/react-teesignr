@@ -138,7 +138,6 @@ class ResultListsBarang extends React.Component {
                   onClick={this.handleBack}
                 >
                   <i className="fa fa-fw fa-angle-left"></i>
-                  Page Sebelumnya{' '}
                 </button>
               ) : (
                 <div></div>
@@ -151,7 +150,7 @@ class ResultListsBarang extends React.Component {
                   className="btn btn-dark"
                   onClick={this.handlePage}
                 >
-                  Page Selanjutnya <i className="fa fa-fw fa-angle-right"></i>
+                  <i className="fa fa-fw fa-angle-right"></i>
                 </button>
               ) : (
                 <div></div>

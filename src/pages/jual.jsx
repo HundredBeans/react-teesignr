@@ -111,7 +111,7 @@ class JualProduk extends React.Component {
                           for="jualNamaProduk"
                           className="col-sm-4 col-form-label"
                         >
-                          NAMA PRODUK
+                          Nama Produk
                         </label>
                         <div className="col-sm-8">
                           <input
@@ -129,7 +129,7 @@ class JualProduk extends React.Component {
                           for="jualKeuntungan"
                           className="col-sm-4 col-form-label"
                         >
-                          KEUNTUNGAN (Rp. /pcs)
+                          Keuntungan / pcs
                         </label>
                         <div className="col-sm-8">
                           <input
@@ -147,7 +147,7 @@ class JualProduk extends React.Component {
                           for="jualJenisBahan"
                           className="col-sm-4 col-form-label"
                         >
-                          JENIS BAHAN
+                          Jenis Bahan
                         </label>
                         <div className="col-sm-8">
                           <select
@@ -172,7 +172,7 @@ class JualProduk extends React.Component {
                           for="jualDeskripsi"
                           className="col-sm-4 col-form-label"
                         >
-                          DESKRIPSI
+                          Deskripsi
                         </label>
                         <div className="col-sm-8">
                           <textarea
@@ -189,7 +189,7 @@ class JualProduk extends React.Component {
                           for="jualDesignUrl"
                           className="col-sm-4 col-form-label"
                         >
-                          DESIGN (URL)
+                          Desain Url
                         </label>
                         <div className="col-sm-8">
                           <div className="row">
@@ -238,6 +238,7 @@ class JualProduk extends React.Component {
             <div className="col-md-2 col-sm-0"></div>
           </div>
         </div>
+        <div className="py-5"></div>
         <BackToTop />
         <Footer />
       </body>

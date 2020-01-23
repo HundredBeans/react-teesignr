@@ -77,7 +77,7 @@ class KeranjangPage extends React.Component {
     const loopKeranjang = this.props.listKeranjang.map(value => (
       <div className="row py-3 px-sm-5">
         <div className="container mx-lg-5 border rounded-lg">
-          <div className="row py-1 border-top">
+          <div className="row py-1">
             <div className="col-md-5 col-sm-5">
               <span>Nama Produk</span>
             </div>
@@ -157,11 +157,8 @@ class KeranjangPage extends React.Component {
                   }}
                 >
                   <div class="card-header text-center">
-                    Copyright &copy; 2020 TEESIGNR.
-                  </div>
-                  <div class="card-body text-center border-bottom py-auto">
-                    <div className="row">
-                      <h4 class="card-title mx-auto">
+                    <div className="row py-2">
+                      <h4 class="card-title mx-auto my-auto">
                         <b>KERANJANG</b>
                       </h4>
                     </div>

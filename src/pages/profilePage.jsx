@@ -172,14 +172,13 @@ class ProfilePage extends React.Component {
                     }}
                   >
                     <div class="card-header text-center">
-                      Copyright &copy; 2020 TEESIGNR.
-                    </div>
-                    <div class="card-body text-center border-bottom py-auto">
-                      <div className="row">
-                        <h4 class="card-title mx-auto py-auto">
+                      <div className="row py-2">
+                        <h4 class="card-title mx-auto my-auto">
                           <b>DAFTAR TRANSAKSI</b>
                         </h4>
                       </div>
+                    </div>
+                    <div class="card-body text-center border-bottom py-auto">
                       {loopTransaksi}
                     </div>
                   </div>

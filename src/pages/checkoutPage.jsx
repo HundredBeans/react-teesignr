@@ -116,20 +116,19 @@ class CheckoutPage extends React.Component {
                 backgroundColor: '#F7F7F7'
               }}
             >
-              <div class="card-header text-center">
-                Copyright &copy; 2020 TEESIGNR.
-              </div>
-              <div class="card-body text-center border-bottom py-auto">
+              <div class="card-header text-center py-4">
                 <div className="row">
-                  <h4 class="card-title mx-auto">
+                  <h4 class="card-title mx-auto my-auto">
                     <b>CHECKOUT</b>
                   </h4>
                 </div>
               </div>
               <div className="container">
                 <div className="row py-3">
-                  <div className="col-md-12 text-left">
-                    <h5>DETAIL PENGIRIMAN</h5>
+                  <div className="col-md-12 text-center">
+                    <h5>
+                      <b>DETAIL PENGIRIMAN</b>
+                    </h5>
                   </div>
                 </div>
                 <div className="container">
@@ -142,7 +141,7 @@ class CheckoutPage extends React.Component {
                         for="checkoutNama"
                         className="col-sm-4 col-form-label"
                       >
-                        NAMA PENERIMA
+                        Nama Penerima
                       </label>
                       <div className="col-sm-8">
                         <input
@@ -160,7 +159,7 @@ class CheckoutPage extends React.Component {
                         for="checkoutTelepon"
                         className="col-sm-4 col-form-label"
                       >
-                        NO. TELEPON
+                        No. Telepon
                       </label>
                       <div className="col-sm-8">
                         <input
@@ -178,7 +177,7 @@ class CheckoutPage extends React.Component {
                         for="checkoutAlamat"
                         className="col-sm-4 col-form-label"
                       >
-                        ALAMAT PENERIMA
+                        Alamat Penerima
                       </label>
                       <div className="col-sm-8">
                         <textarea
@@ -196,7 +195,7 @@ class CheckoutPage extends React.Component {
               </div>
               <div className="container">
                 <div className="row py-3">
-                  <div className="col-md-12 text-left">
+                  <div className="col-md-12 text-center">
                     <h5>DETAIL PEMBAYARAN</h5>
                   </div>
                 </div>
@@ -205,9 +204,9 @@ class CheckoutPage extends React.Component {
                     onSubmit={e => e.preventDefault(e)}
                     className="border px-lg-5"
                   >
-                    <div className="row py-3">
+                    <div className="row py-3 border-bottom">
                       <div className="col-md-4">
-                        <span>TOTAL HARGA</span>
+                        <span>Total Harga</span>
                       </div>
                       <div className="col-md-8">
                         <span>Rp. {this.props.totalHargaCheckout}</span>
@@ -215,7 +214,7 @@ class CheckoutPage extends React.Component {
                     </div>
                     <div className="row py-3">
                       <div className="col-md-4">
-                        <span>LIST BELANJA</span>
+                        <span>List Belanja</span>
                       </div>
                       <div className="col-md-8">
                         <ul>{listBelanja}</ul>
@@ -226,7 +225,7 @@ class CheckoutPage extends React.Component {
                         for="checkoutPembayaran"
                         className="col-sm-4 col-form-label"
                       >
-                        METODA PEMBAYARAN
+                        Metoda Pembayaran
                       </label>
                       <div className="col-sm-8">
                         <select

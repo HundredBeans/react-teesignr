@@ -82,7 +82,7 @@ class TokoPage extends React.Component {
               <div
                 class="card w-100"
                 style={{
-                  backgroundColor: '#1D2124'
+                  backgroundColor: '#f2f6f5'
                 }}
               >
                 <img
@@ -90,7 +90,7 @@ class TokoPage extends React.Component {
                   class="card-img-top"
                   alt="..."
                 />
-                <div class="card-body" style={{ color: 'white' }}>
+                <div class="card-body" style={{ color: 'black' }}>
                   <h4
                     className="card-text text-center border-bottom pb-2"
                     style={{ fontWeight: 'bold' }}

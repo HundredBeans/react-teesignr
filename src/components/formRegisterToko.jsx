@@ -7,7 +7,7 @@ import { connect } from 'unistore/react';
 import swal from 'sweetalert';
 
 class RegisterToko extends React.Component {
-  handleRegisterToko = () => {
+  handleRegisterToko = async () => {
     if (
       this.props.inputNamaToko === '' ||
       this.props.inputDeskripsiToko === ''
@@ -30,11 +30,12 @@ class RegisterToko extends React.Component {
         }
       };
       const self = this;
-      Axios(req).then(function(response) {
+      await Axios(req).then(function(response) {
         swal('Register Berhasil', 'Toko Berhasil Didaftarkan', 'success');
-        self.props.getUserInfo();
+        self.props.getUserInfo(localStorage.getItem('token'));
         localStorage.setItem('punyaToko', true);
         self.props.history.push('/');
+        window.location.reload();
       });
     }
   };
@@ -94,6 +95,6 @@ class RegisterToko extends React.Component {
   }
 }
 export default connect(
-  'baseUrl, inputNamaToko, inputDeskripsiToko',
+  'baseUrl, inputNamaToko, inputDeskripsiToko, infoToko',
   actions
 )(withRouter(RegisterToko));

@@ -99,7 +99,8 @@ class Header extends React.Component {
                       <Link to="/checkout" className="dropdown-item">
                         Checkout
                       </Link>
-                      {localStorage.getItem('punyaToko') === 'true' ? (
+                      {localStorage.getItem('punyaToko') === 'true' &&
+                      this.props.infoToko !== '' ? (
                         <Link
                           to={`/toko/${this.props.infoToko.id}`}
                           className="dropdown-item"

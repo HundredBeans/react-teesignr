@@ -45,6 +45,12 @@ class FormSignup extends React.Component {
         username: this.props.daftarUsername,
         password: this.props.daftarPassword
       };
+      swal({
+        title: 'Register sedang diproses',
+        text: 'Harap Tunggu',
+        icon: 'info',
+        buttons: false
+      });
       console.log('login');
       const self = this;
       // ditambahin error kalo udah solve

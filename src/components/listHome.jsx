@@ -60,12 +60,21 @@ class ListHome extends React.Component {
     const loopToko = this.props.listTokoSearch.slice(0, 4).map(value => (
       <div className="col-md-4 px-auto pb-4 col-sm-4">
         <div className="card text-center">
-          <img
-            src={value.barang_populer.gambar}
-            className="card-img-top"
-            style={{ width: '100%', height: '50vh', objectFit: 'cover' }}
-            alt="..."
-          />
+          {value.barang_populer !== '' ? (
+            <img
+              src={value.barang_populer.gambar}
+              className="card-img-top"
+              style={{ width: '100%', height: '50vh', objectFit: 'cover' }}
+              alt="..."
+            />
+          ) : (
+            <img
+              src={require('../img/no-image.jpg')}
+              class="card-img-top img-fluid"
+              alt="..."
+              style={{ width: '100%', height: '50vh', objectFit: 'cover' }}
+            />
+          )}
           <Link to={'/toko/' + value.id}>
             <a
               className="btn btn-light border-bottom w-100"

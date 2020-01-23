@@ -85,7 +85,7 @@ class DetailProduk extends React.Component {
               <div
                 class="card w-100"
                 style={{
-                  backgroundColor: '#1D2124'
+                  backgroundColor: '#f2f6f5'
                 }}
               >
                 <img
@@ -93,7 +93,7 @@ class DetailProduk extends React.Component {
                   class="card-img-top"
                   alt="..."
                 />
-                <div class="card-body" style={{ color: 'white' }}>
+                <div class="card-body" style={{ color: 'black' }}>
                   {this.props.isLoadingToko ? (
                     <span>Loading ...</span>
                   ) : (

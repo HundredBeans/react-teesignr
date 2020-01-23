@@ -5,7 +5,7 @@ import createStore from 'unistore';
 const initialState = {
   // isLogin: false, //bisa dipindah ke localstorage
   // token: "", //bisa dipindah ke localstorage
-  baseUrl: 'http://0.0.0.0:5000',
+  baseUrl: 'https://teesignr.monster',
   // State login dan signup
   emailInput: '',
   passwordInput: '',

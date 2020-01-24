@@ -92,16 +92,13 @@ class JualProduk extends React.Component {
                   }}
                 >
                   <div class="card-header text-center">
-                    Copyright &copy; 2020 TEESIGNR.
-                  </div>
-                  <div class="card-body border-bottom text-center">
-                    <div className="row border-bottom">
-                      <h5 class="card-title mx-auto">
+                    <div className="row py-2">
+                      <h5 class="card-title mx-auto my-auto">
                         <b>JUAL PRODUK</b>
                       </h5>
                     </div>
                   </div>
-                  <div className="container px-lg-5">
+                  <div className="container px-lg-5 py-5">
                     <form
                       onSubmit={e => e.preventDefault(e)}
                       className="border px-lg-5"

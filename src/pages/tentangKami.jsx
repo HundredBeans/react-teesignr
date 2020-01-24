@@ -31,11 +31,12 @@ class TentangKami extends React.Component {
               color: '#2b2b28'
             }}
           >
-            <div class="card-header">Copyright &copy; 2020 TEESIGNR.</div>
-            <div class="card-body border-bottom">
-              <h5 class="card-title">
+            <div class="card-header">
+              <h5 class="card-title mx-auto my-auto py-2">
                 <b>APA ITU TEESIGNR?</b>
               </h5>
+            </div>
+            <div class="card-body border-bottom">
               <p class="card-text">
                 Secara singkat, TEESIGNR adalah sebuah <i>E-Commerce</i> A E S T
                 H E T I C yang menyediakan tempat untuk semua orang yang ingin
@@ -49,7 +50,7 @@ class TentangKami extends React.Component {
               <h5 class="card-title">
                 <b>KEUNTUNGAN DALAM MENGGUNAKAN TEESIGNR</b>
               </h5>
-              <div className="row border-bottom border-top py-3">
+              <div className="row border-bottom border-top">
                 <div className="col-md-2 my-auto">
                   <img
                     src={require('../img/tentangkami1.png')}

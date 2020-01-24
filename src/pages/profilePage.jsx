@@ -178,7 +178,7 @@ class ProfilePage extends React.Component {
                         </h4>
                       </div>
                     </div>
-                    <div class="card-body text-center border-bottom py-auto">
+                    <div class="card-body text-center border-bottom py-0">
                       {loopTransaksi}
                     </div>
                   </div>

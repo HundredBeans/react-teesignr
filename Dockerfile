@@ -1,5 +1,5 @@
 FROM nginx:stable
-MAINTAINER Bayu Aji  "aji@alterra.id"
+MAINTAINER Mohammad Daffa  "daffa@alterra.id"
 
 RUN mkdir -p /teesignr/react
 RUN mkdir -p /teesignr/logs/nginx

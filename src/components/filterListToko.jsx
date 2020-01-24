@@ -116,7 +116,7 @@ class FilterListToko extends React.Component {
                 style={{ width: '100%', height: '35vh', objectFit: 'cover' }}
               />
               <Link to={'/detail-produk/' + value.barang_populer.id}>
-                <a
+                <span
                   class="btn btn-light border-bottom w-100"
                   style={{ color: 'black' }}
                 >
@@ -125,7 +125,7 @@ class FilterListToko extends React.Component {
                     truncateText="…"
                     text={value.barang_populer.nama}
                   />
-                </a>
+                </span>
               </Link>
               <span
                 className="text-center py-1"
@@ -148,7 +148,7 @@ class FilterListToko extends React.Component {
                 style={{ width: '100%', height: '35vh', objectFit: 'cover' }}
               />
               <Link to={'/detail-produk/' + value.barang_populer.id}>
-                <a
+                <span
                   class="btn btn-light border-bottom"
                   style={{ color: 'black' }}
                 >
@@ -157,7 +157,7 @@ class FilterListToko extends React.Component {
                     truncateText="…"
                     text={`${value.nama} belum menjual T-SHIRT`}
                   />
-                </a>
+                </span>
               </Link>
               <span
                 className="text-center py-1"
@@ -183,9 +183,9 @@ class FilterListToko extends React.Component {
             <i class="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="/hasil">
-            <a href="" className="text-right" style={{ color: 'black' }}>
+            <span className="text-right" style={{ color: 'black' }}>
               Cari T-Shirt
-            </a>
+            </span>
           </Link>
         </div>
         <div class="card-body">

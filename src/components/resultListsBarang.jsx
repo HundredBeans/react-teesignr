@@ -101,12 +101,12 @@ class ResultListsBarang extends React.Component {
             style={{ width: '100%', height: '30vh', objectFit: 'cover' }}
           />
           <Link to={'/detail-produk/' + value.id}>
-            <a
+            <span
               className="btn btn-light border-bottom w-100"
               style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
-            </a>
+            </span>
           </Link>
           <span className="text-center py-1">
             {value.harga.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
@@ -125,9 +125,9 @@ class ResultListsBarang extends React.Component {
             <i className="fa fa-fw fa-angle-right"></i>
           </span>
           <Link to="hasil-toko">
-            <a href="" className="text-right" style={{ color: 'black' }}>
+            <span href="" className="text-right" style={{ color: 'black' }}>
               Cari Toko
-            </a>
+            </span>
           </Link>
         </div>
         <div className="card-body">

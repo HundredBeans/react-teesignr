@@ -44,12 +44,12 @@ class ListHome extends React.Component {
             alt="..."
           />
           <Link to={'/detail-produk/' + value.id}>
-            <a
+            <span
               className="btn btn-light border-bottom w-100"
               style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
-            </a>
+            </span>
           </Link>
           <span className="text-center py-1">
             {value.harga.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
@@ -76,12 +76,12 @@ class ListHome extends React.Component {
             />
           )}
           <Link to={'/toko/' + value.id}>
-            <a
+            <span
               className="btn btn-light border-bottom w-100"
               style={{ color: 'black' }}
             >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
-            </a>
+            </span>
           </Link>
           <span className="text-center py-1">
             Popularitas : {value.popularitas}
@@ -95,13 +95,12 @@ class ListHome extends React.Component {
           <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="/hasil">
-                <a
-                  href=""
+                <span
                   className="btn btn-light border-bottom w-100"
                   style={{ color: 'black' }}
                 >
                   T-SHIRT POPULER <i className="fa fa-fw fa-angle-right"></i>
-                </a>
+                </span>
               </Link>
             </div>
             <div className="card-body">
@@ -113,13 +112,12 @@ class ListHome extends React.Component {
           <div className="card" style={{ backgroundColor: '#f2f6f5' }}>
             <div className="card-header">
               <Link to="hasil-toko">
-                <a
-                  href=""
+                <span
                   className="btn btn-light border-bottom w-100"
                   style={{ color: 'black' }}
                 >
                   TOKO POPULER <i className="fa fa-fw fa-angle-right"></i>
-                </a>
+                </span>
               </Link>
             </div>
             <div className="card-body">

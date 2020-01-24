@@ -39,7 +39,9 @@ class Header extends React.Component {
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top border border-bottom CousineFont">
         <div className="container-fluid">
           <Link to="/">
-            <a href="/" class="navbar-brand mr-5">TEESIGNR</a>
+            <a href="/" class="navbar-brand mr-5">
+              TEESIGNR
+            </a>
           </Link>
           <button
             class="navbar-toggler"
@@ -81,7 +83,6 @@ class Header extends React.Component {
                   <li class="nav-item dropdown mx-1">
                     <a
                       class="nav-link dropdown-toggle"
-                      href="#"
                       id="navbarDropdown"
                       role="button"
                       data-toggle="dropdown"
@@ -110,7 +111,6 @@ class Header extends React.Component {
                       ) : (
                         <a
                           class="nav-link"
-                          href="#"
                           data-toggle="modal"
                           data-target="#ModalRegisterToko"
                           className="dropdown-item"
@@ -124,7 +124,7 @@ class Header extends React.Component {
                       <div class="dropdown-divider"></div>
                       <a
                         class="dropdown-item"
-                        href="#"
+                        href="/"
                         onClick={this.handleLogout}
                       >
                         Keluar
@@ -139,7 +139,6 @@ class Header extends React.Component {
                     ) : (
                       <a
                         class="nav-link"
-                        href="#"
                         data-toggle="modal"
                         data-target="#ModalRegisterToko"
                       >

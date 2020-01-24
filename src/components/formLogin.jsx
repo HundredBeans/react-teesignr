@@ -1,25 +1,25 @@
-import React from "react";
-import axios from "axios";
-import { actions } from "../store";
-import { withRouter } from "react-router-dom";
-import { connect } from "unistore/react";
-import swal from "sweetalert";
+import React from 'react';
+import axios from 'axios';
+import { actions } from '../store';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'unistore/react';
+import swal from 'sweetalert';
 
 class FormLogin extends React.Component {
   // validate email
   validateEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    console.log("store, " + email);
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log('store, ' + email);
     console.log(re.test(email));
     return re.test(email);
   };
   handleLupaPassword = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      swal("Akses Ditolak", "Email tidak valid", "warning");
+      swal('Akses Ditolak', 'Email tidak valid', 'warning');
     } else {
       const req = {
-        method: "post",
-        url: this.props.baseUrl + "/auth/reset",
+        method: 'post',
+        url: this.props.baseUrl + '/auth/reset',
         data: {
           email: this.props.emailInput
         }
@@ -27,26 +27,26 @@ class FormLogin extends React.Component {
       const self = this;
       axios(req).then(function(response) {
         swal(
-          "Akses Diterima",
+          'Akses Diterima',
           `Password baru telah dikirim ke ${self.props.emailInput}`,
-          "success"
+          'success'
         ).then(function() {
-          self.props.history.push("/");
+          self.props.history.push('/');
         });
       });
     }
   };
   handleLogin = () => {
     if (this.validateEmail(this.props.emailInput) === false) {
-      swal("Login Gagal", "Email tidak valid", "warning");
+      swal('Login Gagal', 'Email tidak valid', 'warning');
     } else if (
-      this.props.emailInput === "" ||
-      this.props.passwordInput === ""
+      this.props.emailInput === '' ||
+      this.props.passwordInput === ''
     ) {
       swal(
-        "Login Gagal",
-        "Form tidak boleh kosong, tolong isi kembali",
-        "warning"
+        'Login Gagal',
+        'Form tidak boleh kosong, tolong isi kembali',
+        'warning'
       );
     } else {
       // response masih belom bisa
@@ -58,19 +58,19 @@ class FormLogin extends React.Component {
       console.log(this.props.emailInput);
       console.log(this.props.passwordInput);
       axios
-        .post(this.props.baseUrl + "/auth/login", data)
+        .post(this.props.baseUrl + '/auth/login', data)
         .then(function(response) {
           if (response.status === 200) {
             self.props.getUserInfo(response.data.token);
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("isLogin", true);
-            swal("Sukses", "Login Berhasil", "success");
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('isLogin', true);
+            swal('Sukses', 'Login Berhasil', 'success');
             console.log(response.data);
-            self.props.history.push("/");
+            self.props.history.push('/');
           }
         })
         .catch(function(error) {
-          swal("Login Gagal", "error.response.data.message", "warning");
+          swal('Login Gagal', 'error.response.data.message', 'warning');
         });
     }
   };
@@ -111,11 +111,11 @@ class FormLogin extends React.Component {
             <div className="col-sm-12 py-1">
               <span>Lupa Password?</span>
               <a
-                href="#"
+                href="/"
                 onClick={this.handleLupaPassword}
                 data-dismiss="modal"
               >
-                {" "}
+                {' '}
                 Klik disini
               </a>
             </div>
@@ -138,6 +138,6 @@ class FormLogin extends React.Component {
   }
 }
 export default connect(
-  "baseUrl, emailInput, passwordInput",
+  'baseUrl, emailInput, passwordInput',
   actions
 )(withRouter(FormLogin));

@@ -61,9 +61,12 @@ class TokoPage extends React.Component {
             style={{ width: '100%', height: '30vh', objectFit: 'cover' }}
           />
           <Link to={'/detail-produk/' + value.id}>
-            <a class="btn btn-light border-bottom" style={{ color: 'black' }}>
+            <span
+              class="btn btn-light border-bottom"
+              style={{ color: 'black' }}
+            >
               <TextTruncate line={2} truncateText="…" text={value.nama} />
-            </a>
+            </span>
           </Link>
           <span className="text-center py-1">{value.harga}</span>
         </div>

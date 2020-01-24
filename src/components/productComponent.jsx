@@ -107,6 +107,7 @@ class ProductComponent extends React.Component {
                 <img
                   src={this.props.urlFoto}
                   className="w-100 border rounded-lg"
+                  alt=""
                 />
               </div>
               <div className="col-md-6 pr-lg-5">

@@ -1,28 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Axios from 'axios';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import swal from 'sweetalert';
+import React from "react";
+import { Link } from "react-router-dom";
+import Axios from "axios";
+import { actions } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import swal from "sweetalert";
 
 class RegisterToko extends React.Component {
   handleRegisterToko = async () => {
     if (
-      this.props.inputNamaToko === '' ||
-      this.props.inputDeskripsiToko === ''
+      this.props.inputNamaToko === "" ||
+      this.props.inputDeskripsiToko === ""
     ) {
       swal(
-        'Register Gagal',
-        'Form tidak boleh kosong, mohon diisi kembali',
-        'warning'
+        "Register Gagal",
+        "Form tidak boleh kosong, mohon diisi kembali",
+        "warning"
       );
     } else {
       const req = {
-        method: 'post',
-        url: this.props.baseUrl + '/toko/register',
+        method: "post",
+        url: this.props.baseUrl + "/toko/register",
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
+          Authorization: "Bearer " + localStorage.getItem("token")
         },
         data: {
           nama_toko: this.props.inputNamaToko,
@@ -31,10 +31,10 @@ class RegisterToko extends React.Component {
       };
       const self = this;
       await Axios(req).then(function(response) {
-        swal('Register Berhasil', 'Toko Berhasil Didaftarkan', 'success');
-        self.props.getUserInfo(localStorage.getItem('token'));
-        localStorage.setItem('punyaToko', true);
-        self.props.history.push('/');
+        swal("Register Berhasil", "Toko Berhasil Didaftarkan", "success");
+        self.props.getUserInfo(localStorage.getItem("token"));
+        localStorage.setItem("punyaToko", true);
+        self.props.history.push("/");
         window.location.reload();
       });
     }
@@ -95,6 +95,6 @@ class RegisterToko extends React.Component {
   }
 }
 export default connect(
-  'baseUrl, inputNamaToko, inputDeskripsiToko, infoToko',
+  "baseUrl, inputNamaToko, inputDeskripsiToko, infoToko",
   actions
 )(withRouter(RegisterToko));

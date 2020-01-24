@@ -1,89 +1,88 @@
-import React from 'react';
-import axios from 'axios';
-import createStore from 'unistore';
+import axios from "axios";
+import createStore from "unistore";
 
 const initialState = {
   // isLogin: false, //bisa dipindah ke localstorage
   // token: "", //bisa dipindah ke localstorage
-  baseUrl: 'https://teesignr.monster',
+  baseUrl: "https://teesignr.monster",
   // State login dan signup
-  emailInput: '',
-  passwordInput: '',
-  daftarFullName: '',
-  daftarEmail: '',
-  daftarUsername: '',
-  daftarPassword: '',
+  emailInput: "",
+  passwordInput: "",
+  daftarFullName: "",
+  daftarEmail: "",
+  daftarUsername: "",
+  daftarPassword: "",
   // State quote
-  quote: '',
-  quoteAuthor: '',
+  quote: "",
+  quoteAuthor: "",
   isLoadingQuote: true,
   // State user info
-  namaUserLogin: '', // bisa dipindah ke localstorage
-  inputNamaToko: '',
-  inputDeskripsiToko: '',
+  namaUserLogin: "", // bisa dipindah ke localstorage
+  inputNamaToko: "",
+  inputDeskripsiToko: "",
   // punyaToko: "", //bisa dipindah ke localstorage
-  infoToko: '',
+  infoToko: "",
   listTransaksi: [],
-  userFullName: '',
-  userEmail: '',
-  transaksiId: '',
+  userFullName: "",
+  userEmail: "",
+  transaksiId: "",
   editStatus: false,
   // State dari page jual
-  jualNamaProduk: '',
-  jualKeuntungan: '',
-  jualJenisBahan: '',
-  jualDesignUrl: '',
-  jualDeskripsi: '',
+  jualNamaProduk: "",
+  jualKeuntungan: "",
+  jualJenisBahan: "",
+  jualDesignUrl: "",
+  jualDeskripsi: "",
   // State search
-  searchKeyword: '',
+  searchKeyword: "",
   listBarangSearch: [],
   listTokoSearch: [],
   isLoadingSearch: true,
   pageBarang: 1,
   // State detail
-  detailNamaProduk: '',
-  detailNamaToko: '',
-  detailUrlGambar: '',
-  detailHargaProduk: '',
-  detailProdukTerjual: '',
-  detailDeskripsiProduk: '',
-  detailTokoId: '',
-  detailFound: '',
+  detailNamaProduk: "",
+  detailNamaToko: "",
+  detailUrlGambar: "",
+  detailHargaProduk: "",
+  detailProdukTerjual: "",
+  detailDeskripsiProduk: "",
+  detailTokoId: "",
+  detailFound: "",
   // State filter
-  hargaMin: '0',
-  hargaMax: '999999999999999999',
-  urutanBerdasarkan: 'terjual',
-  urutan: 'desc',
+  hargaMin: "0",
+  hargaMax: "999999999999999999",
+  urutanBerdasarkan: "terjual",
+  urutan: "desc",
   // State beli
-  beliUkuran: '',
-  beliJumlah: '',
+  beliUkuran: "",
+  beliJumlah: "",
   // State checkout
   listCheckout: [],
-  totalHargaCheckout: '',
+  totalHargaCheckout: "",
   isLoadingCheckout: true,
-  checkoutNama: '',
-  checkoutTelepon: '',
-  checkoutAlamat: '',
-  checkoutPembayaran: '',
+  checkoutNama: "",
+  checkoutTelepon: "",
+  checkoutAlamat: "",
+  checkoutPembayaran: "",
   detailPembayaran: {},
   // State keranjang
   listKeranjang: [],
   listIdKerangjang: [],
   // State Toko
-  tokoNama: '',
-  tokoDeskripsi: '',
-  tokoPopularitas: '',
+  tokoNama: "",
+  tokoDeskripsi: "",
+  tokoPopularitas: "",
   tokoListBarang: [],
   isLoadingToko: true,
   pageToko: 1,
   // State edit password
-  inputPassLama: '',
-  inputPassBaru: '',
+  inputPassLama: "",
+  inputPassBaru: "",
   isLoadingEditPass: false,
   // State search toko
-  searchTokoKeyword: '',
-  urutanTokoBerdasarkan: 'popularitas',
-  urutanToko: 'desc',
+  searchTokoKeyword: "",
+  urutanTokoBerdasarkan: "popularitas",
+  urutanToko: "desc",
   pageListToko: 1
 };
 
@@ -98,7 +97,7 @@ export const actions = store => ({
     console.log(initialState.emailInput);
   },
   getRandomQuote: state => {
-    axios.get('https://api.quotable.io/random').then(response => {
+    axios.get("https://api.quotable.io/random").then(response => {
       store.setState({
         quote: response.data.content,
         quoteAuthor: response.data.author,
@@ -108,14 +107,14 @@ export const actions = store => ({
   },
   getUserInfo: async (state, token) => {
     const req = {
-      method: 'get',
+      method: "get",
       url: `${initialState.baseUrl}/user`,
       headers: {
         Authorization: `Bearer ${token}`
       }
     };
     console.log(token);
-    console.log('berhasil get user info');
+    console.log("berhasil get user info");
     await axios(req).then(response => {
       console.log(response.data);
       store.setState({
@@ -125,22 +124,22 @@ export const actions = store => ({
         userFullName: response.data.info_user.full_name,
         userEmail: response.data.info_user.email
       });
-      localStorage.setItem('namaUserLogin', response.data.info_user.username);
+      localStorage.setItem("namaUserLogin", response.data.info_user.username);
       localStorage.setItem(
-        'punyaToko',
+        "punyaToko",
         response.data.info_user.designer_status
       );
     });
   },
   // validate email
-  validateEmail: (state, email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    console.log(`store, ${email}`);
-    console.log(re.test(email));
-    return re.test(email);
-  },
+  // validateEmail: (state, email) => {
+  //   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   console.log(`store, ${email}`);
+  //   console.log(re.test(email));
+  //   return re.test(email);
+  // },
   handleFilter: () => {
-    console.log('klik');
+    console.log("klik");
     store.setState({ isLoadingSearch: true });
     const data = {
       harga_minimal: initialState.hargaMin,
@@ -149,7 +148,7 @@ export const actions = store => ({
       sort: initialState.urutan
     };
     const req = {
-      method: 'get',
+      method: "get",
       url: `${initialState.baseUrl}/baju?harga_minimal=${data.harga_minimal}&harga_maksimal=${data.harga_maksimal}&orderby=${data.orderby}&sort=${data.sort}`
     };
     axios(req).then(response => {

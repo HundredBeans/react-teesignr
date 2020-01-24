@@ -39,7 +39,7 @@ class Header extends React.Component {
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top border border-bottom CousineFont">
         <div className="container-fluid">
           <Link to="/">
-            <a class="navbar-brand mr-5">TEESIGNR</a>
+            <a href="/" class="navbar-brand mr-5">TEESIGNR</a>
           </Link>
           <button
             class="navbar-toggler"

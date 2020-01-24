@@ -1,16 +1,15 @@
-import React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import FilterToko from '../components/filterToko';
-import ModalLogin from '../components/modalLogin';
-import ModalSignup from '../components/modalSignup';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import ModalRegisterToko from '../components/modalRegisterToko';
-import HeaderQuote from '../components/headerQuote';
-import axios from 'axios';
-import BackToTop from '../components/backToTop';
+import React from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import FilterToko from "../components/filterToko";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import HeaderQuote from "../components/headerQuote";
+import BackToTop from "../components/backToTop";
 
 class ListToko extends React.Component {
   componentDidMount() {
@@ -21,9 +20,9 @@ class ListToko extends React.Component {
   componentWillUnmount() {
     store.setState({
       pageListToko: 1,
-      searchTokoKeyword: '',
-      urutanTokoBerdasarkan: 'popularitas',
-      urutanToko: 'desc'
+      searchTokoKeyword: "",
+      urutanTokoBerdasarkan: "popularitas",
+      urutanToko: "desc"
     });
   }
   render() {
@@ -42,6 +41,6 @@ class ListToko extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, searchTokoKeyword,urutanTokoBerdasarkan, urutanToko, pageListToko, baseUrl, isLoadingSearch',
+  "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, searchTokoKeyword,urutanTokoBerdasarkan, urutanToko, pageListToko, baseUrl, isLoadingSearch",
   actions
 )(withRouter(ListToko));

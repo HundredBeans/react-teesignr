@@ -1,15 +1,15 @@
-import React from 'react';
-import Header from '../components/header';
-import ModalLogin from '../components/modalLogin';
-import ModalSignup from '../components/modalSignup';
-import ModalRegisterToko from '../components/modalRegisterToko';
-import HomeHead from '../components/homeHead';
-import ListHome from '../components/listHome';
-import Footer from '../components/footer';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import BackToTop from '../components/backToTop';
+import React from "react";
+import Header from "../components/header";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import HomeHead from "../components/homeHead";
+import ListHome from "../components/listHome";
+import Footer from "../components/footer";
+import { actions } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import BackToTop from "../components/backToTop";
 
 class Home extends React.Component {
   render() {
@@ -33,6 +33,6 @@ class Home extends React.Component {
   }
 }
 export default connect(
-  'searchKeyword, listBarangSearch',
+  "searchKeyword, listBarangSearch",
   actions
 )(withRouter(Home));

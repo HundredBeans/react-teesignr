@@ -1,26 +1,26 @@
-import React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import HeaderQuote from '../components/headerQuote';
-import ModalLogin from '../components/modalLogin';
-import ModalSignup from '../components/modalSignup';
-import ModalRegisterToko from '../components/modalRegisterToko';
-import ProductComponent from '../components/productComponent';
-import NotFoundProduct from '../components/notFoundProduk';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import axios from 'axios';
-import BackToTop from '../components/backToTop';
+import React from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import HeaderQuote from "../components/headerQuote";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import ProductComponent from "../components/productComponent";
+import NotFoundProduct from "../components/notFoundProduk";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import axios from "axios";
+import BackToTop from "../components/backToTop";
 
 // import not found css
-import '../style/nomatch.css';
+import "../style/nomatch.css";
 
 class DetailProduk extends React.Component {
   axiosBarangId = () => {
     const req = {
-      method: 'get',
-      url: this.props.baseUrl + '/baju/' + this.props.match.params.id
+      method: "get",
+      url: this.props.baseUrl + "/baju/" + this.props.match.params.id
     };
     axios(req)
       .then(function(response) {
@@ -41,12 +41,11 @@ class DetailProduk extends React.Component {
   };
   getTokoInfo = () => {
     const req = {
-      method: 'get',
+      method: "get",
       url: this.props.baseUrl + `/toko/${this.props.detailTokoId}`
     };
-    console.log('get toko');
+    console.log("get toko");
     console.log(this.props.detailTokoId);
-    const self = this;
     axios(req)
       .then(function(response) {
         store.setState({
@@ -69,7 +68,7 @@ class DetailProduk extends React.Component {
   render() {
     // const productComponent = this.axiosBarangId();
     this.getTokoInfo();
-    console.log('jalan');
+    console.log("jalan");
     console.log(this.props.match.params);
     // console.log(productComponent);
     return (
@@ -85,22 +84,22 @@ class DetailProduk extends React.Component {
               <div
                 class="card w-100"
                 style={{
-                  backgroundColor: '#f2f6f5'
+                  backgroundColor: "#f2f6f5"
                 }}
               >
                 <img
-                  src={require('../img/storepic.jpg')}
+                  src={require("../img/storepic.jpg")}
                   class="card-img-top"
                   alt="..."
                 />
-                <div class="card-body" style={{ color: 'black' }}>
+                <div class="card-body" style={{ color: "black" }}>
                   {this.props.isLoadingToko ? (
                     <span>Loading ...</span>
                   ) : (
                     <React.Fragment>
                       <h4
                         className="card-text text-center border-bottom pb-2"
-                        style={{ fontWeight: 'bold' }}
+                        style={{ fontWeight: "bold" }}
                       >
                         {this.props.tokoNama}
                       </h4>
@@ -139,6 +138,6 @@ class DetailProduk extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound, detailTokoId, tokoNama, tokoDeskripsi, tokoPopularitas, isLoadingToko',
+  "quote, quoteAuthor, isLoadingQuote, searchKeyword, listBarangSearch, baseUrl, detailNamaProduk, detailNamaToko, detailUrlGambar, detailHargaProduk, detailProdukTerjual, detailDeskripsiProduk, detailFound, detailTokoId, tokoNama, tokoDeskripsi, tokoPopularitas, isLoadingToko",
   actions
 )(withRouter(DetailProduk));

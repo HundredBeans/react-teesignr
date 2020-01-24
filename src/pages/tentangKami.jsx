@@ -1,15 +1,15 @@
-import React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import HeaderQuote from '../components/headerQuote';
-import ModalLogin from '../components/modalLogin';
-import ModalSignup from '../components/modalSignup';
-import ModalRegisterToko from '../components/modalRegisterToko';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import { Link } from 'react-router-dom';
-import BackToTop from '../components/backToTop';
+import React from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import HeaderQuote from "../components/headerQuote";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import { actions } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { Link } from "react-router-dom";
+import BackToTop from "../components/backToTop";
 
 class TentangKami extends React.Component {
   componentDidMount() {
@@ -27,8 +27,8 @@ class TentangKami extends React.Component {
           <div
             class="card text-center"
             style={{
-              backgroundColor: '#f8f8f8',
-              color: '#2b2b28'
+              backgroundColor: "#f8f8f8",
+              color: "#2b2b28"
             }}
           >
             <div class="card-header">
@@ -53,8 +53,9 @@ class TentangKami extends React.Component {
               <div className="row border-bottom border-top">
                 <div className="col-md-2 my-auto">
                   <img
-                    src={require('../img/tentangkami1.png')}
+                    src={require("../img/tentangkami1.png")}
                     className="w-100"
+                    alt=""
                   />
                 </div>
                 <div className="col-md-10 border-left my-auto">
@@ -85,14 +86,15 @@ class TentangKami extends React.Component {
                 </div>
                 <div className="col-md-2 my-auto">
                   <img
-                    src={require('../img/tentangkami2.png')}
+                    src={require("../img/tentangkami2.png")}
                     className="w-100"
+                    alt=""
                   />
                 </div>
               </div>
               <div className="row py-3">
                 <div className="col-md-12">
-                  {localStorage.getItem('isLogin') === null ? (
+                  {localStorage.getItem("isLogin") === null ? (
                     <button
                       type="submit"
                       className="btn btn-dark"
@@ -101,7 +103,7 @@ class TentangKami extends React.Component {
                     >
                       DAFTAR SEKARANG
                     </button>
-                  ) : localStorage.getItem('punyaToko') === 'false' ? (
+                  ) : localStorage.getItem("punyaToko") === "false" ? (
                     <button
                       type="submit"
                       className="btn btn-dark"
@@ -129,6 +131,6 @@ class TentangKami extends React.Component {
   }
 }
 export default connect(
-  'quote, quoteAuthor, isLoadingQuote',
+  "quote, quoteAuthor, isLoadingQuote",
   actions
 )(withRouter(TentangKami));

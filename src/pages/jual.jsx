@@ -1,16 +1,16 @@
-import React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import HeaderQuote from '../components/headerQuote';
-import ModalLogin from '../components/modalLogin';
-import ModalSignup from '../components/modalSignup';
-import ModalRegisterToko from '../components/modalRegisterToko';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import Axios from 'axios';
-import BackToTop from '../components/backToTop';
-import swal from 'sweetalert';
+import React from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
+import HeaderQuote from "../components/headerQuote";
+import ModalLogin from "../components/modalLogin";
+import ModalSignup from "../components/modalSignup";
+import ModalRegisterToko from "../components/modalRegisterToko";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import Axios from "axios";
+import BackToTop from "../components/backToTop";
+import swal from "sweetalert";
 
 class JualProduk extends React.Component {
   validateNumber = number => {
@@ -19,21 +19,21 @@ class JualProduk extends React.Component {
   };
   handleJual = () => {
     if (
-      this.props.jualNamaProduk === '' ||
-      this.props.jualKeuntungan === '' ||
-      this.props.jualDeskripsi === '' ||
-      this.props.jualDesignUrl === '' ||
-      this.props.jualJenisBahan === ''
+      this.props.jualNamaProduk === "" ||
+      this.props.jualKeuntungan === "" ||
+      this.props.jualDeskripsi === "" ||
+      this.props.jualDesignUrl === "" ||
+      this.props.jualJenisBahan === ""
     ) {
-      swal('Gagal', 'Form tidak boleh kosong', 'warning');
+      swal("Gagal", "Form tidak boleh kosong", "warning");
     } else if (!this.validateNumber(this.props.jualKeuntungan)) {
-      swal('Gagal', 'Keuntungan harus berupa angka', 'warning');
+      swal("Gagal", "Keuntungan harus berupa angka", "warning");
     } else {
       const req = {
-        method: 'post',
-        url: this.props.baseUrl + '/toko/jual',
+        method: "post",
+        url: this.props.baseUrl + "/toko/jual",
         headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token')
+          Authorization: "Bearer " + localStorage.getItem("token")
         },
         data: {
           nama_barang: this.props.jualNamaProduk,
@@ -49,27 +49,27 @@ class JualProduk extends React.Component {
       Axios(req)
         .then(function(response) {
           store.setState({
-            jualNamaProduk: '',
-            jualKeuntungan: '',
-            jualDesignUrl: '',
-            jualJenisBahan: '',
-            jualDeskripsi: ''
+            jualNamaProduk: "",
+            jualKeuntungan: "",
+            jualDesignUrl: "",
+            jualJenisBahan: "",
+            jualDeskripsi: ""
           });
-          swal('Sukses', 'Barang berhasil dijual', 'success');
-          self.props.history.push('/detail-produk/' + response.data.barang.id);
+          swal("Sukses", "Barang berhasil dijual", "success");
+          self.props.history.push("/detail-produk/" + response.data.barang.id);
         })
         .catch(function(error) {
-          swal('Gagal', error.response.data.message, 'warning');
+          swal("Gagal", error.response.data.message, "warning");
         });
     }
   };
   componentDidMount() {
-    if (localStorage.getItem('punyaToko') !== null) {
+    if (localStorage.getItem("punyaToko") !== null) {
       store.setState({ isLoadingQuote: true });
       this.props.getRandomQuote();
     } else {
-      swal('Gagal', 'Kamu belum mempunyai toko', 'warning');
-      this.props.history.push('/');
+      swal("Gagal", "Kamu belum mempunyai toko", "warning");
+      this.props.history.push("/");
     }
   }
   render() {
@@ -88,7 +88,7 @@ class JualProduk extends React.Component {
                 <div
                   class="card"
                   style={{
-                    backgroundColor: '#F7F7F7'
+                    backgroundColor: "#F7F7F7"
                   }}
                 >
                   <div class="card-header text-center">
@@ -201,12 +201,13 @@ class JualProduk extends React.Component {
                               />
                             </div>
                           </div>
-                          {!(this.props.jualDesignUrl === '') ? (
+                          {!(this.props.jualDesignUrl === "") ? (
                             <div className="row">
                               <div className="col-md-12">
                                 <img
                                   src={this.props.jualDesignUrl}
-                                  width={'100%'}
+                                  width={"100%"}
+                                  alt=""
                                 />
                               </div>
                             </div>
@@ -243,6 +244,6 @@ class JualProduk extends React.Component {
   }
 }
 export default connect(
-  'baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, listBarangSearch, searchKeyword',
+  "baseUrl, quote, quoteAuthor, isLoadingQuote, jualNamaProduk, jualKeuntungan, jualJenisBahan, jualDesignUrl, jualDeskripsi, listBarangSearch, searchKeyword",
   actions
 )(withRouter(JualProduk));

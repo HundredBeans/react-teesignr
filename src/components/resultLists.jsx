@@ -1,11 +1,11 @@
-import React from 'react';
-import ResultListsBarang from '../components/resultListsBarang';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import swal from 'sweetalert';
+import React from "react";
+import ResultListsBarang from "../components/resultListsBarang";
+import { actions, store } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
 
 class ResultList extends React.Component {
   validateNumber = number => {
@@ -13,7 +13,7 @@ class ResultList extends React.Component {
     return re.test(number);
   };
   handleFilter = () => {
-    console.log('klik');
+    console.log("klik");
     store.setState({ isLoadingSearch: true });
     if (
       this.validateNumber(this.props.hargaMax) &&
@@ -23,7 +23,7 @@ class ResultList extends React.Component {
       const harga_maksimal = this.props.hargaMax * 1;
       console.log(this.props.hargaMin);
       const req = {
-        method: 'get',
+        method: "get",
         url:
           this.props.baseUrl +
           `/baju?search=${this.props.searchKeyword}&orderby=${this.props.urutanBerdasarkan}&sort=${this.props.urutan}&p=1&harga_minimal=${harga_minimal}&harga_maksimal=${harga_maksimal}`
@@ -37,8 +37,7 @@ class ResultList extends React.Component {
         console.log(response.data);
       });
     } else {
-      const self = this;
-      swal('Input Salah', 'Tolong isi berupa angka', 'warning').then(
+      swal("Input Salah", "Tolong isi berupa angka", "warning").then(
         function() {
           window.location.reload();
         }
@@ -51,12 +50,12 @@ class ResultList extends React.Component {
         <div className="container py-3">
           <div className="row">
             <div className="col-md-3 pr-0">
-              <div class="card" style={{ backgroundColor: '#f2f6f5' }}>
+              <div class="card" style={{ backgroundColor: "#f2f6f5" }}>
                 <div class="card-header border-bottom">
                   <span
                     href=""
                     className="border-bottom border-dark"
-                    style={{ color: 'black' }}
+                    style={{ color: "black" }}
                   >
                     FILTER <i class="fa fa-fw fa-angle-right"></i>
                   </span>
@@ -65,7 +64,7 @@ class ResultList extends React.Component {
                   <form>
                     <div className="form-group">
                       <div className="pb-2">
-                        <label for="hargaMin" style={{ color: 'black' }}>
+                        <label for="hargaMin" style={{ color: "black" }}>
                           Harga Minimal
                         </label>
                         <input
@@ -79,7 +78,7 @@ class ResultList extends React.Component {
                     </div>
                     <div className="form-group">
                       <div className="pb-2">
-                        <label for="hargaMax" style={{ color: 'black' }}>
+                        <label for="hargaMax" style={{ color: "black" }}>
                           Harga Maksimal
                         </label>
                         <input
@@ -94,7 +93,7 @@ class ResultList extends React.Component {
                     <div className="form-group pb-2">
                       <label
                         for="urutanBerdasarkan"
-                        style={{ color: 'black ' }}
+                        style={{ color: "black " }}
                       >
                         Urutkan Berdasarkan
                       </label>
@@ -123,7 +122,7 @@ class ResultList extends React.Component {
                         <label
                           className="form-check-label"
                           for="urutanNaik"
-                          style={{ color: 'black' }}
+                          style={{ color: "black" }}
                         >
                           Urutan Naik
                         </label>
@@ -139,7 +138,7 @@ class ResultList extends React.Component {
                         />
                         <label
                           className="form-check-label"
-                          style={{ color: 'black' }}
+                          style={{ color: "black" }}
                           for="urutanTurun"
                         >
                           Urutan Turun
@@ -169,6 +168,6 @@ class ResultList extends React.Component {
   }
 }
 export default connect(
-  'hargaMin, hargaMax, urutanBerdasarkan, urutan, listBarangSearch, isLoadingSearch, baseUrl, searchKeyword, pageBarang',
+  "hargaMin, hargaMax, urutanBerdasarkan, urutan, listBarangSearch, isLoadingSearch, baseUrl, searchKeyword, pageBarang",
   actions
 )(withRouter(ResultList));

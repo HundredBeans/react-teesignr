@@ -1,14 +1,14 @@
-import React from 'react';
-import { actions, store } from '../store';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'unistore/react';
+import React from "react";
+import { actions } from "../store";
+import { withRouter } from "react-router-dom";
+import { connect } from "unistore/react";
 
 const EditPassword = props => {
   return (
     <div
       className="container"
       style={{
-        backgroundColor: '#F7F7F7'
+        backgroundColor: "#F7F7F7"
       }}
     >
       <form onSubmit={e => e.preventDefault(e)}>
@@ -61,6 +61,6 @@ const EditPassword = props => {
 };
 
 export default connect(
-  'baseUrl, inputPassLama, inputPassBaru, editStatus, isLoadingEditPass',
+  "baseUrl, inputPassLama, inputPassBaru, editStatus, isLoadingEditPass",
   actions
 )(withRouter(EditPassword));

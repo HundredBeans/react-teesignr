@@ -11,7 +11,7 @@ const HomeHead = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <p>Introducing,</p>
+            <p>Perkenalan,</p>
           </div>
         </div>
         <div className="row">
